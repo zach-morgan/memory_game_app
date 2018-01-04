@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.zach.memorygame.level_select">
+
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/stageborder"
+        android:fontFamily="@font/finger_paint"
+        android:text="Stage 1"
+        android:textAlignment="center"
+        android:textColor="#212121"
+        android:textSize="56sp"
+        android:visibility="visible"
+        tools:text="Stage 1" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/cartoon_level_background">
+
+        <GridLayout
+            android:id="@+id/gridLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:alignmentMode="alignMargins"
+            android:background="@android:color/transparent"
+            android:columnCount="2"
+            android:rowCount="2"
+            android:theme="@style/cartoon_levels_select_Grids"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <Button
+                android:id="@+id/stage1lvl1"
+                android:layout_width="141dp"
+                android:layout_height="139dp"
+                android:text="1"
+                tools:text="1" />
+
+            <Button
+                android:id="@+id/stage1lvl2"
+                android:layout_width="141dp"
+                android:layout_height="141dp"
+                android:text="2"
+                tools:text="2" />
+
+            <Button
+                android:id="@+id/stage1lvl3"
+                android:layout_width="141dp"
+                android:layout_height="139dp"
+                android:text="3"
+                tools:text="3" />
+
+            <Button
+                android:id="@+id/stage1lvl4"
+                android:layout_width="141dp"
+                android:layout_height="139dp"
+                android:text="4"
+                tools:text="4" />
+
+        </GridLayout>
+
+    </FrameLayout>
+
+</LinearLayout>
