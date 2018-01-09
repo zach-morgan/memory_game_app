@@ -23,7 +23,7 @@ public class level_select extends AppCompatActivity {
                 findViewById(R.id.stage1lvl3), findViewById(R.id.stage1lvl4)));
         for (View levelButton : levelSelectors){
             Intent intent = new Intent(this,levels.class);
-            intent.putExtra("LevelNum",Integer.toString(levelSelectors.indexOf(levelButton)+1));
+            intent.putExtra("LevelNum","1L"+Integer.toString(levelSelectors.indexOf(levelButton)+1));
             registerClickListeners(intent,levelButton);
         }
     }

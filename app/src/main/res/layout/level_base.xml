@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:theme="@style/cartoon_level_base">
+    android:theme="@style/cartoon_level_base"
+    android:id="@+id/mainLayout">
 
 
     <android.support.constraint.ConstraintLayout
@@ -14,7 +15,7 @@
         android:theme="@style/cartoon_level_base_header">
 
         <TextView
-            android:id="@+id/textView5"
+            android:id="@+id/timer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
@@ -26,12 +27,12 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView6"
+            app:layout_constraintTop_toBottomOf="@+id/stage_level_label"
             app:layout_constraintVertical_bias="0.632"
             tools:text="0:00" />
 
         <TextView
-            android:id="@+id/textView6"
+            android:id="@+id/stage_level_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
@@ -46,7 +47,7 @@
             tools:text="Stage # Level #" />
 
         <TextView
-            android:id="@+id/textView7"
+            android:id="@+id/move_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
@@ -54,43 +55,79 @@
             android:layout_marginTop="4dp"
             android:text="Move"
             android:textSize="24sp"
-            app:layout_constraintEnd_toStartOf="@+id/textView6"
+            app:layout_constraintEnd_toStartOf="@+id/stage_level_label"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="Move" />
 
-        <ImageView
-            android:id="@+id/imageView3"
-            android:layout_width="45dp"
-            android:layout_height="33dp"
-            android:layout_marginEnd="4dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="4dp"
-            android:background="@android:color/transparent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toEndOf="@+id/textView6"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/restart_button" />
-
         <TextView
-            android:id="@+id/textView8"
+            android:id="@+id/move_counter"
             android:layout_width="34dp"
             android:layout_height="40dp"
             android:text="0"
             android:textAlignment="center"
             android:textSize="30sp"
-            app:layout_constraintBaseline_toBaselineOf="@+id/textView7"
-            app:layout_constraintStart_toEndOf="@+id/textView7"
+            app:layout_constraintBaseline_toBaselineOf="@+id/move_label"
+            app:layout_constraintStart_toEndOf="@+id/move_label"
             tools:text="0" />
 
-    </android.support.constraint.ConstraintLayout>
+        <Button
+            android:id="@+id/reset_button"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="4dp"
+            android:background="@drawable/restart_button"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.826"
+            app:layout_constraintStart_toEndOf="@+id/stage_level_label"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0" />
 
-    <android.support.constraint.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:theme="@style/cartoon_level_base_body">
+        <GridLayout
+            android:id="@+id/victory_header"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:alpha="0.0"
+            android:background="@android:color/transparent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/left_ribbon"
+                android:layout_width="115dp"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                app:srcCompat="@drawable/victory_header" />
+
+            <TextView
+                android:id="@+id/you_won"
+                android:layout_width="150dp"
+                android:layout_height="match_parent"
+                android:layout_column="1"
+                android:layout_gravity="center"
+                android:layout_row="0"
+                android:background="@android:color/transparent"
+                android:text="You Won!"
+                android:textAlignment="center"
+                android:textSize="30sp"
+                tools:text="You Won!" />
+
+            <ImageView
+                android:id="@+id/right_ribbon"
+                android:layout_width="115dp"
+                android:layout_height="wrap_content"
+                android:layout_column="2"
+                android:layout_row="0"
+                android:background="@android:color/transparent"
+                app:srcCompat="@drawable/victory_header" />
+        </GridLayout>
 
     </android.support.constraint.ConstraintLayout>
 </LinearLayout>

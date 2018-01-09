@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/trophy_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/cartoon_level_border">
+
+    <RelativeLayout
+        android:id="@+id/trophy_screen_relative"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/win_border"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            app:srcCompat="@drawable/trophy_border" />
+
+        <ImageView
+            android:visibility="invisible"
+            android:id="@+id/gold_trophy_win"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            app:srcCompat="@drawable/gold_win" />
+
+        <ImageView
+            android:visibility="invisible"
+            android:id="@+id/silver_trophy_win"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignTop="@+id/gold_trophy_win"
+            app:srcCompat="@drawable/silver_win" />
+
+        <ImageView
+            android:visibility="invisible"
+            android:id="@+id/bronze_trophy_win"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignTop="@+id/gold_trophy_win"
+            app:srcCompat="@drawable/bronze_win" />
+
+        <TextView
+            android:id="@+id/final_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/gold_trophy_win"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="51dp"
+            android:color="@color/cartoon_Text"
+            android:fontFamily="@font/finger_paint"
+            android:text="0:00"
+            android:textSize="30sp"
+            tools:text="0:00" />
+
+        <TextView
+            android:id="@+id/final_moves"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/final_time"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:color="@color/cartoon_Text"
+            android:fontFamily="@font/finger_paint"
+            android:text="0 Moves"
+            android:textSize="24sp"
+            tools:text="0 Moves" />
+
+    </RelativeLayout>
+</FrameLayout>

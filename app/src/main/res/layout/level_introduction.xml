@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:theme="@style/cartoon_level_base_body"
+    android:id="@+id/stage1level1_layout">
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="339dp"
+        android:layout_height="498dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:background="@android:color/transparent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/intro_trophies"
+            android:layout_width="318dp"
+            android:layout_height="317dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:background="@android:color/transparent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.4"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/intro_trophies" />
+
+        <TextView
+            android:id="@+id/bronze_time"
+            android:layout_width="wrap_content"
+            android:layout_height="45dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="184dp"
+            android:text="1:00"
+            android:textSize="30sp"
+            app:layout_constraintEnd_toStartOf="@+id/silver_time"
+            app:layout_constraintHorizontal_bias="0.05"
+            app:layout_constraintStart_toStartOf="@+id/bronze_moves"
+            app:layout_constraintTop_toTopOf="@+id/intro_trophies"
+            tools:text="1:00" />
+
+        <TextView
+            android:id="@+id/bronze_moves"
+            android:layout_width="93dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="48dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginStart="8dp"
+            android:text="10 Moves"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@+id/intro_trophies"
+            app:layout_constraintEnd_toStartOf="@+id/silver_moves"
+            app:layout_constraintStart_toStartOf="@+id/intro_trophies"
+            app:layout_constraintTop_toBottomOf="@+id/bronze_time"
+            app:layout_constraintVertical_bias="0.0"
+            tools:text="10 Moves" />
+
+        <TextView
+            android:id="@+id/silver_time"
+            android:layout_width="wrap_content"
+            android:layout_height="43dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="12dp"
+            android:text="1:30"
+            android:textSize="30sp"
+            app:layout_constraintBaseline_toBaselineOf="@+id/bronze_time"
+            app:layout_constraintEnd_toStartOf="@+id/gold_time"
+            app:layout_constraintHorizontal_bias="0.061"
+            app:layout_constraintStart_toStartOf="@+id/silver_moves"
+            tools:text="1:30" />
+
+        <TextView
+            android:id="@+id/silver_moves"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="24dp"
+            android:text="15 Moves"
+            android:textSize="18sp"
+            app:layout_constraintBaseline_toBaselineOf="@+id/bronze_moves"
+            app:layout_constraintEnd_toStartOf="@+id/gold_moves"
+            tools:text="15 Moves" />
+
+        <TextView
+            android:id="@+id/gold_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="12dp"
+            android:layout_marginStart="8dp"
+            android:text="2:00"
+            android:textSize="30sp"
+            app:layout_constraintBaseline_toBaselineOf="@+id/silver_time"
+            app:layout_constraintEnd_toEndOf="@+id/gold_moves"
+            app:layout_constraintStart_toStartOf="@+id/gold_moves"
+            tools:text="2:00" />
+
+        <TextView
+            android:id="@+id/gold_moves"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:text="10 Moves"
+            android:textSize="18sp"
+            app:layout_constraintBaseline_toBaselineOf="@+id/silver_moves"
+            app:layout_constraintEnd_toEndOf="@+id/intro_trophies"
+            tools:text="10 Moves" />
+
+        <Button
+            android:id="@+id/intro_playButton"
+            android:layout_width="186dp"
+            android:layout_height="85dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:background="@drawable/cartoon_button"
+            android:contentDescription="Play Button"
+            android:fontFamily="@font/finger_paint"
+            android:text="PLAY"
+            android:textAlignment="center"
+            android:textColor="#212121"
+            android:textSize="52sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.496"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/intro_trophies"
+            app:layout_constraintVertical_bias="0.0"
+            tools:text="PLAY" />
+    </android.support.constraint.ConstraintLayout>
+</android.support.constraint.ConstraintLayout>

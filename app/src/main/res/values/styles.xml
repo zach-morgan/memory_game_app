@@ -55,6 +55,16 @@
         <style name="cartoon_level_base_body" parent="@style/cartoon_level_base">
             <item name="android:background">@drawable/cartoon_level_border</item>
         </style>
+
+        <style name="cartoon_stage1_level1" parent="@style/cartoon_level_base_body">
+            <item name="android:buttonStyle">@style/cartoon_s1l1_button</item>
+            <item name="android:layout_height">115dp</item>
+            <item name="android:layout_width">115dp</item>
+        </style>
+
+        <style name="cartoon_s1l1_button" parent="@style/Widget.AppCompat.Button">
+            <item name="android:background">@drawable/cartoon_tileback</item>
+        </style>
     <!-- End Cartoon Theme -->
 
 

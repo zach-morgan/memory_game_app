@@ -1,44 +1,35 @@
 package com.example.zach.memorygame;
 
-import android.animation.ObjectAnimator;
-import android.content.Context;
-import android.content.DialogInterface;
 import android.os.Handler;
 import android.os.Message;
-import android.support.constraint.ConstraintLayout;
-import android.support.constraint.ConstraintSet;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.transition.ChangeBounds;
 import android.transition.TransitionManager;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.Transformation;
 import android.widget.Button;
-import android.widget.GridLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import java.lang.reflect.Array;
-import java.sql.Time;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
 import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class levels extends AppCompatActivity implements Observer {
+/**
+ * Created by Zach on 1/8/2018.
+ */
 
-    private static ConcentrationModel model;
+public abstract class baseLevel extends AppCompatActivity implements Observer {
+
+    private ConcentrationModel model;
 
     protected LinearLayout mainLayout;
 
@@ -86,34 +77,12 @@ public class levels extends AppCompatActivity implements Observer {
 
     private String levelnumber;
 
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.level_base);
+    public baseLevel(){
+        model = new ConcentrationModel();
+        model.addObserver(this);
         initializeGlobalHeader();
         initializeImageArrays();
-        initializeQuitAlertDialog();
-        levelnumber = getLevelNumber(savedInstanceState);
-        switch(levelnumber){
-            case "1L1":
-                model = new ConcentrationModel(6);
-                model.addObserver(this);
-                initializeStage1Level1();
-                break;
-            case "1L2":
 
-            case "1L3":
-
-            case "1L4":
-
-        }
-    }
-
-    @Override
-    public void onBackPressed() {
-        pauseTimer();
-        quitAlertDialog.show();
     }
 
     private void initializeGlobalHeader(){
@@ -134,8 +103,8 @@ public class levels extends AppCompatActivity implements Observer {
         timer = new Timer();
     }
 
-    private void initializeLevelIntroduction(String[] params){
-        level_intro = getLayoutInflater().inflate(R.layout.level_introduction,mainLayout,false);
+    private void initializeLevelIntroduction(String[] params) {
+        level_intro = getLayoutInflater().inflate(R.layout.level_introduction, mainLayout, false);
         mainLayout.addView(level_intro);
         TextView bronze_time = findViewById(R.id.bronze_time);
         TextView bronze_moves = findViewById(R.id.bronze_moves);
@@ -149,7 +118,7 @@ public class levels extends AppCompatActivity implements Observer {
         silver_moves.setText(params[3] + " Moves");
         bronze_time.setText(params[4]);
         bronze_moves.setText(params[5] + " Moves");
-        Button btn = (Button)findViewById(R.id.intro_playButton);
+        Button btn = (Button) findViewById(R.id.intro_playButton);
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -162,7 +131,6 @@ public class levels extends AppCompatActivity implements Observer {
                 playStage1Level1();
             }
         });
-
     }
 
     private void initializeImageArrays(){
@@ -173,58 +141,18 @@ public class levels extends AppCompatActivity implements Observer {
         ));
     }
 
-    private void initializeQuitAlertDialog(){
-        AlertDialog.Builder alertBuilder = new AlertDialog.Builder(this);
-        alertBuilder.setCancelable(false);
-        alertBuilder.setPositiveButton("Quit", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                levels.super.onBackPressed();
-                resetTimer();
-            }
-        });
-        alertBuilder.setNegativeButton("Don't Quit", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                quitAlertDialog.cancel();
-                if (!gameFinished && gameInPlay) {
-                    resumeTimer();
-                }
-            }
-        });
-        alertBuilder.setMessage("Are you sure you want to quit?\n(You will lose your progress for this level)");
-        quitAlertDialog = alertBuilder.create();
-    }
 
-
-    private String getLevelNumber(Bundle savedInstanceState){
-        String levelNumber;
-        if (savedInstanceState == null) {
-            Bundle extras = getIntent().getExtras();
-            if(extras == null) {
-                levelNumber= null;
-                //ADD ERROR MESSAGE HERE
-            } else {
-                levelNumber= extras.getString("LevelNum");
-            }
-        } else {
-            levelNumber= (String) savedInstanceState.getSerializable("LevelNum");
-        }
-        return levelNumber;
-    }
-
-    private void loadImages(int numImages, String theme){
+    private void loadImages(int numImages, String theme) {
         images = new int[numImages];
         Random rand = new Random();
-        for (int i=0;i < numImages;i++){
-            switch(theme){
+        for (int i = 0; i < numImages; i++) {
+            switch (theme) {
                 case "Cartoon":
                     int randomNum = rand.nextInt(cartoonImages.size());
                     images[i] = cartoonImages.get(randomNum);
                     cartoonImages.remove(randomNum);
             }
         }
-
     }
 
     @Override
@@ -251,6 +179,7 @@ public class levels extends AppCompatActivity implements Observer {
         }
     }
 
+
     private int checkWin(){
         int count = 0;
         for (Card card : model.getCards()){
@@ -260,6 +189,8 @@ public class levels extends AppCompatActivity implements Observer {
         }
         return count;
     }
+
+
 
     private void winScreen(){
         View victory_header = findViewById(R.id.victory_header);
@@ -289,15 +220,16 @@ public class levels extends AppCompatActivity implements Observer {
             case "silver":
                 silver_trophy.setVisibility(View.VISIBLE);
                 break;
-                //animateTrophy(silver_trophy);
+            //animateTrophy(silver_trophy);
             case "bronze":
                 bronze_trophy.setVisibility(View.VISIBLE);
                 break;
-                //animateTrophy(bronze_trophy);
+            //animateTrophy(bronze_trophy);
             case "no_medal":
 
         }
     }
+
 
     /**
      * FIX THIS SHIT
@@ -318,6 +250,7 @@ public class levels extends AppCompatActivity implements Observer {
         animation.setDuration(2000);
         trophy.startAnimation(animation);
     }
+
 
     private String level_of_win(){
         int final_time = Time_minutes + Time_seconds;
@@ -347,7 +280,6 @@ public class levels extends AppCompatActivity implements Observer {
         }
         return "no_medal";
     }
-
 
     private void animateHeader(){
         TextView Move = findViewById(R.id.move_label);
@@ -396,7 +328,7 @@ public class levels extends AppCompatActivity implements Observer {
         moveCounter.setText(Integer.toString(model.getMoveCount()));
     }
 
-//MAKE A STOP TIMER
+    //MAKE A STOP TIMER
     private void startTimer(){
         isTimerGoing = true;
         timer = new Timer();
@@ -446,19 +378,4 @@ public class levels extends AppCompatActivity implements Observer {
     }
 
 
-    private void initializeStage1Level1(){
-        levelLabel.setText("Stage 1 Level 1");
-        game_layout = getLayoutInflater().inflate(R.layout.s1l1,mainLayout,false);
-        goals = new String[]{"0:30", "15", "0:45", "25", "1:00", "30"};
-        initializeLevelIntroduction(goals);
-
-    }
-
-    private void playStage1Level1(){
-        loadImages(3,"Cartoon");
-        buttons = new int[]{
-                R.id.S1L1_B1,R.id.S1L1_B2,R.id.S1L1_B3,R.id.S1L1_B4,R.id.S1L1_B5,R.id.S1L1_B6
-        };
-        registersButtons(buttons);
-    }
 }

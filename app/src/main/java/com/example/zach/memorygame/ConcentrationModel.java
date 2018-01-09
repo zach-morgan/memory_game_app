@@ -14,18 +14,17 @@ import java.util.Observable;
 public class ConcentrationModel extends Observable {
     /**
      * The default size (of one side) of the board.
-     */
-    public static final int BOARD_SIZE = 4;
+     *
 
     /**
      * The total number of cards assuming a square board.
      */
-    public static final int NUM_CARDS = BOARD_SIZE * BOARD_SIZE;
+    public static int NUM_CARDS;
 
     /**
      * The number of pairs.
      */
-    public static final int NUM_PAIRS = NUM_CARDS / 2;
+    public static int NUM_PAIRS;
 
     /**
      * The undo stack for the game tracks pairing selections in progress.
@@ -51,7 +50,11 @@ public class ConcentrationModel extends Observable {
      */
     public ConcentrationModel() {
         this.cards = new ArrayList<>();
+    }
 
+    public void initializeCards(int numCards){
+        NUM_CARDS = numCards;
+        NUM_PAIRS = NUM_CARDS /2;
         for (int n = 0; n < NUM_PAIRS; ++n) {
             Card card1 = new Card(n, true);
             Card card2 = new Card(n, true);
@@ -225,7 +228,7 @@ public class ConcentrationModel extends Observable {
 
         this.moveCount = 0;
 
-        announce(null);
+        announce("reset");
     }
 
     /**
