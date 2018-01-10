@@ -48,11 +48,8 @@ public class ConcentrationModel extends Observable {
     /**
      * Construct a ConcentrationModel; there is only one configuration.
      */
-    public ConcentrationModel() {
+    public ConcentrationModel(int numCards) {
         this.cards = new ArrayList<>();
-    }
-
-    public void initializeCards(int numCards){
         NUM_CARDS = numCards;
         NUM_PAIRS = NUM_CARDS /2;
         for (int n = 0; n < NUM_PAIRS; ++n) {
@@ -63,6 +60,7 @@ public class ConcentrationModel extends Observable {
         }
         this.reset();
     }
+
 
     /**
      * Push a card onto the undo stack.

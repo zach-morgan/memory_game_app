@@ -1,6 +1,7 @@
 package com.example.zach.memorygame;
 
 import android.app.ActionBar;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
@@ -21,6 +22,8 @@ public class homePage extends AppCompatActivity implements SharedPreferences.OnS
 
     private View themeButton;
 
+    private SharedPreferences sharedPrefs;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,8 +36,38 @@ public class homePage extends AppCompatActivity implements SharedPreferences.OnS
         themeButton = findViewById(R.id.themeButton);
         openingAnimations();
         addButtonListeners();
+        initializeSharedPrefs();
     }
 
+    @Override
+    protected void onPause() {
+        smallBubble = null;
+        medBubble = null;
+        largeBubble = null;
+        tile = null;
+        playButton = null;
+        themeButton = null;
+        super.onPause();
+
+    }
+
+    private void initializeSharedPrefs(){
+        sharedPrefs = this.getSharedPreferences(getString(R.string.medal_storage_master_key), Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPrefs.edit();
+        String S1L1_key,S1L2_key,S1L3_key,S1L4_key,no_medal_value;
+        S1L1_key = getString(R.string.shared_pref_S1L1_key);
+        S1L2_key = getString(R.string.shared_pref_S1L2_key);
+        S1L3_key = getString(R.string.shared_pref_S1L3_key);
+        S1L4_key = getString(R.string.shared_pref_S1L4_key);
+        no_medal_value = getString(R.string.shared_pref_no_medal);
+        String[] keys = new String[]{S1L1_key,S1L2_key,S1L3_key,S1L4_key};
+        for (String key : keys){
+            if (!sharedPrefs.contains(key)){
+                editor.putString(key,no_medal_value);
+            }
+        }
+        editor.commit();
+    }
 
     private void openingAnimations(){
         //thought bubble animation

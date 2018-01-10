@@ -1,7 +1,49 @@
 <resources>
     <string name="app_name">Memory Game</string>
 
+    <string name="medal_storage_master_key">com.example.zach.memorygame</string>
+    <string name="shared_pref_S1L1_key">s1l1_key</string>
+    <string name="shared_pref_S1L2_key">s1l2_key</string>
+    <string name="shared_pref_S1L3_key">s1l3_key</string>
+    <string name="shared_pref_S1L4_key">s1l4_key</string>
+    <string name="shared_pref_gold">gold415</string>
+    <string name="shared_pref_silver">silver123</string>
+    <string name="shared_pref_bronze">bronze121</string>
+    <string name="shared_pref_no_medal">you suck</string>
+
     <string name="title_activity_home_page">HomePage</string>
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="home_screen_themeButton">THEMES</string>
+    <string name="home_screen_playButton">PLAY</string>
+    <string name="stage_select_label_stage1">Stage 1</string>
+    <string name="stage_select_level_1">1</string>
+    <string name="stage_select_level_2">2</string>
+    <string name="stage_select_level_3">3</string>
+    <string name="stage_select_level_4">4</string>
+    <string name="level_header_default_time">0:00</string>
+    <string name="level_header_default_levelNum">Stage # Level #</string>
+    <string name="level_header_move_label">Move</string>
+    <string name="level_header_default_moveCount">0</string>
+    <string name="level_intro_default_bronze_time">1:00</string>
+    <string name="level_intro_default_bronze_moves">30 Moves</string>
+    <string name="level_intro_default_silver_time">0:45</string>
+    <string name="level_intro_default_silver_moves">20 Moves</string>
+    <string name="level_intro_default_gold_time">0:30</string>
+    <string name="level_intro_default_gold_moves">15 Moves</string>
+    <string name="level_intro_playButton">PLAY</string>
+
+    <string name="victory_header_label">You Won!</string>
+    <string name="victory_default_time">0:00</string>
+    <string name="victory_default_moves">0 Moves</string>
+
+    <string name="s1l1_bronze_time">1:00</string>
+    <string name="s1l1_bronze_moves">30</string>
+    <string name="s1l1_silver_time">0:45</string>
+    <string name="s1l1_silver_moves">25</string>
+    <string name="s1l1_gold_time">0:30</string>
+    <string name="s1l1_gold_moves">15</string>
+
+
+
 </resources>

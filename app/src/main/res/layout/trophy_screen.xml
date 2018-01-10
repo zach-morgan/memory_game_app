@@ -65,7 +65,7 @@
             android:layout_marginTop="51dp"
             android:color="@color/cartoon_Text"
             android:fontFamily="@font/finger_paint"
-            android:text="0:00"
+            android:text="@string/victory_default_time"
             android:textSize="30sp"
             tools:text="0:00" />
 
@@ -78,7 +78,7 @@
             android:layout_marginTop="10dp"
             android:color="@color/cartoon_Text"
             android:fontFamily="@font/finger_paint"
-            android:text="0 Moves"
+            android:text="@string/victory_default_moves"
             android:textSize="24sp"
             tools:text="0 Moves" />
 

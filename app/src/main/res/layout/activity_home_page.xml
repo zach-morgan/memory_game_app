@@ -10,7 +10,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="58dp"
-        android:text="Memory Game"
+        android:text="@string/app_name"
         android:textAlignment="center"
         tools:text="Memory Game" />
 
@@ -79,7 +79,6 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:background="@android:color/transparent"
-            android:contentDescription="tile in thought bubble"
             app:layout_constraintBottom_toBottomOf="@+id/bubblelarge"
             app:layout_constraintEnd_toEndOf="@+id/bubblelarge"
             app:layout_constraintHorizontal_bias="0.458"
@@ -94,10 +93,8 @@
             android:layout_height="85dp"
             android:layout_marginBottom="48dp"
             android:background="@drawable/cartoon_button"
-            android:contentDescription="Themes Button"
             android:fontFamily="@font/finger_paint"
-
-            android:text="THEMES"
+            android:text="@string/home_screen_themeButton"
             android:textAlignment="center"
             android:textColor="#212121"
             android:textSize="46sp"
@@ -111,9 +108,8 @@
             android:layout_height="85dp"
             android:layout_marginBottom="20dp"
             android:background="@drawable/cartoon_button"
-            android:contentDescription="Play Button"
             android:fontFamily="@font/finger_paint"
-            android:text="PLAY"
+            android:text="@string/home_screen_playButton"
             android:textAlignment="center"
             android:textColor="#212121"
             android:textSize="52sp"
