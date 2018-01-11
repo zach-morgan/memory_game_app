@@ -7,20 +7,12 @@ import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
+
+import com.bumptech.glide.Glide;
 
 public class homePage extends AppCompatActivity implements SharedPreferences.OnSharedPreferenceChangeListener {
 
-    private View smallBubble;
-
-    private View medBubble;
-
-    private View largeBubble;
-
-    private View tile;
-
-    private View playButton;
-
-    private View themeButton;
 
     private SharedPreferences sharedPrefs;
 
@@ -28,25 +20,30 @@ public class homePage extends AppCompatActivity implements SharedPreferences.OnS
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
-        smallBubble = findViewById(R.id.bubblesmall);
-        medBubble = findViewById(R.id.bubblemed);
-        largeBubble = findViewById(R.id.bubblelarge);
-        tile = findViewById(R.id.tile_in_bubble);
-        playButton = findViewById(R.id.playButton);
-        themeButton = findViewById(R.id.themeButton);
-        openingAnimations();
+        ImageView person =  findViewById(R.id.person);
+        Glide.with(this).load(getDrawable(R.drawable.person)).into(person);
+        ImageView smallBubble = findViewById(R.id.bubblesmall);
+        Glide.with(this).load(getDrawable(R.drawable.firstdot)).into(smallBubble);
+        ImageView medBubble = findViewById(R.id.bubblemed);
+        Glide.with(this).load(getDrawable(R.drawable.seconddot)).into(medBubble);
+        ImageView largeBubble = findViewById(R.id.bubblelarge);
+        Glide.with(this).load(getDrawable(R.drawable.thirddot)).into(largeBubble);
+        ImageView tile = findViewById(R.id.tile_in_bubble);
+        Glide.with(this).load(getDrawable(R.drawable.cartoon_tileback)).into(tile);
+        tile.setAlpha(0f);
+        smallBubble.setAlpha(0f);
+        medBubble.setAlpha(0f);
+        largeBubble.setAlpha(0f);
+        smallBubble.animate().alpha(1f).setDuration(4000).setListener(null);
+        medBubble.animate().alpha(1f).setDuration(6000).setListener(null);
+        largeBubble.animate().alpha(1f).setDuration(8000).setListener(null);
+        tile.animate().alpha(1f).setDuration(8000).setListener(null);
         addButtonListeners();
         initializeSharedPrefs();
     }
 
     @Override
     protected void onPause() {
-        smallBubble = null;
-        medBubble = null;
-        largeBubble = null;
-        tile = null;
-        playButton = null;
-        themeButton = null;
         super.onPause();
 
     }
@@ -71,14 +68,7 @@ public class homePage extends AppCompatActivity implements SharedPreferences.OnS
 
     private void openingAnimations(){
         //thought bubble animation
-        tile.setAlpha(0f);
-        smallBubble.setAlpha(0f);
-        medBubble.setAlpha(0f);
-        largeBubble.setAlpha(0f);
-        smallBubble.animate().alpha(1f).setDuration(4000).setListener(null);
-        medBubble.animate().alpha(1f).setDuration(6000).setListener(null);
-        largeBubble.animate().alpha(1f).setDuration(8000).setListener(null);
-        tile.animate().alpha(1f).setDuration(8000).setListener(null);
+
         //Spring animations for buttons
 
     }
@@ -89,6 +79,8 @@ public class homePage extends AppCompatActivity implements SharedPreferences.OnS
     }
 
     private void addButtonListeners(){
+        View playButton = findViewById(R.id.playButton);
+        View themeButton = findViewById(R.id.themeButton);
         final Intent playIntent = new Intent(this,level_select.class);
         playButton.setOnClickListener(new View.OnClickListener() {
             @Override

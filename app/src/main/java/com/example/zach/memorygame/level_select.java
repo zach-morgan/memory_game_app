@@ -9,6 +9,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
+
+import com.bumptech.glide.Glide;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -55,32 +59,26 @@ public class level_select extends AppCompatActivity implements SharedPreferences
         String[] keys = new String[]{getString(R.string.shared_pref_S1L1_key),"","",getString(R.string.shared_pref_S1L2_key),
                 "","",getString(R.string.shared_pref_S1L3_key),"","",getString(R.string.shared_pref_S1L4_key)};
         int[] stars = new int[] {
-                R.id.lvl1_bronze,R.id.lvl1_silver,R.id.lvl1_gold,R.id.lvl2_bronze,R.id.lvl2_silver,R.id.lvl2_gold,
-                R.id.lvl3_bronze,R.id.lvl3_silver,R.id.lvl3_gold,R.id.lvl4_bronze,R.id.lvl4_silver,R.id.lvl4_gold};
+                R.id.lvl1_bronze_place,R.id.lvl1_silver_place,R.id.lvl1_gold_place,R.id.lvl2_bronze_place,R.id.lvl2_silver_place,R.id.lvl2_gold_place,
+                R.id.lvl3_bronze_place,R.id.lvl3_silver_place,R.id.lvl3_gold_place,R.id.lvl4_bronze_place,R.id.lvl4_silver_place,R.id.lvl4_gold_place};
         for (int i = 0; i<keys.length;i++){
             if (key.equals(keys[i]) && sharedPrefs.contains(key)){
                 String defaultValue = getString(R.string.shared_pref_no_medal);
-                View bronze_star = findViewById(stars[i]);
-                View silver_star = findViewById(stars[i+1]);
-                View gold_star = findViewById(stars[i+2]);
+                ImageView bronze_star = findViewById(stars[i]);
+                ImageView silver_star = findViewById(stars[i+1]);
+                ImageView gold_star = findViewById(stars[i+2]);
                 if (sharedPrefs.getString(keys[i],defaultValue).equals(getString(R.string.shared_pref_gold))) {
-                    gold_star.setVisibility(View.VISIBLE);
-                    silver_star.setVisibility(View.VISIBLE);
-                    bronze_star.setVisibility(View.VISIBLE);
+                    Glide.with(this).load(getDrawable(R.drawable.level_select_gold_star)).into(gold_star);
+                    Glide.with(this).load(getDrawable(R.drawable.level_select_silver_star)).into(silver_star);
+                    Glide.with(this).load(getDrawable(R.drawable.level_select_bronze_star)).into(bronze_star);
                 }
                 if (sharedPrefs.getString(keys[i],defaultValue).equals(getString(R.string.shared_pref_silver))) {
-                    silver_star.setVisibility(View.VISIBLE);
-                    bronze_star.setVisibility(View.VISIBLE);
+                    Glide.with(this).load(getDrawable(R.drawable.level_select_silver_star)).into(silver_star);
+                    Glide.with(this).load(getDrawable(R.drawable.level_select_bronze_star)).into(bronze_star);
                 }
                 if (sharedPrefs.getString(keys[i],defaultValue).equals(getString(R.string.shared_pref_bronze))) {
-                    bronze_star.setVisibility(View.VISIBLE);
+                    Glide.with(this).load(getDrawable(R.drawable.level_select_bronze_star)).into(bronze_star);
                 }
-                if (sharedPrefs.getString(keys[i],defaultValue).equals(getString(R.string.shared_pref_no_medal))) {
-                    gold_star.setVisibility(View.INVISIBLE);
-                    silver_star.setVisibility(View.INVISIBLE);
-                    bronze_star.setVisibility(View.INVISIBLE);
-                }
-
             }
         }
     }

@@ -72,104 +72,104 @@
         </GridLayout>
 
         <ImageView
-            android:id="@+id/lvl1_nostar3"
+            android:id="@+id/lvl1_gold_place"
             android:layout_width="25dp"
             android:layout_height="25dp"
             android:layout_marginBottom="8dp"
             android:layout_marginTop="28dp"
             app:layout_constraintBottom_toBottomOf="@+id/gridLayout"
-            app:layout_constraintStart_toEndOf="@+id/lvl1_nostar2"
+            app:layout_constraintStart_toEndOf="@+id/lvl1_silver_place"
             app:layout_constraintTop_toTopOf="@+id/gridLayout"
             app:layout_constraintVertical_bias="0.0"
             app:srcCompat="@drawable/level_select_no_star" />
 
         <ImageView
-            android:id="@+id/lvl1_nostar1"
+            android:id="@+id/lvl1_bronze_place"
             android:layout_width="25dp"
             android:layout_height="25dp"
             android:layout_marginStart="32dp"
-            app:layout_constraintBottom_toBottomOf="@+id/lvl1_nostar2"
+            app:layout_constraintBottom_toBottomOf="@+id/lvl1_silver_place"
             app:layout_constraintStart_toStartOf="@+id/gridLayout"
             app:layout_constraintTop_toTopOf="@+id/gridLayout"
             app:layout_constraintVertical_bias="1.0"
             app:srcCompat="@drawable/level_select_no_star" />
 
         <ImageView
-            android:id="@+id/lvl1_nostar2"
+            android:id="@+id/lvl1_silver_place"
             android:layout_width="25dp"
             android:layout_height="25dp"
-            app:layout_constraintBottom_toBottomOf="@+id/lvl1_nostar3"
-            app:layout_constraintStart_toEndOf="@+id/lvl1_nostar1"
+            app:layout_constraintBottom_toBottomOf="@+id/lvl1_gold_place"
+            app:layout_constraintStart_toEndOf="@+id/lvl1_bronze_place"
             app:layout_constraintTop_toTopOf="@+id/gridLayout"
             app:layout_constraintVertical_bias="1.0"
             app:srcCompat="@drawable/level_select_no_star" />
 
         <ImageView
-            android:id="@+id/lvl2_nostar2"
+            android:id="@+id/lvl2_silver_place"
             android:layout_width="25dp"
             android:layout_height="25dp"
-            app:layout_constraintBottom_toBottomOf="@+id/lvl2_nostar3"
-            app:layout_constraintEnd_toStartOf="@+id/lvl2_nostar3"
+            app:layout_constraintBottom_toBottomOf="@+id/lvl2_gold_place"
+            app:layout_constraintEnd_toStartOf="@+id/lvl2_gold_place"
             app:layout_constraintTop_toTopOf="@+id/gridLayout"
             app:layout_constraintVertical_bias="1.0"
             app:srcCompat="@drawable/level_select_no_star" />
 
         <ImageView
-            android:id="@+id/lvl2_nostar1"
+            android:id="@+id/lvl2_bronze_place"
             android:layout_width="25dp"
             android:layout_height="25dp"
-            app:layout_constraintBottom_toBottomOf="@+id/lvl2_nostar2"
-            app:layout_constraintEnd_toStartOf="@+id/lvl2_nostar2"
+            app:layout_constraintBottom_toBottomOf="@+id/lvl2_silver_place"
+            app:layout_constraintEnd_toStartOf="@+id/lvl2_silver_place"
             app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toEndOf="@+id/lvl1_nostar3"
+            app:layout_constraintStart_toEndOf="@+id/lvl1_gold_place"
             app:layout_constraintTop_toTopOf="@+id/gridLayout"
             app:layout_constraintVertical_bias="1.0"
             app:srcCompat="@drawable/level_select_no_star" />
 
         <ImageView
-            android:id="@+id/lvl4_nostar3"
+            android:id="@+id/lvl4_gold_place"
             android:layout_width="25dp"
             android:layout_height="25dp"
             android:layout_marginEnd="32dp"
             app:layout_constraintBottom_toBottomOf="@+id/gridLayout"
             app:layout_constraintEnd_toEndOf="@+id/gridLayout"
-            app:layout_constraintTop_toTopOf="@+id/lvl4_nostar2"
+            app:layout_constraintTop_toTopOf="@+id/lvl4_silver_place"
             app:layout_constraintVertical_bias="0.0"
             app:srcCompat="@drawable/level_select_no_star" />
 
         <ImageView
-            android:id="@+id/lvl4_nostar2"
+            android:id="@+id/lvl4_silver_place"
             android:layout_width="25dp"
             android:layout_height="25dp"
             app:layout_constraintBottom_toBottomOf="@+id/gridLayout"
-            app:layout_constraintEnd_toStartOf="@+id/lvl4_nostar3"
-            app:layout_constraintTop_toTopOf="@+id/lvl4_nostar1"
+            app:layout_constraintEnd_toStartOf="@+id/lvl4_gold_place"
+            app:layout_constraintTop_toTopOf="@+id/lvl4_bronze_place"
             app:layout_constraintVertical_bias="0.0"
             app:srcCompat="@drawable/level_select_no_star" />
 
         <ImageView
-            android:id="@+id/lvl4_nostar1"
+            android:id="@+id/lvl4_bronze_place"
             android:layout_width="25dp"
             android:layout_height="25dp"
             android:layout_marginBottom="84dp"
             app:layout_constraintBottom_toBottomOf="@+id/gridLayout"
-            app:layout_constraintEnd_toStartOf="@+id/lvl4_nostar2"
+            app:layout_constraintEnd_toStartOf="@+id/lvl4_silver_place"
             app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toEndOf="@+id/lvl3_nostar3"
+            app:layout_constraintStart_toEndOf="@+id/lvl3_gold_place"
             app:srcCompat="@drawable/level_select_no_star" />
 
         <ImageView
-            android:id="@+id/lvl3_nostar3"
+            android:id="@+id/lvl3_gold_place"
             android:layout_width="25dp"
             android:layout_height="25dp"
             app:layout_constraintBottom_toBottomOf="@+id/gridLayout"
-            app:layout_constraintStart_toEndOf="@+id/lvl3_nostar2"
-            app:layout_constraintTop_toTopOf="@+id/lvl3_nostar2"
+            app:layout_constraintStart_toEndOf="@+id/lvl3_silver_place"
+            app:layout_constraintTop_toTopOf="@+id/lvl3_silver_place"
             app:layout_constraintVertical_bias="0.0"
             app:srcCompat="@drawable/level_select_no_star" />
 
         <ImageView
-            android:id="@+id/lvl3_nostar1"
+            android:id="@+id/lvl3_bronze_place"
             android:layout_width="25dp"
             android:layout_height="25dp"
             android:layout_marginBottom="84dp"
@@ -182,7 +182,7 @@
             app:srcCompat="@drawable/level_select_no_star" />
 
         <ImageView
-            android:id="@+id/lvl2_nostar3"
+            android:id="@+id/lvl2_gold_place"
             android:layout_width="25dp"
             android:layout_height="25dp"
             android:layout_marginEnd="32dp"
@@ -192,159 +192,14 @@
             app:srcCompat="@drawable/level_select_no_star" />
 
         <ImageView
-            android:id="@+id/lvl3_nostar2"
+            android:id="@+id/lvl3_silver_place"
             android:layout_width="25dp"
             android:layout_height="25dp"
             app:layout_constraintBottom_toBottomOf="@+id/gridLayout"
-            app:layout_constraintStart_toEndOf="@+id/lvl3_nostar1"
-            app:layout_constraintTop_toTopOf="@+id/lvl3_nostar1"
+            app:layout_constraintStart_toEndOf="@+id/lvl3_bronze_place"
+            app:layout_constraintTop_toTopOf="@+id/lvl3_bronze_place"
             app:layout_constraintVertical_bias="0.0"
             app:srcCompat="@drawable/level_select_no_star" />
-
-
-        <!-- medals -->
-
-        <ImageView
-            android:id="@+id/lvl1_gold"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:layout_marginBottom="8dp"
-            android:layout_marginTop="28dp"
-            android:visibility="invisible"
-            app:layout_constraintBottom_toBottomOf="@+id/gridLayout"
-            app:layout_constraintStart_toEndOf="@+id/lvl1_silver"
-            app:layout_constraintTop_toTopOf="@+id/gridLayout"
-            app:layout_constraintVertical_bias="0.0"
-            app:srcCompat="@drawable/level_select_gold_star" />
-
-        <ImageView
-            android:id="@+id/lvl1_bronze"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:visibility="invisible"
-            android:layout_marginStart="32dp"
-            app:layout_constraintBottom_toBottomOf="@+id/lvl1_silver"
-            app:layout_constraintStart_toStartOf="@+id/gridLayout"
-            app:layout_constraintTop_toTopOf="@+id/gridLayout"
-            app:layout_constraintVertical_bias="1.0"
-            app:srcCompat="@drawable/level_select_bronze_star" />
-
-        <ImageView
-            android:id="@+id/lvl1_silver"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:visibility="invisible"
-            app:layout_constraintBottom_toBottomOf="@+id/lvl1_gold"
-            app:layout_constraintStart_toEndOf="@+id/lvl1_bronze"
-            app:layout_constraintTop_toTopOf="@+id/gridLayout"
-            app:layout_constraintVertical_bias="1.0"
-            app:srcCompat="@drawable/level_select_silver_star" />
-
-        <ImageView
-            android:id="@+id/lvl2_silver"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:visibility="invisible"
-            app:layout_constraintBottom_toBottomOf="@+id/lvl2_gold"
-            app:layout_constraintEnd_toStartOf="@+id/lvl2_gold"
-            app:layout_constraintTop_toTopOf="@+id/gridLayout"
-            app:layout_constraintVertical_bias="1.0"
-            app:srcCompat="@drawable/level_select_silver_star" />
-
-        <ImageView
-            android:id="@+id/lvl2_bronze"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:visibility="invisible"
-            app:layout_constraintBottom_toBottomOf="@+id/lvl2_silver"
-            app:layout_constraintEnd_toStartOf="@+id/lvl2_silver"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toEndOf="@+id/lvl1_bronze"
-            app:layout_constraintTop_toTopOf="@+id/gridLayout"
-            app:layout_constraintVertical_bias="1.0"
-            app:srcCompat="@drawable/level_select_bronze_star" />
-
-        <ImageView
-            android:id="@+id/lvl4_gold"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:layout_marginEnd="32dp"
-            android:visibility="invisible"
-            app:layout_constraintBottom_toBottomOf="@+id/gridLayout"
-            app:layout_constraintEnd_toEndOf="@+id/gridLayout"
-            app:layout_constraintTop_toTopOf="@+id/lvl4_silver"
-            app:layout_constraintVertical_bias="0.0"
-            app:srcCompat="@drawable/level_select_gold_star" />
-
-        <ImageView
-            android:id="@+id/lvl4_silver"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:visibility="invisible"
-            app:layout_constraintBottom_toBottomOf="@+id/gridLayout"
-            app:layout_constraintEnd_toStartOf="@+id/lvl4_gold"
-            app:layout_constraintTop_toTopOf="@+id/lvl4_bronze"
-            app:layout_constraintVertical_bias="0.0"
-            app:srcCompat="@drawable/level_select_silver_star" />
-
-        <ImageView
-            android:id="@+id/lvl4_bronze"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:layout_marginBottom="84dp"
-            android:visibility="invisible"
-            app:layout_constraintBottom_toBottomOf="@+id/gridLayout"
-            app:layout_constraintEnd_toStartOf="@+id/lvl4_silver"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toEndOf="@+id/lvl3_gold"
-            app:srcCompat="@drawable/level_select_bronze_star" />
-
-        <ImageView
-            android:id="@+id/lvl3_gold"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:visibility="invisible"
-            app:layout_constraintBottom_toBottomOf="@+id/gridLayout"
-            app:layout_constraintStart_toEndOf="@+id/lvl3_silver"
-            app:layout_constraintTop_toTopOf="@+id/lvl3_silver"
-            app:layout_constraintVertical_bias="0.0"
-            app:srcCompat="@drawable/level_select_gold_star" />
-
-        <ImageView
-            android:id="@+id/lvl3_bronze"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:layout_marginBottom="84dp"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="8dp"
-            android:visibility="invisible"
-            app:layout_constraintBottom_toBottomOf="@+id/gridLayout"
-            app:layout_constraintStart_toStartOf="@+id/gridLayout"
-            app:layout_constraintTop_toTopOf="@+id/gridLayout"
-            app:layout_constraintVertical_bias="0.993"
-            app:srcCompat="@drawable/level_select_bronze_star" />
-
-        <ImageView
-            android:id="@+id/lvl2_gold"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:layout_marginEnd="32dp"
-            android:layout_marginTop="28dp"
-            android:visibility="invisible"
-            app:layout_constraintEnd_toEndOf="@+id/gridLayout"
-            app:layout_constraintTop_toTopOf="@+id/gridLayout"
-            app:srcCompat="@drawable/level_select_gold_star" />
-
-        <ImageView
-            android:id="@+id/lvl3_silver"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:visibility="invisible"
-            app:layout_constraintBottom_toBottomOf="@+id/gridLayout"
-            app:layout_constraintStart_toEndOf="@+id/lvl3_bronze"
-            app:layout_constraintTop_toTopOf="@+id/lvl3_bronze"
-            app:layout_constraintVertical_bias="0.0"
-            app:srcCompat="@drawable/level_select_silver_star" />
 
 
 

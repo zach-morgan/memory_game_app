@@ -4,9 +4,13 @@ import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
+import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.os.Handler;
 import android.os.Message;
 import android.preference.PreferenceManager;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.constraint.ConstraintLayout;
 import android.support.constraint.ConstraintSet;
 import android.support.v7.app.AlertDialog;
@@ -25,6 +29,10 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.target.SimpleTarget;
+import com.bumptech.glide.request.transition.Transition;
 
 import java.lang.reflect.Array;
 import java.sql.Time;
@@ -241,6 +249,8 @@ public abstract class levels extends AppCompatActivity implements Observer {
                     gameInPlay = false;
                     timer.cancel();
                     timer.purge();
+                    model.deleteObserver(this);
+                    model = null;
                     winScreen();
                 }
                 if (!isTimerGoing) {
@@ -259,14 +269,24 @@ public abstract class levels extends AppCompatActivity implements Observer {
             for (int i=0;i < buttons.length;i++){
                 int cardNum = cards.get(i).getNumber();
                 if(cardNum == -1){
-                    buttonObjects.get(i).setBackgroundResource(R.drawable.cartoon_tileback);
+                    setBackground(buttonObjects.get(i),R.drawable.cartoon_tileback);
                 }
                 else{
-                    buttonObjects.get(i).setBackgroundResource(images[cardNum]);
+                    setBackground(buttonObjects.get(i),images[cardNum]);
                 }
             }
             moveCounter.setText(Integer.toString(model.getMoveCount()));
         }
+
+        private void setBackground(final Button btn, int background){
+            Glide.with(this).load(getDrawable(background)).into(new SimpleTarget<Drawable>() {
+                @Override
+                public void onResourceReady(@NonNull Drawable resource, @Nullable Transition<? super Drawable> transition) {
+                    btn.setBackground(resource);
+                }
+            });
+        }
+
 
     //END OBSERVER UPDATES
 
