@@ -1,8 +1,10 @@
 package com.example.zach.memorygame;
 
+import android.animation.Animator;
 import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
@@ -174,8 +176,9 @@ public abstract class levels extends AppCompatActivity implements Observer {
         private void initializeImageArrays(){
             buttonObjects = new ArrayList<>();
             cartoonImages = new ArrayList<>(Arrays.asList(
-                    R.drawable.cartoon_tileback_whale,R.drawable.cartoon_tileflipped_cloud,R.drawable.cartoon_tileflipped_cuteprince,R.drawable.cartoon_tileflipped_punkguy
-                    ,R.drawable.cartoon_elephant
+                    R.drawable.cartoon_tileflipped_whale,R.drawable.cartoon_tileflipped_cloud,R.drawable.cartoon_tileflipped_cuteprince,R.drawable.cartoon_tileflipped_punkguy
+                    ,R.drawable.cartoon_elephant,R.drawable.cartoon_tileflipped_computerguy,R.drawable.cartoon_tileflipped_mexicanguy,R.drawable.cartoon_tileflipped_octopus,
+                    R.drawable.cartoon_tileflipped_world
             ));
         }
 
@@ -252,6 +255,7 @@ public abstract class levels extends AppCompatActivity implements Observer {
                     model.deleteObserver(this);
                     model = null;
                     winScreen();
+
                 }
                 if (!isTimerGoing) {
                     startTimer();
@@ -304,16 +308,11 @@ public abstract class levels extends AppCompatActivity implements Observer {
             return count;
         }
 
+
         private void winScreen(){
-            View victory_header = findViewById(R.id.victory_header);
-            TextView Move = findViewById(R.id.move_label);
-            View resetButton = findViewById(R.id.reset_button);
-            Move.animate().alpha(0f).setDuration(1000).setListener(null);
-            TimeView.animate().alpha(0f).setDuration(1000).setListener(null);
-            levelLabel.animate().alpha(0f).setDuration(1000).setListener(null);
-            resetButton.animate().alpha(0f).setDuration(1000).setListener(null);
-            moveCounter.animate().alpha(0f).setDuration(1000).setListener(null);
-            victory_header.animate().alpha(1f).setDuration(1000).setListener(null);
+            //switch from game header to You Won!
+            initializeWinScreenHeader();
+            //transition between game layout and trophy screen
             LinearLayout mainLayout = findViewById(R.id.mainLayout);
             View winScreen_layout = getLayoutInflater().inflate(R.layout.trophy_screen,mainLayout,false);
             TransitionManager.beginDelayedTransition(mainLayout);
@@ -321,39 +320,105 @@ public abstract class levels extends AppCompatActivity implements Observer {
             layoutparams.height = 0;
             game_layout.setLayoutParams(layoutparams);
             mainLayout.addView(winScreen_layout);
+            mainLayout.removeView(game_layout);
             String medal = level_of_win();
+            configureWin(medal);
+            registerEndofgameButtons();
+        }
+
+
+        private void registerEndofgameButtons(){
+            final Button level_select = (Button) findViewById(R.id.back_to_level_select_button);
+            final Button next_level = (Button)findViewById(R.id.next_level_button);
+            final Intent back_to_level_select = new Intent(this,level_select.class);
+            level_select.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    levels.super.onBackPressed();
+                    finish();
+                }
+            });
+            final Intent next_level_intent = getNextLevelIntent();
+            next_level.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    startActivity(next_level_intent);
+                    finish();
+                }
+            });
+        }
+
+        private void configureWin(String medal){
             ImageView gold_trophy = findViewById(R.id.gold_trophy_win);
             ImageView silver_trophy = findViewById(R.id.silver_trophy_win);
             ImageView bronze_trophy = findViewById(R.id.bronze_trophy_win);
-            String masterKey = getString(R.string.medal_storage_master_key);
-            SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
-            SharedPreferences.Editor editor = sharedPref.edit();
+            ImageView no_medal = findViewById(R.id.no_medal_win);
+
             switch(medal){
                 case "gold":
                     gold_trophy.setVisibility(View.VISIBLE);
                     String goldValue = getString(R.string.shared_pref_gold);
-                    editor.putString(levelkey,goldValue);
+                    saveMedal(goldValue);
                     //animateTrophy(gold_trophy);
                     break;
                 case "silver":
                     silver_trophy.setVisibility(View.VISIBLE);
                     String silverValue = getString(R.string.shared_pref_silver);
-                    editor.putString(levelkey,silverValue);
+                    saveMedal(silverValue);
                     break;
-                    //animateTrophy(silver_trophy);
+                //animateTrophy(silver_trophy);
                 case "bronze":
                     bronze_trophy.setVisibility(View.VISIBLE);
-                    String bronzeValue = getString(R.string.shared_pref_silver);
-                    editor.putString(levelkey,bronzeValue);
+                    String bronzeValue = getString(R.string.shared_pref_bronze);
+                    saveMedal(bronzeValue);
                     break;
-                    //animateTrophy(bronze_trophy);
+                //animateTrophy(bronze_trophy);
                 case "no_medal":
+                    no_medal.setVisibility(View.VISIBLE);
+                    TextView final_time_view = findViewById(R.id.final_time);
+                    TextView final_moves_view = findViewById(R.id.final_moves);
+                    View win_border = findViewById(R.id.win_border);
+                    win_border.setVisibility(View.INVISIBLE);
+                    final_time_view.setVisibility(View.INVISIBLE);
+                    final_moves_view.setText("No Medal");
                     String no_medalValue = getString(R.string.shared_pref_no_medal);
-                    editor.putString(levelkey,no_medalValue);
+                    saveMedal(no_medalValue);
                     //do something else
 
             }
+        }
+
+        private void saveMedal(String medalValue){
+            SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
+            SharedPreferences.Editor editor = sharedPref.edit();
+            String default_value = getString(R.string.shared_pref_no_medal);
+            int new_medalLevel = Integer.parseInt(medalValue);
+            int current_medalLevel = Integer.parseInt(sharedPref.getString(levelkey,default_value));
+            if (new_medalLevel > current_medalLevel){
+                editor.putString(levelkey,medalValue);
+            }
             editor.apply();
+        }
+
+
+        private void initializeWinScreenHeader() {
+            View victory_header = findViewById(R.id.you_won);
+            View left_ribbon = findViewById(R.id.left_ribbon);
+            View right_ribbon = findViewById(R.id.right_ribbon);
+            ArrayList<View> win_views = new ArrayList<>(Arrays.asList(victory_header, left_ribbon, right_ribbon));
+            TextView Move = findViewById(R.id.move_label);
+            View resetButton = findViewById(R.id.reset_button);
+            ViewGroup levelheader = findViewById(R.id.level_header);
+            ArrayList<View> views = new ArrayList<>(Arrays.asList(Move, resetButton, TimeView, levelLabel, moveCounter));
+            Move.animate().alpha(0f).setDuration(1000).setListener(new animatorListener(levelheader, views));
+            for (View view : views) {
+                view.animate().alpha(0f).setDuration(1000).setListener(null);
+            }
+            for (View win : win_views) {
+                win.setVisibility(View.VISIBLE);
+                win.setAlpha(0f);
+                win.animate().alpha(1f).setDuration(1000).setListener(null);
+            }
         }
 
         /**
@@ -375,6 +440,7 @@ public abstract class levels extends AppCompatActivity implements Observer {
             animation.setDuration(2000);
             trophy.startAnimation(animation);
         }
+
 
         private String level_of_win(){
             int final_time = Time_minutes + Time_seconds;
@@ -481,5 +547,6 @@ public abstract class levels extends AppCompatActivity implements Observer {
 
         protected abstract String getKey();
 
+        protected abstract Intent getNextLevelIntent();
     //END ABSTRACT FUNCTIONS
 }

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/trophy_layout"
@@ -8,79 +8,156 @@
     android:layout_height="match_parent"
     android:background="@drawable/cartoon_level_border">
 
-    <RelativeLayout
-        android:id="@+id/trophy_screen_relative"
+    <ImageView
+        android:id="@+id/win_border"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="398dp"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/trophy_border" />
+
+    <ImageView
+        android:id="@+id/gold_trophy_win"
+        android:layout_width="312dp"
+        android:layout_height="320dp"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="16dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.179"
+        app:srcCompat="@drawable/gold_win" />
+
+    <ImageView
+        android:id="@+id/silver_trophy_win"
+        android:layout_width="307dp"
+        android:layout_height="328dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignTop="@+id/gold_trophy_win"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.224"
+        app:srcCompat="@drawable/silver_win" />
+
+    <ImageView
+        android:id="@+id/bronze_trophy_win"
+        android:layout_width="301dp"
+        android:layout_height="314dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignTop="@+id/gold_trophy_win"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.243"
+        app:srcCompat="@drawable/bronze_win" />
+
+    <TextView
+        android:id="@+id/final_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/gold_trophy_win"
+        android:layout_centerHorizontal="true"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
+        android:color="@color/cartoon_Text"
+        android:fontFamily="@font/finger_paint"
+        android:text="@string/victory_default_time"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/final_moves"
+        app:layout_constraintHorizontal_bias="0.481"
+        app:layout_constraintStart_toStartOf="@+id/final_moves"
+        app:layout_constraintTop_toBottomOf="@+id/final_moves"
+        app:layout_constraintVertical_bias="0.0"
+        tools:text="0:00" />
+
+    <TextView
+        android:id="@+id/final_moves"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/final_time"
+        android:layout_centerHorizontal="true"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="72dp"
+        android:color="@color/cartoon_Text"
+        android:fontFamily="@font/finger_paint"
+        android:text="@string/victory_default_moves"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.568"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="0 Moves" />
+
+    <ImageView
+        android:id="@+id/no_medal_win"
+        android:layout_width="262dp"
+        android:layout_height="293dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/final_moves"
+        app:layout_constraintVertical_bias="0.021"
+        app:srcCompat="@drawable/no_medal_kid" />
 
-        <ImageView
-            android:id="@+id/win_border"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            app:srcCompat="@drawable/trophy_border" />
+    <Button
+        android:id="@+id/back_to_level_select_button"
+        android:layout_width="160dp"
+        android:layout_height="75dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginStart="16dp"
+        android:background="@drawable/cartoon_button"
+        android:fontFamily="@font/finger_paint"
+        android:text="LEVELS"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="@+id/next_level_button"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/next_level_button"
+        app:layout_constraintVertical_bias="0.0"
+        tools:text="LEVELS" />
 
-        <ImageView
-            android:visibility="invisible"
-            android:id="@+id/gold_trophy_win"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_centerVertical="true"
-            app:srcCompat="@drawable/gold_win" />
-
-        <ImageView
-            android:visibility="invisible"
-            android:id="@+id/silver_trophy_win"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_alignTop="@+id/gold_trophy_win"
-            app:srcCompat="@drawable/silver_win" />
-
-        <ImageView
-            android:visibility="invisible"
-            android:id="@+id/bronze_trophy_win"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_alignTop="@+id/gold_trophy_win"
-            app:srcCompat="@drawable/bronze_win" />
-
-        <TextView
-            android:id="@+id/final_time"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignTop="@+id/gold_trophy_win"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="51dp"
-            android:color="@color/cartoon_Text"
-            android:fontFamily="@font/finger_paint"
-            android:text="@string/victory_default_time"
-            android:textSize="30sp"
-            tools:text="0:00" />
-
-        <TextView
-            android:id="@+id/final_moves"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/final_time"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="10dp"
-            android:color="@color/cartoon_Text"
-            android:fontFamily="@font/finger_paint"
-            android:text="@string/victory_default_moves"
-            android:textSize="24sp"
-            tools:text="0 Moves" />
-
-    </RelativeLayout>
-</FrameLayout>
+    <Button
+        android:id="@+id/next_level_button"
+        android:layout_width="160dp"
+        android:layout_height="75dp"
+        android:layout_marginBottom="24dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/cartoon_button"
+        android:fontFamily="@font/finger_paint"
+        android:text="NEXT LEVEL"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.75"
+        app:layout_constraintStart_toEndOf="@+id/back_to_level_select_button"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.982"
+        tools:text="NEXT LEVEL" />
+</android.support.constraint.ConstraintLayout>

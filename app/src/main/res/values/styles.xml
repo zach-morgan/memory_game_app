@@ -1,73 +1,114 @@
 <resources>
 
     <!-- Cartoon Theme -->
+    <style name="cartoon_BaseText">
+        <item name="android:fontFamily">@font/finger_paint</item>
+        <item name="android:textColor">@color/cartoon_Text</item>
+        <item name="android:background">@android:color/transparent</item>
+    </style>
 
-        <style name="cartoon_BaseText">
-            <item name="android:fontFamily">@font/finger_paint</item>
-            <item name="android:textColor">@color/cartoon_Text</item>
-            <item name="android:background">@android:color/transparent</item>
-        </style>
+    <style name="cartoon_HomePage" parent="@style/Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/cartoon_colorPrimary</item>
+        <item name="colorPrimaryDark">@color/cartoon_colorPrimaryDark</item>
+        <item name="colorAccent">@color/cartoon_colorAccent</item>
+        <item name="android:background">@color/cartoon_colorPrimaryDark</item>
+        <item name="android:textViewStyle">@style/cartoon_homeScreenTitle</item>
+    </style>
 
-        <style name="cartoon_HomePage" parent="@style/Theme.AppCompat.Light.NoActionBar">
-            <item name="colorPrimary">@color/cartoon_colorPrimary</item>
-            <item name="colorPrimaryDark">@color/cartoon_colorPrimaryDark</item>
-            <item name="colorAccent">@color/cartoon_colorAccent</item>
-            <item name="android:background">@color/cartoon_colorPrimaryDark</item>
-            <item name="android:textViewStyle">@style/cartoon_homeScreenTitle</item>
-        </style>
+    <style name="cartoon_homeScreenTitle" parent="@style/cartoon_BaseText">
+        <item name="android:textSize">36sp</item>
+        <item name="android:background">@color/cartoon_whitePrimary</item>
+    </style>
 
-        <style name ="cartoon_homeScreenTitle" parent="@style/cartoon_BaseText">
-            <item name="android:textSize">36sp</item>
-            <item name="android:background">@color/cartoon_whitePrimary</item>
-        </style>
+    <style name="level_select_title" parent="@style/cartoon_BaseText">
+        <item name="android:textSize">56sp</item>
+        <item name="android:fontFamily">@font/finger_paint</item>
+        <item name="android:background">@drawable/stageborder</item>
+    </style>
+    <style name="cartoon_levels_select" parent="@style/Theme.AppCompat.Light.NoActionBar">
+        <item name="android:textViewStyle">@style/level_select_title</item>
+        <item name="android:fontFamily">@font/finger_paint</item>
+        <item name="android:buttonStyle">@style/cartoon_level_select_Buttons</item>
+        <item name="android:layout_height">140dp</item>
+        <item name="android:layout_width">140dp</item>
+    </style>
 
-        <style name="cartoon_levels_select" parent="@style/Theme.AppCompat.Light.NoActionBar">
-            <item name="colorPrimary">@color/cartoon_colorPrimary</item>
-            <item name="colorPrimaryDark">@color/cartoon_colorPrimaryDark</item>
-            <item name="colorAccent">@color/cartoon_colorAccent</item>
-            <item name="android:gridViewStyle">@style/cartoon_levels_select_Grids</item>
-            <item name="android:textViewStyle">@style/cartoon_BaseText</item>
-        </style>
+    <style name="cartoon_level_select_Buttons">
+        <item name="android:background">@drawable/cartoon_levelselecttile</item>
+        <item name="android:textSize">84sp</item>
+        <item name="android:textAlignment">center</item>
+    </style>
 
-        <style name="cartoon_levels_select_Grids">
-            <item name="android:buttonStyle">@style/cartoon_level_select_Buttons</item>
-        </style>
+    <style name="cartoon_levelButtonsText" parent="@style/cartoon_BaseText">
+        <item name="android:textSize">84sp</item>
+    </style>
 
-        <style name="cartoon_level_select_Buttons" parent="@style/Widget.AppCompat.Button">
-            <item name="android:background">@drawable/cartoon_levelselecttile</item>
-            <item name="android:textAppearance">@style/cartoon_levelButtonsText</item>
-            <item name="android:layout_height">140dp</item>
-            <item name="android:layout_width">140dp</item>
-        </style>
+    <style name="cartoon_level_base" parent="@style/Theme.AppCompat.Light.NoActionBar">
+        <item name="android:textViewStyle">@style/cartoon_BaseText</item>
+    </style>
 
-        <style name="cartoon_levelButtonsText" parent="@style/cartoon_BaseText">
-            <item name="android:textSize">84sp</item>
-        </style>
+    <style name="cartoon_level_base_header" parent="@style/cartoon_level_base">
+        <item name="android:background">@drawable/cartoon_level_header</item>
+    </style>
 
-        <style name="cartoon_level_base" parent="@style/Theme.AppCompat.Light.NoActionBar">
-            <item name="android:textViewStyle">@style/cartoon_BaseText</item>
-        </style>
+    <style name="cartoon_level_base_body" parent="@style/cartoon_level_base">
+        <item name="android:background">@drawable/cartoon_level_border</item>
+    </style>
 
-        <style name="cartoon_level_base_header" parent="@style/cartoon_level_base">
-            <item name="android:background">@drawable/cartoon_level_header</item>
-        </style>
+    <style name="cartoon_stage1_level1" parent="@style/cartoon_level_base_body">
+        <item name="android:buttonStyle">@style/cartoon_level_buttons</item>
+        <item name="android:layout_height">115dp</item><!--100 for 4 inch-->
+        <item name="android:layout_width">115dp</item>
+    </style>
 
-        <style name="cartoon_level_base_body" parent="@style/cartoon_level_base">
-            <item name="android:background">@drawable/cartoon_level_border</item>
-        </style>
+    <style name="cartoon_level_buttons" parent="@style/Widget.AppCompat.Button">
+        <item name="android:background">@drawable/cartoon_tileback</item>
+    </style>
 
-        <style name="cartoon_stage1_level1" parent="@style/cartoon_level_base_body">
-            <item name="android:buttonStyle">@style/cartoon_s1l1_button</item>
-            <item name="android:layout_height">115dp</item>
-            <item name="android:layout_width">115dp</item>
-        </style>
+    <style name="cartoon_stage1_level2" parent="@style/cartoon_level_base_body">
+        <item name="android:buttonStyle">@style/cartoon_level_buttons</item>
+        <item name="android:layout_height">100dp</item>
+        <item name="android:layout_width">100dp</item>
+    </style>
 
-        <style name="cartoon_s1l1_button" parent="@style/Widget.AppCompat.Button">
-            <item name="android:background">@drawable/cartoon_tileback</item>
-        </style>
+    <style name="cartoon_stage1_level3" parent="@style/cartoon_level_base_body">
+        <item name="android:buttonStyle">@style/cartoon_level_buttons</item>
+        <item name="android:layout_height">100dp</item><!--85 for 4 inch screen, 150 for 7 inch-->
+        <item name="android:layout_width">100dp</item>
+        <item name="android:layout_marginTop">50dp</item>
+    </style>
+
+    <style name="cartoon_stage1_level4" parent="@style/cartoon_level_base_body">
+        <item name="android:buttonStyle">@style/cartoon_level_buttons</item>
+        <item name="android:layout_height">75dp</item><!--125 for 7 inch, 65 for 4 inch-->
+        <item name="android:layout_width">75dp</item>
+    </style>
+
+    <style name="cartoon_stage2_level2" parent="@style/cartoon_level_base_body">
+        <item name="android:buttonStyle">@style/cartoon_level_buttons</item>
+        <item name="android:layout_height">90dp</item><!--125 for 7 inch, 65 for 4 inch-->
+        <item name="android:layout_width">90dp</item>
+    </style>
+
+    <style name="cartoon_stage2_level3" parent="@style/cartoon_level_base_body">
+        <item name="android:buttonStyle">@style/cartoon_level_buttons</item>
+        <item name="android:layout_height">90dp</item><!--125 for 7 inch, 65 for 4 inch-->
+        <item name="android:layout_width">90dp</item>
+    </style>
+
+    <style name="cartoon_stage2_level4" parent="@style/cartoon_level_base_body">
+        <item name="android:buttonStyle">@style/cartoon_level_buttons</item>
+        <item name="android:layout_height">80dp</item><!--125 for 7 inch, 65 for 4 inch-->
+        <item name="android:layout_width">80dp</item>
+    </style>
+
+    <style name="AppTheme" parent="Theme.AppCompat.Light" >
+        <item name="android:fontFamily">@font/finger_paint</item>
+    </style>
+
+    <style name="AppTheme.NoActionBar" parent="Theme.AppCompat.Light.NoActionBar"/>
+
     <!-- End Cartoon Theme -->
-
-
 
 
 </resources>

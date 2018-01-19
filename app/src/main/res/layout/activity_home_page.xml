@@ -1,23 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context="com.example.zach.memorygame.homePage">
+    <android.support.constraint.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        tools:context="com.example.zach.memorygame.homePage"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="58dp"
+        android:layout_marginBottom="512dp"
         android:text="@string/app_name"
         android:textAlignment="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         tools:text="Memory Game" />
 
-
-    <android.support.constraint.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
 
         <ImageView
             android:id="@+id/person"
@@ -116,5 +115,3 @@
             app:layout_constraintStart_toEndOf="@+id/person"
             tools:text="PLAY" />
     </android.support.constraint.ConstraintLayout>
-
-</LinearLayout>

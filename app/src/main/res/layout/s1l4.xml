@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:theme="@style/cartoon_stage1_level4"
+    android:buttonStyle="@style/cartoon_level_buttons"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:columnOrderPreserved="true"
+    android:alignmentMode="alignMargins">
+
+    <Button
+        android:id="@+id/S1L4_B1"
+        android:layout_row="1"
+        android:layout_column="0"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+         />
+
+    <Button
+        android:id="@+id/S1L4_B2"
+        android:layout_column="1"
+        android:layout_row="0"
+        android:layout_marginTop="24dp"/>
+
+    <Button
+        android:id="@+id/S1L4_B3"
+        android:layout_column="3"
+        android:layout_row="0"
+        android:layout_marginTop="24dp"/>
+
+    <Button
+        android:id="@+id/S1L4_B4"
+        android:layout_column="4"
+        android:layout_row="1"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"/>
+
+    <Button
+        android:id="@+id/S1L4_B5"
+        android:layout_column="1"
+        android:layout_row="2" />
+    <Button
+        android:id="@+id/S1L4_B6"
+        android:layout_column="3"
+        android:layout_row="2" />
+
+    <Button
+        android:id="@+id/S1L4_B7"
+        android:layout_column="1"
+        android:layout_row="3"
+        android:layout_marginTop="4dp"/>
+    <Button
+        android:id="@+id/S1L4_B8"
+        android:layout_column="3"
+        android:layout_row="3"
+        android:layout_marginTop="4dp"/>
+
+    <Button
+        android:id="@+id/S1L4_B9"
+        android:layout_row="4"
+        android:layout_column="0"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        />
+
+    <Button
+        android:id="@+id/S1L4_B10"
+        android:layout_column="1"
+        android:layout_row="5"
+        android:layout_marginBottom="24dp"/>
+
+    <Button
+        android:id="@+id/S1L4_B11"
+        android:layout_column="3"
+        android:layout_row="5"
+        android:layout_marginBottom="24dp"/>
+
+    <Button
+        android:id="@+id/S1L4_B12"
+        android:layout_column="4"
+        android:layout_row="4"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"/>
+
+</GridLayout>

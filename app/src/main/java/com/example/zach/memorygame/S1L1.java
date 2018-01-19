@@ -1,5 +1,6 @@
 package com.example.zach.memorygame;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.LinearLayout;
 
@@ -34,6 +35,10 @@ public class S1L1 extends levels {
                 R.id.S1L1_B1,R.id.S1L1_B2,R.id.S1L1_B3,R.id.S1L1_B4,R.id.S1L1_B5,R.id.S1L1_B6
         };
         registersGameCards(buttons);
+    }
+    @Override
+    protected Intent getNextLevelIntent(){
+        return new Intent(this,S1L2.class);
     }
 
     @Override
