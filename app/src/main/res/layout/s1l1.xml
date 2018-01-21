@@ -9,7 +9,7 @@
         android:id="@+id/stage1level1_layout"
         android:buttonStyle="@style/cartoon_level_buttons">
 
-    <Button
+        <Button
         android:id="@+id/S1L1_B1"
         android:layout_marginEnd="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -17,7 +17,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.3"
-        app:layout_constraintHorizontal_bias="0.03"/>
+        app:layout_constraintHorizontal_bias="0.03"
+            android:stateListAnimator="@null"/>
 
     <Button
         android:id="@+id/S1L1_B2"
@@ -26,7 +27,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/S1L1_B5"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.0"
+        android:stateListAnimator="@null"/>
 
     <Button
         android:id="@+id/S1L1_B3"
@@ -34,26 +36,31 @@
         app:layout_constraintEnd_toStartOf="@+id/S1L1_B2"
         app:layout_constraintStart_toEndOf="@+id/S1L1_B4"
         app:layout_constraintTop_toBottomOf="@+id/S1L1_B6"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.0"
+        android:stateListAnimator="@null"/>
 
     <Button
         android:id="@+id/S1L1_B4"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="@+id/S1L1_B1"
         app:layout_constraintTop_toBottomOf="@+id/S1L1_B1"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.0"
+        android:stateListAnimator="@null"/>
 
     <Button
         android:id="@+id/S1L1_B5"
         app:layout_constraintHorizontal_bias="0.97"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/S1L1_B1" />
+        app:layout_constraintTop_toTopOf="@+id/S1L1_B1"
+        android:stateListAnimator="@null"/>
 
     <Button
         android:id="@+id/S1L1_B6"
         app:layout_constraintEnd_toStartOf="@+id/S1L1_B5"
         app:layout_constraintStart_toEndOf="@+id/S1L1_B1"
-        app:layout_constraintTop_toTopOf="@+id/S1L1_B1" />
+        app:layout_constraintTop_toTopOf="@+id/S1L1_B1"
+        />
+
 
     </android.support.constraint.ConstraintLayout>

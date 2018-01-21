@@ -29,6 +29,8 @@ public class level_select extends FragmentActivity{
 
     ViewPager pager;
 
+    SharedPreferences sharedPref;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,20 +38,19 @@ public class level_select extends FragmentActivity{
         pager = (ViewPager)findViewById(R.id.pager);
         level_select_pager pag = new level_select_pager(getSupportFragmentManager());
         pager.setAdapter(pag);
-        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
-        if (sharedPref.contains(getString(R.string.store_current_stage_pager))){
-            pager.setCurrentItem(sharedPref.getInt(getString(R.string.store_current_stage_pager),0));
-        }
+        sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
+        pager.setCurrentItem(sharedPref.getInt(getString(R.string.store_current_stage_pager),0));
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
+        sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
         SharedPreferences.Editor editor = sharedPref.edit();
         editor.putInt(getString(R.string.store_current_stage_pager), pager.getCurrentItem());
         editor.apply();
     }
+
 }
 
 

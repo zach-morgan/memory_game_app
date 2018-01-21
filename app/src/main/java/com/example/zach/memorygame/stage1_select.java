@@ -49,4 +49,14 @@ public class stage1_select extends stage_select_base {
     protected String getNextStageNum() {
         return "Stage 2";
     }
+
+    @Override
+    protected String getUnlockStatusKey() {
+        return getActivity().getString(R.string.shared_pref_stage1_lock_status_key);
+    }
+
+    @Override
+    protected String getNextStageUnlockStatusKey() {
+        return getActivity().getString(R.string.shared_pref_stage2_lock_status_key);
+    }
 }

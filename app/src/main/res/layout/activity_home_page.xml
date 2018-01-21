@@ -8,110 +8,114 @@
         android:layout_height="match_parent">
 
     <TextView
+        android:id="@+id/textView"
         android:layout_width="match_parent"
         android:layout_height="58dp"
-        android:layout_marginBottom="512dp"
         android:text="@string/app_name"
         android:textAlignment="center"
+        app:layout_constraintVertical_bias="0"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        tools:text="Memory Game" />
+        app:layout_constraintTop_toTopOf="parent" />
 
 
-        <ImageView
-            android:id="@+id/person"
-            android:layout_width="wrap_content"
-            android:layout_height="361dp"
-            android:layout_marginBottom="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:background="@android:color/transparent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.038"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.939" />
+    <ImageView
+        android:id="@+id/person"
+        android:layout_width="143dp"
+        android:layout_height="361dp"
+        android:background="@android:color/transparent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.038"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.939"
+        tools:src="@drawable/person" />
 
-        <ImageView
-            android:id="@+id/bubblesmall"
-            android:layout_width="35dp"
-            android:layout_height="35dp"
-            android:layout_marginStart="124dp"
-            android:layout_marginTop="116dp"
-            android:background="@android:color/transparent"
-            app:layout_constraintStart_toStartOf="@+id/person"
-            app:layout_constraintTop_toTopOf="@+id/bubblelarge" />
+    <ImageView
+        android:id="@+id/bubblesmall"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:background="@android:color/transparent"
+        app:layout_constraintBottom_toBottomOf="@+id/person"
+        app:layout_constraintEnd_toEndOf="@+id/person"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/person"
+        app:layout_constraintTop_toTopOf="@+id/person"
+        app:layout_constraintVertical_bias="0.0"
+        tools:src="@drawable/firstdot" />
 
-        <ImageView
-            android:id="@+id/bubblemed"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="88dp"
-            android:background="@android:color/transparent"
-            app:layout_constraintStart_toStartOf="@+id/bubblesmall"
-            app:layout_constraintTop_toTopOf="@+id/bubblelarge" />
+    <ImageView
+        android:id="@+id/bubblemed"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:background="@android:color/transparent"
+        app:layout_constraintBottom_toBottomOf="@+id/person"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/bubblesmall"
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:layout_constraintVertical_bias="0.22"
+        tools:src="@drawable/seconddot" />
 
-        <ImageView
-            android:id="@+id/bubblelarge"
-            android:layout_width="237dp"
-            android:layout_height="209dp"
-            android:layout_marginBottom="256dp"
-            android:layout_marginStart="180dp"
-            android:background="@android:color/transparent"
-            app:layout_constraintBottom_toBottomOf="@+id/person"
-            app:layout_constraintStart_toStartOf="@+id/person"
-            app:layout_constraintTop_toTopOf="@+id/person"
-            app:layout_constraintVertical_bias="1.0" />
+    <ImageView
+        android:id="@+id/bubblelarge"
+        android:layout_width="170dp"
+        android:layout_height="193dp"
+        android:background="@android:color/transparent"
+        app:layout_constraintBottom_toBottomOf="@+id/person"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:layout_constraintVertical_bias="0.0"
+        tools:src="@drawable/thirddot" />
 
-        <ImageView
-            android:id="@+id/tile_in_bubble"
-            android:layout_width="142dp"
-            android:layout_height="122dp"
-            android:layout_marginBottom="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:background="@android:color/transparent"
-            app:layout_constraintBottom_toBottomOf="@+id/bubblelarge"
-            app:layout_constraintEnd_toEndOf="@+id/bubblelarge"
-            app:layout_constraintHorizontal_bias="0.458"
-            app:layout_constraintStart_toStartOf="@+id/bubblelarge"
-            app:layout_constraintTop_toTopOf="@+id/bubblelarge"
-            app:layout_constraintVertical_bias="0.412" />
+    <ImageView
+        android:id="@+id/tile_in_bubble"
+        android:layout_width="110dp"
+        android:layout_height="110dp"
+        android:background="@android:color/transparent"
+        app:layout_constraintBottom_toBottomOf="@+id/bubblelarge"
+        app:layout_constraintEnd_toEndOf="@+id/bubblelarge"
+        app:layout_constraintHorizontal_bias="0.458"
+        app:layout_constraintStart_toStartOf="@+id/bubblelarge"
+        app:layout_constraintTop_toTopOf="@+id/bubblelarge"
+        app:layout_constraintVertical_bias="0.412" />
 
-        <Button
-            android:id="@+id/themeButton"
-            android:layout_width="186dp"
-            android:layout_height="85dp"
-            android:layout_marginBottom="24dp"
-            android:layout_marginStart="8dp"
-            android:background="@drawable/cartoon_button"
-            android:fontFamily="@font/finger_paint"
-            android:text="@string/home_screen_themeButton"
-            android:textAlignment="center"
-            android:textColor="#212121"
-            android:textSize="46sp"
-            app:layout_constraintBottom_toBottomOf="@+id/person"
-            app:layout_constraintStart_toEndOf="@+id/person"
-            tools:text="THEMES" />
+    <Button
+        android:id="@+id/themeButton"
+        android:layout_width="186dp"
+        android:layout_height="85dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/cartoon_button"
+        android:fontFamily="@font/finger_paint"
+        android:text="@string/home_screen_themeButton"
+        android:textAlignment="center"
+        android:textColor="#212121"
+        android:textSize="46sp"
+        app:layout_constraintBottom_toBottomOf="@+id/person"
+        app:layout_constraintEnd_toEndOf="@+id/playButton"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/playButton"
+        app:layout_constraintTop_toBottomOf="@+id/playButton"
+        tools:text="THEMES" />
 
-        <Button
-            android:id="@+id/playButton"
-            android:layout_width="186dp"
-            android:layout_height="85dp"
-            android:layout_marginBottom="20dp"
-            android:layout_marginStart="8dp"
-            android:background="@drawable/cartoon_button"
-            android:fontFamily="@font/finger_paint"
-            android:text="@string/home_screen_playButton"
-            android:textAlignment="center"
-            android:textColor="#212121"
-            android:textSize="52sp"
-            app:layout_constraintBottom_toTopOf="@+id/themeButton"
-            app:layout_constraintEnd_toEndOf="@+id/themeButton"
-            app:layout_constraintStart_toEndOf="@+id/person"
-            tools:text="PLAY" />
+    <Button
+        android:id="@+id/playButton"
+        android:layout_width="186dp"
+        android:layout_height="85dp"
+        android:background="@drawable/cartoon_button"
+        android:fontFamily="@font/finger_paint"
+        android:text="@string/home_screen_playButton"
+        android:textAlignment="center"
+        android:textColor="#212121"
+        android:textSize="52sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.956"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:layout_constraintVertical_bias="0.703" />
     </android.support.constraint.ConstraintLayout>

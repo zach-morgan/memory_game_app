@@ -1,6 +1,7 @@
 package com.example.zach.memorygame;
 
 import android.content.Intent;
+import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.LinearLayout;
@@ -19,6 +20,9 @@ public class S2L3 extends levels {
         model.addObserver(this);
         levelLabel.setText("Stage 2 Level 3");
         LinearLayout mainLayout = findViewById(R.id.mainLayout);
+        hasFlip = true;
+        flipIntervals = 9;
+        cardFlipTimeUp = 2350;
         game_layout = getLayoutInflater().inflate(R.layout.activity_s2_l3,mainLayout,false);
         goals = new String[]{getString(R.string.s2l3_gold_time), getString(R.string.s2l3_gold_moves),
                 getString(R.string.s2l3_silver_time), getString(R.string.s2l3_silver_moves),

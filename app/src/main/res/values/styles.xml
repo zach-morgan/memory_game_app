@@ -1,24 +1,30 @@
 <resources>
 
     <!-- Cartoon Theme -->
-    <style name="cartoon_BaseText">
-        <item name="android:fontFamily">@font/finger_paint</item>
-        <item name="android:textColor">@color/cartoon_Text</item>
-        <item name="android:background">@android:color/transparent</item>
-    </style>
 
-    <style name="cartoon_HomePage" parent="@style/Theme.AppCompat.Light.NoActionBar">
-        <item name="colorPrimary">@color/cartoon_colorPrimary</item>
-        <item name="colorPrimaryDark">@color/cartoon_colorPrimaryDark</item>
-        <item name="colorAccent">@color/cartoon_colorAccent</item>
-        <item name="android:background">@color/cartoon_colorPrimaryDark</item>
-        <item name="android:textViewStyle">@style/cartoon_homeScreenTitle</item>
-    </style>
+        <!--Base Text-->
 
-    <style name="cartoon_homeScreenTitle" parent="@style/cartoon_BaseText">
-        <item name="android:textSize">36sp</item>
-        <item name="android:background">@color/cartoon_whitePrimary</item>
-    </style>
+            <style name="cartoon_BaseText">
+                <item name="android:fontFamily">@font/finger_paint</item>
+                <item name="android:textColor">@color/cartoon_Text</item>
+                <item name="android:background">@android:color/transparent</item>
+            </style>
+
+        <!--Base Text-->
+
+        <!--Home Page-->
+
+            <style name="cartoon_HomePage" parent="@style/Theme.AppCompat.Light.NoActionBar">
+                <item name="android:background">@color/cartoon_colorPrimaryDark</item>
+                <item name="android:textViewStyle">@style/cartoon_homeScreenTitle</item>
+            </style>
+
+            <style name="cartoon_homeScreenTitle" parent="@style/cartoon_BaseText">
+                <item name="android:textSize">36sp</item>
+                <item name="android:background">@color/cartoon_whitePrimary</item>
+            </style>
+
+        <!--Home Page-->]
 
     <style name="level_select_title" parent="@style/cartoon_BaseText">
         <item name="android:textSize">56sp</item>
@@ -63,6 +69,7 @@
 
     <style name="cartoon_level_buttons" parent="@style/Widget.AppCompat.Button">
         <item name="android:background">@drawable/cartoon_tileback</item>
+        <item name="android:stateListAnimator">@null</item>
     </style>
 
     <style name="cartoon_stage1_level2" parent="@style/cartoon_level_base_body">

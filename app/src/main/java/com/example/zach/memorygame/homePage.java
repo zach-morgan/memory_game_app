@@ -4,6 +4,7 @@ import android.app.ActionBar;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -11,71 +12,68 @@ import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 
-public class homePage extends AppCompatActivity implements SharedPreferences.OnSharedPreferenceChangeListener {
+import java.util.ArrayList;
+import java.util.Arrays;
+
+public class homePage extends AppCompatActivity{
 
 
     private SharedPreferences sharedPrefs;
+
+    int[] michaelBubleDrawables;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
-        ImageView person =  findViewById(R.id.person);
-        Glide.with(this).load(getDrawable(R.drawable.person)).into(person);
-        ImageView smallBubble = findViewById(R.id.bubblesmall);
-        Glide.with(this).load(getDrawable(R.drawable.firstdot)).into(smallBubble);
-        ImageView medBubble = findViewById(R.id.bubblemed);
-        Glide.with(this).load(getDrawable(R.drawable.seconddot)).into(medBubble);
-        ImageView largeBubble = findViewById(R.id.bubblelarge);
-        Glide.with(this).load(getDrawable(R.drawable.thirddot)).into(largeBubble);
-        ImageView tile = findViewById(R.id.tile_in_bubble);
-        Glide.with(this).load(getDrawable(R.drawable.cartoon_tileback)).into(tile);
-        tile.setAlpha(0f);
-        smallBubble.setAlpha(0f);
-        medBubble.setAlpha(0f);
-        largeBubble.setAlpha(0f);
-        smallBubble.animate().alpha(1f).setDuration(4000).setListener(null);
-        medBubble.animate().alpha(1f).setDuration(6000).setListener(null);
-        largeBubble.animate().alpha(1f).setDuration(8000).setListener(null);
-        tile.animate().alpha(1f).setDuration(8000).setListener(null);
+        ImageView Person = (ImageView) findViewById(R.id.person);
+        Glide.with(this).load(getDrawable(R.drawable.person)).into(Person);
+        ArrayList<ImageView> michaelBuble = new ArrayList<>(Arrays.asList((ImageView) findViewById(R.id.bubblesmall),
+        (ImageView) findViewById(R.id.bubblemed), (ImageView) findViewById(R.id.bubblelarge), (ImageView) findViewById(R.id.tile_in_bubble)));
+        michaelBubleDrawables = new int[]{R.drawable.firstdot,R.drawable.seconddot,R.drawable.thirddot,R.drawable.cartoon_tileback};
+        configureTheme();
+        openingAnimations(michaelBuble);
         addButtonListeners();
         initializeSharedPrefs();
     }
 
     @Override
-    protected void onPause() {
-        super.onPause();
+    protected void onResume() {
+        super.onResume();
+        setTheme(R.style.cartoon_HomePage);
+    }
 
+    private void configureTheme(){
+        String theme = sharedPrefs.getString(getString(R.string.shared_pref_theme_key),"cartoon");
+        switch(theme){
+            case "cartoon":
+                michaelBubleDrawables[3] = R.drawable.cartoon_tileback;
+                setTheme(R.style.cartoon_HomePage);
+        }
     }
 
     private void initializeSharedPrefs(){
-        sharedPrefs = this.getSharedPreferences(getString(R.string.medal_storage_master_key), Context.MODE_PRIVATE);
+        sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
         SharedPreferences.Editor editor = sharedPrefs.edit();
-        String S1L1_key,S1L2_key,S1L3_key,S1L4_key,no_medal_value;
-        S1L1_key = getString(R.string.shared_pref_S1L1_key);
-        S1L2_key = getString(R.string.shared_pref_S1L2_key);
-        S1L3_key = getString(R.string.shared_pref_S1L3_key);
-        S1L4_key = getString(R.string.shared_pref_S1L4_key);
-        no_medal_value = getString(R.string.shared_pref_no_medal);
-        String[] keys = new String[]{S1L1_key,S1L2_key,S1L3_key,S1L4_key};
-        for (String key : keys){
-            if (!sharedPrefs.contains(key)){
-                editor.putString(key,no_medal_value);
-            }
-        }
+        editor.putBoolean(getString(R.string.shared_pref_stage1_lock_status_key),true);
         editor.commit();
     }
 
-    private void openingAnimations(){
+    private void openingAnimations(ArrayList<ImageView> bubbleViews){
         //thought bubble animation
-
+        int animationTime = 4000;
+        for (int i = 0;i < michaelBubleDrawables.length;i++){
+            ImageView daCurrentView = bubbleViews.get(i);
+            Glide.with(this).load(getDrawable(michaelBubleDrawables[i])).into(daCurrentView);
+            daCurrentView.setAlpha(0f);
+            if (animationTime == 7000){
+                animationTime = 6000;
+            }
+            daCurrentView.animate().alpha(1f).setDuration(animationTime).setListener(null);
+            animationTime+=1000;
+        }
         //Spring animations for buttons
 
-    }
-
-    @Override
-    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String s) {
-        return;
     }
 
     private void addButtonListeners(){
@@ -89,4 +87,5 @@ public class homePage extends AppCompatActivity implements SharedPreferences.OnS
             }
         });
     }
+
 }

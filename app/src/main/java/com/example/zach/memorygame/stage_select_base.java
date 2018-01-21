@@ -32,7 +32,7 @@ import java.util.Arrays;
  * Created by Zach on 1/16/2018.
  */
 
-public abstract class stage_select_base extends Fragment {
+public abstract class stage_select_base extends Fragment implements SharedPreferences.OnSharedPreferenceChangeListener {
 
     protected View rootView;
 
@@ -48,11 +48,22 @@ public abstract class stage_select_base extends Fragment {
 
     protected Typeface typefaceFont;
 
+    ArrayList<Intent> intents;
+
+    SharedPreferences sharedPrefs;
+
+    ArrayList<Button> levelSelectors;
+
+    View first_cluster;
+
+    TextView of12;
+
     @Nullable
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState
                             , String[] keys, ArrayList<Intent> intents) {
         super.onCreate(savedInstanceState);
         this.keys = keys;
+        this.intents = intents;
         stars = new int[] {
                 R.id.lvl1_bronze_place,R.id.lvl1_silver_place,R.id.lvl1_gold_place,R.id.lvl2_bronze_place,R.id.lvl2_silver_place,R.id.lvl2_gold_place,
                 R.id.lvl3_bronze_place,R.id.lvl3_silver_place,R.id.lvl3_gold_place,R.id.lvl4_bronze_place,R.id.lvl4_silver_place,R.id.lvl4_gold_place};
@@ -61,19 +72,57 @@ public abstract class stage_select_base extends Fragment {
         typefaceFont = ResourcesCompat.getFont(getContext(),font);
         getActivity().setTheme(theme);
         rootView = inflater.inflate(R.layout.activity_level_select,container,false);
-        configureBottomInfoBar();
-        ArrayList<View> levelSelectors = new ArrayList<>(Arrays.asList(rootView.findViewById(R.id.stage1lvl1), rootView.findViewById(R.id.stage1lvl2),
-                rootView.findViewById(R.id.stage1lvl3), rootView.findViewById(R.id.stage1lvl4)));
+        amount_of_stars_until_next_stage = (TextView)rootView.findViewById(R.id.level_select_stars_until_next_stage);
+        curr_amount_of_stars = (TextView)rootView.findViewById(R.id.level_select_current_amount_of_stars);
+        first_cluster = rootView.findViewById(R.id.level_select_bottom_startCluster);
+        of12 = (TextView)rootView.findViewById(R.id.level_select_total_amount_of_stars_textView);
         setTitleBar(typefaceFont);
-        setStarsandScore(keys,stars,rootView);
-        registerLevelSelectors(levelSelectors,intents);
+        sharedPrefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
         return rootView;
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        setStarsandScore(keys,stars,rootView);
+        sharedPrefs.registerOnSharedPreferenceChangeListener(this);
+        SharedPreferences.Editor editor = sharedPrefs.edit();
+        levelSelectors = new ArrayList<>(Arrays.asList((Button)rootView.findViewById(R.id.stage1lvl1),(Button) rootView.findViewById(R.id.stage1lvl2),
+                (Button)rootView.findViewById(R.id.stage1lvl3),(Button) rootView.findViewById(R.id.stage1lvl4)));
+        int score_needed = setStarsandScore(keys, stars, rootView);
+        View lock = rootView.findViewById(R.id.stage_locked_lock);
+        if (score_needed <= 0){
+            if (!sharedPrefs.contains(getNextStageUnlockStatusKey())){
+                //animate new stage\
+                TextView next_stage_popup = rootView.findViewById(R.id.level_select_next_stage_unlocked_prompt);
+                setFont(next_stage_popup,typefaceFont);
+                next_stage_popup.setVisibility(View.VISIBLE);
+                next_stage_popup.animate().alpha(0f).setStartDelay(3000).setDuration(500).setListener(null);
+                editor.putBoolean(getNextStageUnlockStatusKey(),true);
+                editor.apply();
+            }
+        }
+        if (isUnlocked()){
+            setBackgroundTransparent(false);
+            configureBottomInfoBar();
+            registerLevelSelectors(levelSelectors,intents);
+            lock.setVisibility(View.INVISIBLE);
+        }else{
+            setBackgroundTransparent(true);
+
+        }
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        sharedPrefs.unregisterOnSharedPreferenceChangeListener(this);
+    }
+
+    @Override
+    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+        if (key.equals(getUnlockStatusKey())){
+            onResume();
+        }
     }
 
     private void setFont(TextView view, Typeface font){
@@ -81,11 +130,55 @@ public abstract class stage_select_base extends Fragment {
     }
 
 
+    private void setBackgroundTransparent(boolean setTrans){
+        for (Button btn : levelSelectors){
+            if (setTrans) {
+                btn.setAlpha(0.5f);
+            }else{
+                btn.setAlpha(1f);
+            }
+        }
+        for (int star : stars){
+            if(setTrans) {
+                rootView.findViewById(star).setAlpha(0.5f);
+            }else{
+                rootView.findViewById(star).setAlpha(1f);
+            }
+
+        }if (setTrans) {
+            amount_of_stars_until_next_stage.setAlpha(0.5f);
+            curr_amount_of_stars.setAlpha(0.5f);
+            View header = rootView.findViewById(R.id.stage_header);
+            header.setAlpha(0.75f);
+            of12.setVisibility(View.INVISIBLE);
+            curr_amount_of_stars.setVisibility(View.INVISIBLE);
+            amount_of_stars_until_next_stage.setVisibility(View.INVISIBLE);
+            first_cluster.setVisibility(View.INVISIBLE);
+            View secondCluster = rootView.findViewById(R.id.level_select_bottom_startCluster2);
+            secondCluster.setVisibility(View.INVISIBLE);
+            View textBack = rootView.findViewById(R.id.level_select_stars_until_next_stage_background);
+            textBack.setVisibility(View.INVISIBLE);
+        }else{
+            amount_of_stars_until_next_stage.setAlpha(1f);
+            curr_amount_of_stars.setAlpha(1f);
+            View header = rootView.findViewById(R.id.stage_header);
+            header.setAlpha(1f);
+            of12.setVisibility(View.VISIBLE);
+            curr_amount_of_stars.setVisibility(View.VISIBLE);
+            amount_of_stars_until_next_stage.setVisibility(View.VISIBLE);
+            first_cluster.setVisibility(View.VISIBLE);
+            View secondCluster = rootView.findViewById(R.id.level_select_bottom_startCluster2);
+            secondCluster.setVisibility(View.VISIBLE);
+            View textBack = rootView.findViewById(R.id.level_select_stars_until_next_stage_background);
+            textBack.setVisibility(View.VISIBLE);
+        }
+    }
+
+    private boolean isUnlocked(){
+        return sharedPrefs.getBoolean(getUnlockStatusKey(),false);
+    }
+
     private void configureBottomInfoBar(){
-        amount_of_stars_until_next_stage = (TextView)rootView.findViewById(R.id.level_select_stars_until_next_stage);
-        curr_amount_of_stars = (TextView)rootView.findViewById(R.id.level_select_current_amount_of_stars);
-        final View first_cluster = rootView.findViewById(R.id.level_select_bottom_startCluster);
-        final TextView of12 = (TextView)rootView.findViewById(R.id.level_select_total_amount_of_stars_textView);
         setFont(of12,typefaceFont);
         setFont(amount_of_stars_until_next_stage,typefaceFont);
         setFont(curr_amount_of_stars,typefaceFont);
@@ -108,9 +201,8 @@ public abstract class stage_select_base extends Fragment {
         amount_of_stars_until_next_stage.startAnimation(animation2);
     }
 
-    protected void setStarsandScore(String[] keys, int[] stars, View rootView){
+    protected int setStarsandScore(String[] keys, int[] stars, View rootView){
         int score = 0;
-        SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
         for (int i = 0; i<keys.length;i++){
             ImageView bronze_star = rootView.findViewById(stars[i]);
             ImageView silver_star = rootView.findViewById(stars[i+1]);
@@ -148,13 +240,21 @@ public abstract class stage_select_base extends Fragment {
             }
         }
         curr_amount_of_stars.setText(Integer.toString(score));
-        int stars_needed = 10 - score;
+        int stars_needed = 3 - score;
+        View second_cluster = rootView.findViewById(R.id.level_select_bottom_startCluster2);
         if (stars_needed >0) {
             amount_of_stars_until_next_stage.setText(getNextStageNum() + " In " + Integer.toString(stars_needed));
         }else{
             amount_of_stars_until_next_stage.setText(getNextStageNum() + " Unlocked!");
-
+            amount_of_stars_until_next_stage.setTextSize(18);
+            final AlphaAnimation animation = new AlphaAnimation(0.0f,1.0f);
+            animation.setDuration(500);
+            animation.setStartOffset(4500);
+            animation.setRepeatCount(Animation.INFINITE);
+            animation.setRepeatMode(Animation.REVERSE);
+            second_cluster.startAnimation(animation);
         }
+        return stars_needed;
     }
 
     protected void setTitleBar(Typeface font){
@@ -163,7 +263,7 @@ public abstract class stage_select_base extends Fragment {
         header.setTypeface(font);
     }
 
-    protected void registerLevelSelectors(ArrayList<View> levelSelectors,ArrayList<Intent> intents) {
+    protected void registerLevelSelectors(ArrayList<Button> levelSelectors,ArrayList<Intent> intents) {
         Typeface font = ResourcesCompat.getFont(getContext(),R.font.finger_paint);
         for (int i = 0;i < intents.size();i++) {
             Button btn = (Button)levelSelectors.get(i);
@@ -184,4 +284,8 @@ public abstract class stage_select_base extends Fragment {
     protected abstract String getStageNum();
 
     protected abstract String getNextStageNum();
+
+    protected abstract String getUnlockStatusKey();
+
+    protected abstract String getNextStageUnlockStatusKey();
 }

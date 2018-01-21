@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">Memory Game</string>
 
+    <string name="shared_pref_theme_key">theme_key</string>
+
     <string name="medal_storage_master_key">com.example.zach.memorygame</string>
     <string name="shared_pref_S1L1_key">s1l1_key</string>
     <string name="shared_pref_S1L2_key">s1l2_key</string>
@@ -18,6 +20,11 @@
     <string name="shared_pref_S3L4_key">s3l4_key</string>
 
     <string name="store_current_stage_pager">stageOfPager</string>
+    <string name="shared_pref_stage1_lock_status_key">Stage 1?</string>
+    <string name="shared_pref_stage2_lock_status_key">Stage 2?</string>
+    <string name="shared_pref_stage3_lock_status_key">Stage 3?</string>
+    <string name="shared_pref_stage4_lock_status_key">Stage 4?</string>
+    <string name="shared_pref_stage5_lock_status_key">Stage 5?</string>
 
     <string name="shared_pref_gold">6</string>
     <string name="shared_pref_silver">4</string>
@@ -72,7 +79,7 @@
     <string name="s1l3_gold_moves">20</string>
 
     <string name="s1l4_bronze_time">1:00</string>
-    <string name="s1l4_bronze_moves">30</string>
+    <string name="s1l4_bronze_moves">100</string>
     <string name="s1l4_silver_time">0:35</string>
     <string name="s1l4_silver_moves">25</string>
     <string name="s1l4_gold_time">0:25</string>

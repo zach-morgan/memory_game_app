@@ -80,6 +80,12 @@ public abstract class levels extends AppCompatActivity implements Observer {
 
     private String levelkey;
 
+    protected boolean hasFlip;
+
+    protected int flipIntervals, cardFlipTimeUp;
+
+    Timer cardsFlippedTimer;
+
 
     //ANDROID BASIC FUNCTIONS
 
@@ -291,7 +297,53 @@ public abstract class levels extends AppCompatActivity implements Observer {
             });
         }
 
+        private void swapCards(){
+            //pop Up
+            View cardSwapPopUp = findViewById(R.id.cardSwapPopUp);
+            cardSwapPopUp.setVisibility(View.VISIBLE);
+            cardSwapPopUp.animate().alpha(0f).setStartDelay(500).setDuration(500).setListener(new Animator.AnimatorListener() {
+                @Override
+                public void onAnimationStart(Animator animation) {
+                    pauseTimer();
+                }
 
+                @Override
+                public void onAnimationEnd(Animator animation) {
+                    updateBoard(model.getCheat());
+                }
+
+                @Override
+                public void onAnimationCancel(Animator animation) {
+
+                }
+
+                @Override
+                public void onAnimationRepeat(Animator animation) {
+
+                }
+            });
+
+            //Card Swap
+            model.shuffle();
+            //updateBoard(model.getCheat());
+            cardsFlippedTimer = new Timer();
+            cardsFlippedTimer.scheduleAtFixedRate(new TimerTask() {
+                @Override
+                public void run() {
+                    swapperHandler.obtainMessage(1).sendToTarget();
+                }
+            },cardFlipTimeUp+1000,300013221);
+        }
+
+        public Handler swapperHandler = new Handler(){
+            @Override
+            public void handleMessage(Message msg) {
+                updateBoard(model.getCards());
+                resumeTimer();
+                cardsFlippedTimer.cancel();
+                cardsFlippedTimer.purge();
+            }
+        };
     //END OBSERVER UPDATES
 
     //----------------------------------------------------------------------------------------------
@@ -339,13 +391,17 @@ public abstract class levels extends AppCompatActivity implements Observer {
                 }
             });
             final Intent next_level_intent = getNextLevelIntent();
-            next_level.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    startActivity(next_level_intent);
-                    finish();
-                }
-            });
+            if (next_level_intent == null){
+                next_level.setVisibility(View.INVISIBLE);
+            }else {
+                next_level.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        startActivity(next_level_intent);
+                        finish();
+                    }
+                });
+            }
         }
 
         private void configureWin(String medal){
@@ -523,6 +579,9 @@ public abstract class levels extends AppCompatActivity implements Observer {
 
         public Handler mHandler = new Handler(){
             public void handleMessage(Message msg){
+                if (hasFlip && Time_seconds != 0 && Time_seconds % flipIntervals == 0) {
+                    swapCards();
+                }
                 if (Time_seconds <10){
                     setTime(Integer.toString(Time_minutes) + ":0" + Integer.toString(Time_seconds),TimeView);
                 }else {

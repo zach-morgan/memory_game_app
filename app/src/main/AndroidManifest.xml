@@ -11,8 +11,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".homePage"
-            android:theme="@style/cartoon_HomePage">
+            android:name=".homePage">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -63,7 +62,7 @@
         <activity android:name=".S3L1" />
         <activity android:name=".S3L2" />
         <activity android:name=".S3L3" />
-        <activity android:name=".S3L4"></activity>
+        <activity android:name=".S3L4" />
     </application>
 
 </manifest>

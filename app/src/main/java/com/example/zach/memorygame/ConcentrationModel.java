@@ -229,6 +229,14 @@ public class ConcentrationModel extends Observable {
         announce("reset");
     }
 
+    public void shuffle(){
+        Collections.shuffle(cards);
+        while(this.undoStack.size() > 0){
+            pop(true);
+        }
+        this.undoStack = new ArrayList<>();
+    }
+
     /**
      * Return the number of cards currently selected.
      *
