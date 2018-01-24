@@ -26,96 +26,141 @@
 
         <!--Home Page-->]
 
-    <style name="level_select_title" parent="@style/cartoon_BaseText">
-        <item name="android:textSize">56sp</item>
-        <item name="android:fontFamily">@font/finger_paint</item>
-        <item name="android:background">@drawable/stageborder</item>
-    </style>
-    <style name="cartoon_levels_select" parent="@style/Theme.AppCompat.Light.NoActionBar">
-        <item name="android:textViewStyle">@style/level_select_title</item>
-        <item name="android:fontFamily">@font/finger_paint</item>
-        <item name="android:buttonStyle">@style/cartoon_level_select_Buttons</item>
-        <item name="android:layout_height">140dp</item>
-        <item name="android:layout_width">140dp</item>
-    </style>
 
-    <style name="cartoon_level_select_Buttons">
-        <item name="android:background">@drawable/cartoon_levelselecttile</item>
-        <item name="android:textSize">84sp</item>
-        <item name="android:textAlignment">center</item>
-    </style>
+        <!--Level Select-->
 
-    <style name="cartoon_levelButtonsText" parent="@style/cartoon_BaseText">
-        <item name="android:textSize">84sp</item>
-    </style>
+            <style name="level_select_title" parent="@style/cartoon_BaseText">
+                <item name="android:textSize">56sp</item>
+                <item name="android:background">@drawable/stageborder</item>
+            </style>
+            <style name="cartoon_levels_select" parent="@style/Theme.AppCompat.Light.NoActionBar">
+                <item name="android:textViewStyle">@style/level_select_title</item>
+                <item name="android:buttonStyle">@style/cartoon_level_select_Buttons</item>
+                <item name="android:layout_height">140dp</item>
+                <item name="android:layout_width">140dp</item>
+            </style>
 
-    <style name="cartoon_level_base" parent="@style/Theme.AppCompat.Light.NoActionBar">
-        <item name="android:textViewStyle">@style/cartoon_BaseText</item>
-    </style>
+            <style name="cartoon_level_select_Buttons">
+                <item name="android:background">@drawable/cartoon_levelselecttile</item>
+                <item name="android:textSize">84sp</item>
+                <item name="android:textAlignment">center</item>
+            </style>
 
-    <style name="cartoon_level_base_header" parent="@style/cartoon_level_base">
-        <item name="android:background">@drawable/cartoon_level_header</item>
-    </style>
+            <style name="cartoon_levelButtonsText" parent="@style/cartoon_BaseText">
+                <item name="android:textSize">84sp</item>
+            </style>
 
-    <style name="cartoon_level_base_body" parent="@style/cartoon_level_base">
-        <item name="android:background">@drawable/cartoon_level_border</item>
-    </style>
+        <!--Level Select-->
 
-    <style name="cartoon_stage1_level1" parent="@style/cartoon_level_base_body">
-        <item name="android:buttonStyle">@style/cartoon_level_buttons</item>
-        <item name="android:layout_height">115dp</item><!--100 for 4 inch-->
-        <item name="android:layout_width">115dp</item>
-    </style>
+        <!--Levels-->
 
-    <style name="cartoon_level_buttons" parent="@style/Widget.AppCompat.Button">
-        <item name="android:background">@drawable/cartoon_tileback</item>
-        <item name="android:stateListAnimator">@null</item>
-    </style>
+            <!--LevelHeader-->
 
-    <style name="cartoon_stage1_level2" parent="@style/cartoon_level_base_body">
-        <item name="android:buttonStyle">@style/cartoon_level_buttons</item>
-        <item name="android:layout_height">100dp</item>
-        <item name="android:layout_width">100dp</item>
-    </style>
+                <style name="cartoon_level_base" parent="@style/Theme.AppCompat.Light.NoActionBar">
+                    <item name="android:textViewStyle">@style/cartoon_BaseText</item>
+                </style>
 
-    <style name="cartoon_stage1_level3" parent="@style/cartoon_level_base_body">
-        <item name="android:buttonStyle">@style/cartoon_level_buttons</item>
-        <item name="android:layout_height">100dp</item><!--85 for 4 inch screen, 150 for 7 inch-->
-        <item name="android:layout_width">100dp</item>
-        <item name="android:layout_marginTop">50dp</item>
-    </style>
+            <!--LevelHeader-->
 
-    <style name="cartoon_stage1_level4" parent="@style/cartoon_level_base_body">
-        <item name="android:buttonStyle">@style/cartoon_level_buttons</item>
-        <item name="android:layout_height">75dp</item><!--125 for 7 inch, 65 for 4 inch-->
-        <item name="android:layout_width">75dp</item>
-    </style>
+            <style name="cartoon_stage1_level1">
+                <item name="android:layout_height">115dp</item><!--100 for 4 inch-->
+                <item name="android:layout_width">115dp</item>
+            </style>
 
-    <style name="cartoon_stage2_level2" parent="@style/cartoon_level_base_body">
-        <item name="android:buttonStyle">@style/cartoon_level_buttons</item>
-        <item name="android:layout_height">90dp</item><!--125 for 7 inch, 65 for 4 inch-->
-        <item name="android:layout_width">90dp</item>
-    </style>
+            <style name="cartoon_stage1_level2">
+                <item name="android:layout_height">100dp</item>
+                <item name="android:layout_width">100dp</item>
+            </style>
 
-    <style name="cartoon_stage2_level3" parent="@style/cartoon_level_base_body">
-        <item name="android:buttonStyle">@style/cartoon_level_buttons</item>
-        <item name="android:layout_height">90dp</item><!--125 for 7 inch, 65 for 4 inch-->
-        <item name="android:layout_width">90dp</item>
-    </style>
+            <style name="cartoon_stage1_level3">
+                <item name="android:layout_height">100dp</item><!--85 for 4 inch screen, 150 for 7 inch-->
+                <item name="android:layout_width">100dp</item>
+                <item name="android:layout_marginTop">50dp</item>
+            </style>
 
-    <style name="cartoon_stage2_level4" parent="@style/cartoon_level_base_body">
-        <item name="android:buttonStyle">@style/cartoon_level_buttons</item>
-        <item name="android:layout_height">80dp</item><!--125 for 7 inch, 65 for 4 inch-->
-        <item name="android:layout_width">80dp</item>
-    </style>
+            <style name="cartoon_stage1_level4">
+                <item name="android:layout_height">75dp</item><!--125 for 7 inch, 65 for 4 inch-->
+                <item name="android:layout_width">75dp</item>
+            </style>
 
-    <style name="AppTheme" parent="Theme.AppCompat.Light" >
-        <item name="android:fontFamily">@font/finger_paint</item>
-    </style>
+            <style name="cartoon_stage2_level2">
+                <item name="android:layout_height">90dp</item><!--125 for 7 inch, 65 for 4 inch-->
+                <item name="android:layout_width">90dp</item>
+            </style>
 
-    <style name="AppTheme.NoActionBar" parent="Theme.AppCompat.Light.NoActionBar"/>
+            <style name="cartoon_stage2_level3">
+                <item name="android:layout_height">90dp</item><!--125 for 7 inch, 65 for 4 inch-->
+                <item name="android:layout_width">90dp</item>
+            </style>
+
+            <style name="cartoon_stage2_level4">
+                <item name="android:layout_height">80dp</item><!--125 for 7 inch, 65 for 4 inch-->
+                <item name="android:layout_width">80dp</item>
+            </style>
+
+        <!--Levels-->
 
     <!-- End Cartoon Theme -->
 
+
+    <!--Murica Theme-->
+
+        <!--Base Text-->
+
+            <style name="murica_BaseText">
+                <item name="android:fontFamily">@font/black_ops_one</item>
+                <item name="android:textColor">@android:color/white</item>
+                <item name="android:background">@android:color/transparent</item>
+            </style>
+
+        <!--Base Text-->
+
+        <!--Home Page-->
+
+            <style name="murica_HomePage" parent="@style/Theme.AppCompat.Light.NoActionBar">
+                <item name="android:background">@color/murica_flag_blue</item>
+                <item name="android:textViewStyle">@style/murica_homeScreenTitle</item>
+            </style>
+
+            <style name="murica_homeScreenTitle" parent="@style/murica_BaseText">
+                <item name="android:textSize">36sp</item>
+                <item name="android:background">@color/murica_flag_red</item>
+            </style>
+
+        <!--Home Page-->]
+
+        <!--Level Select-->
+
+
+            <style name="murica_level_select_title" parent="@style/murica_BaseText">
+                <item name="android:textSize">56sp</item>
+                <item name="android:background">@drawable/murica_level_select_header_background</item>
+            </style>
+            <style name="murica_levels_select" parent="@style/Theme.AppCompat.Light.NoActionBar">
+                <item name="android:textViewStyle">@style/murica_level_select_title</item>
+                <item name="android:buttonStyle">@style/murica_level_select_Buttons</item>
+                <item name="android:layout_height">140dp</item>
+                <item name="android:layout_width">140dp</item>
+            </style>
+
+            <style name="murica_level_select_Buttons">
+                <item name="android:background">@drawable/murica_level_select_tile</item>
+                <item name="android:textSize">84sp</item>
+                <item name="android:textAlignment">center</item>
+            </style>
+
+            <style name="murica_levelButtonsText" parent="@style/murica_BaseText">
+                <item name="android:textSize">84sp</item>
+            </style>
+
+        <!--Level Select-->
+
+        <!--LevelHeader-->
+
+            <style name="murica_level_base" parent="@style/Theme.AppCompat.Light.NoActionBar">
+                <item name="android:textViewStyle">@style/murica_BaseText</item>
+            </style>
+
+        <!--LevelHeader-->
 
 </resources>

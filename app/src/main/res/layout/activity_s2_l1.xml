@@ -6,8 +6,7 @@
     android:layout_height="match_parent"
     tools:context="com.example.zach.memorygame.S2L1"
     android:theme="@style/cartoon_stage1_level1"
-    android:id="@+id/stage2level1_layout"
-    android:buttonStyle="@style/cartoon_level_buttons">
+    android:id="@+id/stage2level1_layout">
 
     <Button
         android:id="@+id/S2L1_B1"
@@ -57,7 +56,7 @@
         app:layout_constraintTop_toBottomOf="@+id/S2L1_B1"
         app:layout_constraintVertical_bias="0.0" />
 
-    <TextView
+    <Button
         android:id="@+id/cardSwapPopUp"
         android:layout_width="324dp"
         android:layout_height="386dp"

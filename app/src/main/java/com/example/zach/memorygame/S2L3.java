@@ -32,7 +32,7 @@ public class S2L3 extends levels {
 
     @Override
     protected void playGame() {
-        loadImages(6,"Cartoon");
+        loadImages(6);
         buttons = new int[]{
                 R.id.S2L3_B1,R.id.S2L3_B2,R.id.S2L3_B3,R.id.S2L3_B4,R.id.S2L3_B5,R.id.S2L3_B6,
                 R.id.S2L3_B7,R.id.S2L3_B8,R.id.S2L3_B9,R.id.S2L3_B10,R.id.S2L3_B11,R.id.S2L3_B12

@@ -31,4 +31,5 @@ public class level_select_pager extends FragmentStatePagerAdapter {
     public int getCount() {
         return 3;
     }
+
 }

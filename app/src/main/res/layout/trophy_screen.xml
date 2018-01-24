@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/trophy_layout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/cartoon_level_border">
+    android:layout_height="match_parent">
 
     <ImageView
         android:id="@+id/win_border"
@@ -62,9 +61,6 @@
         android:id="@+id/final_time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/gold_trophy_win"
-        android:color="@color/cartoon_Text"
-        android:fontFamily="@font/finger_paint"
         android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/final_moves"
@@ -77,8 +73,6 @@
         android:id="@+id/final_moves"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:color="@color/cartoon_Text"
-        android:fontFamily="@font/finger_paint"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="@+id/win_border"
         app:layout_constraintEnd_toEndOf="@+id/win_border"
@@ -103,8 +97,6 @@
         android:id="@+id/back_to_level_select_button"
         android:layout_width="160dp"
         android:layout_height="75dp"
-        android:background="@drawable/cartoon_button"
-        android:fontFamily="@font/finger_paint"
         android:text="LEVELS"
         android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="@+id/next_level_button"
@@ -118,8 +110,6 @@
         android:id="@+id/next_level_button"
         android:layout_width="160dp"
         android:layout_height="75dp"
-        android:background="@drawable/cartoon_button"
-        android:fontFamily="@font/finger_paint"
         android:text="NEXT LEVEL"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"

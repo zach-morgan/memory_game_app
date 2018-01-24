@@ -6,8 +6,7 @@
     android:layout_height="match_parent"
     tools:context="com.example.zach.memorygame.S2L2"
     android:theme="@style/cartoon_stage2_level2"
-    android:id="@+id/stage2level2_layout"
-    android:buttonStyle="@style/cartoon_level_buttons">
+    android:id="@+id/stage2level2_layout">
 
     <Button
         android:id="@+id/S2L2_B1"

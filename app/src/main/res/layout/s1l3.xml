@@ -6,8 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_marginTop="0dp"
-    android:theme="@style/cartoon_stage1_level3"
-    android:buttonStyle="@style/cartoon_level_buttons">
+    android:theme="@style/cartoon_stage1_level3">
 
 
     <Button

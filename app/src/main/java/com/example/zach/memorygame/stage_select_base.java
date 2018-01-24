@@ -3,6 +3,7 @@ package com.example.zach.memorygame;
 import android.animation.Animator;
 import android.animation.ObjectAnimator;
 import android.animation.TimeInterpolator;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Typeface;
@@ -48,6 +49,8 @@ public abstract class stage_select_base extends Fragment implements SharedPrefer
 
     protected Typeface typefaceFont;
 
+    int theme,lockedLevel, bodyBackground, bottomTextHolder, fontColor;
+
     ArrayList<Intent> intents;
 
     SharedPreferences sharedPrefs;
@@ -67,29 +70,28 @@ public abstract class stage_select_base extends Fragment implements SharedPrefer
         stars = new int[] {
                 R.id.lvl1_bronze_place,R.id.lvl1_silver_place,R.id.lvl1_gold_place,R.id.lvl2_bronze_place,R.id.lvl2_silver_place,R.id.lvl2_gold_place,
                 R.id.lvl3_bronze_place,R.id.lvl3_silver_place,R.id.lvl3_gold_place,R.id.lvl4_bronze_place,R.id.lvl4_silver_place,R.id.lvl4_gold_place};
-        int theme = R.style.cartoon_levels_select;
-        int font = R.font.finger_paint;
-        typefaceFont = ResourcesCompat.getFont(getContext(),font);
-        getActivity().setTheme(theme);
+        sharedPrefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
+        setTheme();
         rootView = inflater.inflate(R.layout.activity_level_select,container,false);
         amount_of_stars_until_next_stage = (TextView)rootView.findViewById(R.id.level_select_stars_until_next_stage);
         curr_amount_of_stars = (TextView)rootView.findViewById(R.id.level_select_current_amount_of_stars);
         first_cluster = rootView.findViewById(R.id.level_select_bottom_startCluster);
         of12 = (TextView)rootView.findViewById(R.id.level_select_total_amount_of_stars_textView);
-        setTitleBar(typefaceFont);
-        sharedPrefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
+        setTitleBar();
         return rootView;
     }
 
     @Override
     public void onResume() {
         super.onResume();
+        View backgroundLayout = rootView.findViewById(R.id.level_select_constraint);
+        backgroundLayout.setBackground(ContextCompat.getDrawable(getContext(),bodyBackground));
         sharedPrefs.registerOnSharedPreferenceChangeListener(this);
         SharedPreferences.Editor editor = sharedPrefs.edit();
         levelSelectors = new ArrayList<>(Arrays.asList((Button)rootView.findViewById(R.id.stage1lvl1),(Button) rootView.findViewById(R.id.stage1lvl2),
                 (Button)rootView.findViewById(R.id.stage1lvl3),(Button) rootView.findViewById(R.id.stage1lvl4)));
         int score_needed = setStarsandScore(keys, stars, rootView);
-        View lock = rootView.findViewById(R.id.stage_locked_lock);
+        ImageView lock = rootView.findViewById(R.id.stage_locked_lock);
         if (score_needed <= 0){
             if (!sharedPrefs.contains(getNextStageUnlockStatusKey())){
                 //animate new stage\
@@ -104,12 +106,38 @@ public abstract class stage_select_base extends Fragment implements SharedPrefer
         if (isUnlocked()){
             setBackgroundTransparent(false);
             configureBottomInfoBar();
-            registerLevelSelectors(levelSelectors,intents);
+            registerLevelSelectors(levelSelectors,intents,true);
             lock.setVisibility(View.INVISIBLE);
         }else{
             setBackgroundTransparent(true);
-
+            registerLevelSelectors(levelSelectors,intents,false);
+            Glide.with(this).load(ContextCompat.getDrawable(getContext(),lockedLevel)).into(lock);
         }
+    }
+
+    public void setTheme(){
+        String themeString = sharedPrefs.getString(getString(R.string.shared_pref_theme_key),"cartoon");
+        int font;
+        switch(themeString){
+            case "cartoon":
+                font = R.font.finger_paint;
+                typefaceFont = ResourcesCompat.getFont(getContext(),font);
+                theme = R.style.cartoon_levels_select;
+                lockedLevel = R.drawable.stage_locked_lock;
+                bodyBackground = R.drawable.cartoon_level_background;
+                bottomTextHolder = R.drawable.cartoon_text_holder;
+                fontColor = R.color.cartoon_Text;
+                break;
+            case "murica":
+                font = R.font.black_ops_one;
+                typefaceFont = ResourcesCompat.getFont(getContext(),font);
+                theme = R.style.murica_levels_select;
+                lockedLevel = R.drawable.murica_lock;
+                bodyBackground = R.drawable.murica_level_select_background;
+                bottomTextHolder = R.drawable.murica_text_holder;
+                fontColor = R.color.murica_flag_blue;
+        }
+        getActivity().setTheme(theme);
     }
 
     @Override
@@ -179,6 +207,9 @@ public abstract class stage_select_base extends Fragment implements SharedPrefer
     }
 
     private void configureBottomInfoBar(){
+
+        View back = rootView.findViewById(R.id.level_select_stars_until_next_stage_background);
+        back.setBackground(ContextCompat.getDrawable(getContext(),bottomTextHolder));
         setFont(of12,typefaceFont);
         setFont(amount_of_stars_until_next_stage,typefaceFont);
         setFont(curr_amount_of_stars,typefaceFont);
@@ -257,18 +288,20 @@ public abstract class stage_select_base extends Fragment implements SharedPrefer
         return stars_needed;
     }
 
-    protected void setTitleBar(Typeface font){
+    protected void setTitleBar(){
         TextView header = (TextView) rootView.findViewById(R.id.stage_header);
         header.setText(getStageNum());
-        header.setTypeface(font);
+        header.setTypeface(typefaceFont);
     }
 
-    protected void registerLevelSelectors(ArrayList<Button> levelSelectors,ArrayList<Intent> intents) {
-        Typeface font = ResourcesCompat.getFont(getContext(),R.font.finger_paint);
+    protected void registerLevelSelectors(ArrayList<Button> levelSelectors,ArrayList<Intent> intents, boolean registerButtons) {
         for (int i = 0;i < intents.size();i++) {
             Button btn = (Button)levelSelectors.get(i);
-            registerClickListeners(intents.get(i), btn);
-            btn.setTypeface(font);
+            btn.setTypeface(typefaceFont);
+            //btn.setTextColor(fontColor);
+            if(registerButtons) {
+                registerClickListeners(intents.get(i), btn);
+            }
         }
     }
 

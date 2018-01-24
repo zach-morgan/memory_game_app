@@ -2,10 +2,14 @@ package com.example.zach.memorygame;
 
 import android.animation.Animator;
 import android.animation.ObjectAnimator;
+import android.app.ActionBar;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Handler;
@@ -15,14 +19,18 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.constraint.ConstraintLayout;
 import android.support.constraint.ConstraintSet;
+import android.support.v4.content.ContextCompat;
+import android.support.v4.content.res.ResourcesCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.transition.ChangeBounds;
 import android.transition.TransitionManager;
+import android.view.ContextThemeWrapper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.Transformation;
 import android.widget.Button;
@@ -47,6 +55,7 @@ import java.util.Observer;
 import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.zip.Inflater;
 
 public abstract class levels extends AppCompatActivity implements Observer {
 
@@ -58,17 +67,17 @@ public abstract class levels extends AppCompatActivity implements Observer {
 
     protected static int[] images,buttons;
 
-    private static ArrayList<Integer> cartoonImages;
+    private static ArrayList<Integer> cartoonImages, muricaImages;
 
     private static ArrayList<Button> buttonObjects;
 
     private static Timer timer;
 
-    private static int Time_minutes,Time_seconds;
+    private static int Time_minutes,Time_seconds,tileBack;
 
     private static boolean isTimerGoing;
 
-    private AlertDialog quitAlertDialog;
+    private Dialog quitAlertDialog;
 
     private boolean gameFinished = false;
 
@@ -78,7 +87,7 @@ public abstract class levels extends AppCompatActivity implements Observer {
 
     private ViewGroup.LayoutParams layoutparams;
 
-    private String levelkey;
+    private String levelkey, Theme;
 
     protected boolean hasFlip;
 
@@ -87,11 +96,17 @@ public abstract class levels extends AppCompatActivity implements Observer {
     Timer cardsFlippedTimer;
 
 
+    //Theme Globals
+
+    int level_background, navigation_button_background,font,popUpBackground,header_background,font_color;
+
+
     //ANDROID BASIC FUNCTIONS
 
         @Override
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
+            themeConfiguration();
             setContentView(R.layout.level_base);
             initializeGlobalHeader();
             initializeImageArrays();
@@ -104,6 +119,34 @@ public abstract class levels extends AppCompatActivity implements Observer {
         public void onBackPressed() {
             pauseTimer();
             quitAlertDialog.show();
+        }
+
+
+        private void themeConfiguration(){
+            LinearLayout base = findViewById(R.id.mainLayout);
+            SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
+            Theme = sharedPrefs.getString(getString(R.string.shared_pref_theme_key),"cartoon");
+            switch(Theme){
+                case "cartoon":
+                    setTheme(R.style.cartoon_level_base);
+                    level_background = R.drawable.cartoon_level_border;
+                    navigation_button_background = R.drawable.cartoon_button;
+                    font = R.font.finger_paint;
+                    popUpBackground = R.drawable.cartoon_popup_text_holder;
+                    header_background = R.drawable.cartoon_level_header;
+                    font_color = R.color.cartoon_Text;
+                    tileBack = R.drawable.cartoon_tileback;
+                    break;
+                case "murica":
+                    setTheme(R.style.murica_level_base);
+                    header_background = R.drawable.murica_text_holder;
+                    font_color = R.color.murica_flag_blue;
+                    font = R.font.black_ops_one;
+                    navigation_button_background = R.drawable.murica_button;
+                    header_background = R.drawable.murica_level_header;
+                    level_background = R.drawable.murica_level_background;
+                    tileBack = R.drawable.murica_cardback;
+            }
         }
 
 
@@ -129,6 +172,8 @@ public abstract class levels extends AppCompatActivity implements Observer {
             View resetButton = findViewById(R.id.reset_button);
             Move = findViewById(R.id.move_label);
             levelLabel = findViewById(R.id.stage_level_label);
+            View header = findViewById(R.id.level_header);
+            header.setBackground(ContextCompat.getDrawable(this,header_background));
             moveCounter.setAlpha(0f);
             TimeView.setAlpha(0f);
             resetButton.setAlpha(0f);
@@ -150,6 +195,7 @@ public abstract class levels extends AppCompatActivity implements Observer {
         protected void initializeLevelIntroduction(String[] params){
             final LinearLayout mainLayout = findViewById(R.id.mainLayout);
             final View level_intro = getLayoutInflater().inflate(R.layout.level_introduction,mainLayout,false);
+            level_intro.setBackground(ContextCompat.getDrawable(this,level_background));
             mainLayout.addView(level_intro);
             TextView bronze_time = findViewById(R.id.bronze_time);
             TextView bronze_moves = findViewById(R.id.bronze_moves);
@@ -164,6 +210,10 @@ public abstract class levels extends AppCompatActivity implements Observer {
             bronze_time.setText(params[4]);
             bronze_moves.setText(params[5] + " Moves");
             Button btn = (Button)findViewById(R.id.intro_playButton);
+            btn.setBackground(ContextCompat.getDrawable(this,navigation_button_background));
+            btn.setTypeface(ResourcesCompat.getFont(this,font));
+            btn.setTextColor(ContextCompat.getColor(this,font_color));
+            game_layout.setBackground(ContextCompat.getDrawable(this,level_background));
             btn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -174,6 +224,7 @@ public abstract class levels extends AppCompatActivity implements Observer {
                     mainLayout.addView(game_layout);
                     animateHeader();
                     playGame();
+                    updateBoard(model.getCards());
                 }
             });
 
@@ -186,41 +237,62 @@ public abstract class levels extends AppCompatActivity implements Observer {
                     ,R.drawable.cartoon_elephant,R.drawable.cartoon_tileflipped_computerguy,R.drawable.cartoon_tileflipped_mexicanguy,R.drawable.cartoon_tileflipped_octopus,
                     R.drawable.cartoon_tileflipped_world
             ));
+            muricaImages = new ArrayList<>(Arrays.asList(
+               R.drawable.murica_tileflipped_california,R.drawable.murica_tileflipped_newyork,R.drawable.murica_tileflipped_idaho,
+                    R.drawable.murica_tileflipped_florida, R.drawable.murica_tileflipped_michigan, R.drawable.murica_tileflipped_texas
+            ));
+
         }
 
         private void initializeQuitAlertDialog(){
-            AlertDialog.Builder alertBuilder = new AlertDialog.Builder(this);
-            alertBuilder.setCancelable(false);
-            alertBuilder.setPositiveButton("Quit", new DialogInterface.OnClickListener() {
+            Dialog alert = new Dialog(this);
+            alert.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+            alert.setContentView(R.layout.alertdialog);
+            alert.setCancelable(false);
+            Button quitButton = alert.findViewById(R.id.alert_dialog_quit);
+            quitButton.setBackground(ContextCompat.getDrawable(this,navigation_button_background));
+            quitButton.setTypeface(ResourcesCompat.getFont(this,font));
+            quitButton.setTextColor(ContextCompat.getColor(this,font_color));
+            quitButton.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public void onClick(DialogInterface dialogInterface, int i) {
+                public void onClick(View v) {
                     resetTimer();
                     levels.super.onBackPressed();
                 }
             });
-            alertBuilder.setNegativeButton("Don't Quit", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialogInterface, int i) {
-                    quitAlertDialog.cancel();
-                    if (!gameFinished && gameInPlay) {
-                        resumeTimer();
-                    }
-                }
-            });
-            alertBuilder.setMessage("Are you sure you want to quit?\n(You will lose your progress for this level)");
-            quitAlertDialog = alertBuilder.create();
+           Button dont_quit = alert.findViewById(R.id.alert_dialog_dont_quit);
+           dont_quit.setBackground(ContextCompat.getDrawable(this,navigation_button_background));
+           dont_quit.setTypeface(ResourcesCompat.getFont(this,font));
+           dont_quit.setTextColor(ContextCompat.getColor(this,font_color));
+           dont_quit.setOnClickListener(new View.OnClickListener() {
+               @Override
+               public void onClick(View v) {
+                   quitAlertDialog.cancel();
+                   if (!gameFinished && gameInPlay) {
+                       resumeTimer();
+                   }
+               }
+           });
+           alert.getWindow().setLayout(ActionBar.LayoutParams.MATCH_PARENT, ActionBar.LayoutParams.MATCH_PARENT);
+           quitAlertDialog = alert;
         }
 
 
-        protected void loadImages(int numImages, String theme){
+        protected void loadImages(int numImages){
             images = new int[numImages];
             Random rand = new Random();
+            int randomNum = 0;
             for (int i=0;i < numImages;i++){
-                switch(theme){
-                    case "Cartoon":
-                        int randomNum = rand.nextInt(cartoonImages.size());
+                switch(Theme){
+                    case "cartoon":
+                        randomNum = rand.nextInt(cartoonImages.size());
                         images[i] = cartoonImages.get(randomNum);
                         cartoonImages.remove(randomNum);
+                        continue;
+                    case "murica":
+                        randomNum = rand.nextInt(muricaImages.size());
+                        images[i] = muricaImages.get(randomNum);
+                        muricaImages.remove(randomNum);
                 }
             }
         }
@@ -275,11 +347,11 @@ public abstract class levels extends AppCompatActivity implements Observer {
             }
         }
 
-        private void updateBoard(ArrayList<Card> cards){
+        protected void updateBoard(ArrayList<Card> cards){
             for (int i=0;i < buttons.length;i++){
                 int cardNum = cards.get(i).getNumber();
                 if(cardNum == -1){
-                    setBackground(buttonObjects.get(i),R.drawable.cartoon_tileback);
+                    setBackground(buttonObjects.get(i),tileBack);
                 }
                 else{
                     setBackground(buttonObjects.get(i),images[cardNum]);
@@ -289,7 +361,7 @@ public abstract class levels extends AppCompatActivity implements Observer {
         }
 
         private void setBackground(final Button btn, int background){
-            Glide.with(this).load(getDrawable(background)).into(new SimpleTarget<Drawable>() {
+            Glide.with(this).load(ContextCompat.getDrawable(this,background)).into(new SimpleTarget<Drawable>() {
                 @Override
                 public void onResourceReady(@NonNull Drawable resource, @Nullable Transition<? super Drawable> transition) {
                     btn.setBackground(resource);
@@ -367,6 +439,7 @@ public abstract class levels extends AppCompatActivity implements Observer {
             //transition between game layout and trophy screen
             LinearLayout mainLayout = findViewById(R.id.mainLayout);
             View winScreen_layout = getLayoutInflater().inflate(R.layout.trophy_screen,mainLayout,false);
+            winScreen_layout.setBackground(ContextCompat.getDrawable(this,level_background));
             TransitionManager.beginDelayedTransition(mainLayout);
             layoutparams = game_layout.getLayoutParams();
             layoutparams.height = 0;
@@ -381,7 +454,13 @@ public abstract class levels extends AppCompatActivity implements Observer {
 
         private void registerEndofgameButtons(){
             final Button level_select = (Button) findViewById(R.id.back_to_level_select_button);
+            level_select.setBackground(ContextCompat.getDrawable(this,navigation_button_background));
+            level_select.setTypeface(ResourcesCompat.getFont(this,font));
+            level_select.setTextColor(ContextCompat.getColor(this,font_color));
             final Button next_level = (Button)findViewById(R.id.next_level_button);
+            next_level.setBackground(ContextCompat.getDrawable(this,navigation_button_background));
+            next_level.setTypeface(ResourcesCompat.getFont(this,font));
+            next_level.setTextColor(ContextCompat.getColor(this,font_color));
             final Intent back_to_level_select = new Intent(this,level_select.class);
             level_select.setOnClickListener(new View.OnClickListener() {
                 @Override

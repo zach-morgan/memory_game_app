@@ -3,6 +3,7 @@
 
     <string name="shared_pref_theme_key">theme_key</string>
 
+    <string name="shared_pref_save_page_of_theme_select">theme selct brooooo</string>
     <string name="medal_storage_master_key">com.example.zach.memorygame</string>
     <string name="shared_pref_S1L1_key">s1l1_key</string>
     <string name="shared_pref_S1L2_key">s1l2_key</string>
