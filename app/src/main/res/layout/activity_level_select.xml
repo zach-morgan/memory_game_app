@@ -13,6 +13,7 @@
         android:id="@+id/stage_header"
         android:layout_width="match_parent"
         android:layout_height="65dp"
+        android:gravity="center"
         android:textAlignment="center"
         android:visibility="visible" />
 
@@ -296,19 +297,18 @@
 
         <TextView
             android:id="@+id/level_select_next_stage_unlocked_prompt"
-            android:layout_width="0dp"
-            android:layout_height="324dp"
-            android:background="@drawable/cartoon_popup_text_holder"
-            android:fontFamily="@font/finger_paint"
+            android:layout_width="309dp"
+            android:layout_height="150dp"
             android:gravity="center_vertical"
             android:text="Next Stage Unlocked!!"
             android:textAlignment="center"
-            android:textSize="52sp"
+            android:textSize="24sp"
             android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:background="@drawable/cartoon_button" />
 
     </android.support.constraint.ConstraintLayout>
 

@@ -46,12 +46,14 @@
             android:id="@+id/move_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginStart="4dp"
             android:layout_marginTop="4dp"
             android:text="@string/level_header_move_label"
             android:textSize="24sp"
             android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/stage_level_label"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
@@ -60,13 +62,16 @@
 
         <TextView
             android:id="@+id/move_counter"
-            android:layout_width="34dp"
-            android:layout_height="40dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
             android:text="@string/level_header_default_moveCount"
             android:textAlignment="center"
             android:textSize="30sp"
             android:visibility="visible"
             app:layout_constraintBaseline_toBaselineOf="@+id/move_label"
+            app:layout_constraintEnd_toStartOf="@+id/stage_level_label"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@+id/move_label"
             tools:text="0" />
 
@@ -74,18 +79,13 @@
             android:id="@+id/reset_button"
             android:layout_width="35dp"
             android:layout_height="35dp"
-            android:layout_marginBottom="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="4dp"
             android:background="@drawable/restart_button"
             android:visibility="visible"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.826"
+            app:layout_constraintHorizontal_bias="0.78"
             app:layout_constraintStart_toEndOf="@+id/stage_level_label"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintTop_toTopOf="parent" />
 
 
         <ImageView

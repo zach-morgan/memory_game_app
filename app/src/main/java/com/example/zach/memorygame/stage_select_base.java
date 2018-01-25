@@ -59,6 +59,8 @@ public abstract class stage_select_base extends Fragment implements SharedPrefer
 
     View first_cluster;
 
+    protected static Animation nextStageanimation;
+
     TextView of12;
 
     @Nullable
@@ -95,10 +97,30 @@ public abstract class stage_select_base extends Fragment implements SharedPrefer
         if (score_needed <= 0){
             if (!sharedPrefs.contains(getNextStageUnlockStatusKey())){
                 //animate new stage\
-                TextView next_stage_popup = rootView.findViewById(R.id.level_select_next_stage_unlocked_prompt);
+                final TextView next_stage_popup = rootView.findViewById(R.id.level_select_next_stage_unlocked_prompt);
                 setFont(next_stage_popup,typefaceFont);
                 next_stage_popup.setVisibility(View.VISIBLE);
-                next_stage_popup.animate().alpha(0f).setStartDelay(3000).setDuration(500).setListener(null);
+                nextStageanimation = new AlphaAnimation(0.0f,1.0f);
+                nextStageanimation.setRepeatCount(Animation.INFINITE);
+                nextStageanimation.setRepeatMode(Animation.REVERSE);
+                nextStageanimation.setDuration(1000);
+                nextStageanimation.setAnimationListener(new Animation.AnimationListener() {
+                    @Override
+                    public void onAnimationStart(Animation animation) {
+
+                    }
+
+                    @Override
+                    public void onAnimationEnd(Animation animation) {
+                        next_stage_popup.setVisibility(View.INVISIBLE);
+                    }
+
+                    @Override
+                    public void onAnimationRepeat(Animation animation) {
+
+                    }
+                });
+                next_stage_popup.setAnimation(nextStageanimation);
                 editor.putBoolean(getNextStageUnlockStatusKey(),true);
                 editor.apply();
             }
@@ -144,6 +166,9 @@ public abstract class stage_select_base extends Fragment implements SharedPrefer
     public void onPause() {
         super.onPause();
         sharedPrefs.unregisterOnSharedPreferenceChangeListener(this);
+        if (nextStageanimation != null){
+            nextStageanimation.cancel();
+        }
     }
 
     @Override

@@ -168,10 +168,14 @@ public abstract class levels extends AppCompatActivity implements Observer {
 
         private void initializeGlobalHeader(){
             moveCounter = findViewById(R.id.move_counter);
+            moveCounter.setTextColor(ContextCompat.getColor(this,R.color.white));
             TimeView = findViewById(R.id.timer);
+            TimeView.setTextColor(ContextCompat.getColor(this,R.color.white));
             View resetButton = findViewById(R.id.reset_button);
             Move = findViewById(R.id.move_label);
+            Move.setTextColor(ContextCompat.getColor(this,R.color.white));
             levelLabel = findViewById(R.id.stage_level_label);
+            levelLabel.setTextColor(ContextCompat.getColor(this,R.color.white));
             View header = findViewById(R.id.level_header);
             header.setBackground(ContextCompat.getDrawable(this,header_background));
             moveCounter.setAlpha(0f);
@@ -306,6 +310,20 @@ public abstract class levels extends AppCompatActivity implements Observer {
             }
         }
 
+        protected void unRegisterGameCards(int[] buttonIDs){
+            Button btn;
+            buttonObjects = new ArrayList<>();
+            for (int i = 0;i < buttonIDs.length;i++){
+                btn =(Button)findViewById(buttonIDs[i]);
+                btn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                    }
+                });
+                buttonObjects.add(btn);
+            }
+        }
+
         private void setButtonListener(Button btn,final int index){
             btn.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -371,17 +389,19 @@ public abstract class levels extends AppCompatActivity implements Observer {
 
         private void swapCards(){
             //pop Up
-            View cardSwapPopUp = findViewById(R.id.cardSwapPopUp);
+            final View cardSwapPopUp = findViewById(R.id.cardSwapPopUp);
             cardSwapPopUp.setVisibility(View.VISIBLE);
-            cardSwapPopUp.animate().alpha(0f).setStartDelay(500).setDuration(500).setListener(new Animator.AnimatorListener() {
+            cardSwapPopUp.setAlpha(1f);
+            cardSwapPopUp.animate().alpha(0f).setDuration(1000).setListener(new Animator.AnimatorListener() {
                 @Override
                 public void onAnimationStart(Animator animation) {
-                    pauseTimer();
+                    unRegisterGameCards(buttons);
                 }
 
                 @Override
                 public void onAnimationEnd(Animator animation) {
                     updateBoard(model.getCheat());
+                    cardSwapPopUp.setVisibility(View.INVISIBLE);
                 }
 
                 @Override
@@ -411,7 +431,7 @@ public abstract class levels extends AppCompatActivity implements Observer {
             @Override
             public void handleMessage(Message msg) {
                 updateBoard(model.getCards());
-                resumeTimer();
+                registersGameCards(buttons);
                 cardsFlippedTimer.cancel();
                 cardsFlippedTimer.purge();
             }

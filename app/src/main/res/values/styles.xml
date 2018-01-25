@@ -113,6 +113,10 @@
                 <item name="android:background">@android:color/transparent</item>
             </style>
 
+            <style name="murica_BaseText_dark" parent="@style/murica_BaseText">
+                <item name="android:textColor">@color/murica_flag_blue</item>
+            </style>
+
         <!--Base Text-->
 
         <!--Home Page-->
@@ -134,7 +138,7 @@
 
             <style name="murica_level_select_title" parent="@style/murica_BaseText">
                 <item name="android:textSize">56sp</item>
-                <item name="android:background">@drawable/murica_level_select_header_background</item>
+                <item name="android:background">@drawable/murica_level_header</item>
             </style>
             <style name="murica_levels_select" parent="@style/Theme.AppCompat.Light.NoActionBar">
                 <item name="android:textViewStyle">@style/murica_level_select_title</item>
@@ -158,7 +162,7 @@
         <!--LevelHeader-->
 
             <style name="murica_level_base" parent="@style/Theme.AppCompat.Light.NoActionBar">
-                <item name="android:textViewStyle">@style/murica_BaseText</item>
+                <item name="android:textViewStyle">@style/murica_BaseText_dark</item>
             </style>
 
         <!--LevelHeader-->
