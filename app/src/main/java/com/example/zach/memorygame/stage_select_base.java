@@ -296,7 +296,7 @@ public abstract class stage_select_base extends Fragment implements SharedPrefer
             }
         }
         curr_amount_of_stars.setText(Integer.toString(score));
-        int stars_needed = 3 - score;
+        int stars_needed = 10 - score;
         View second_cluster = rootView.findViewById(R.id.level_select_bottom_startCluster2);
         if (stars_needed >0) {
             amount_of_stars_until_next_stage.setText(getNextStageNum() + " In " + Integer.toString(stars_needed));

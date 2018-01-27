@@ -102,7 +102,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/S2L3_B1" />
 
-    <TextView
+    <Button
         android:id="@+id/cardSwapPopUp"
         android:layout_width="324dp"
         android:layout_height="386dp"

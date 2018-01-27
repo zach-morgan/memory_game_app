@@ -99,7 +99,7 @@
         app:layout_constraintStart_toStartOf="@+id/S2L2_B6"
         app:layout_constraintTop_toBottomOf="@+id/S2L2_B9"
        />
-    <TextView
+    <Button
         android:id="@+id/cardSwapPopUp"
         android:layout_width="324dp"
         android:layout_height="386dp"
