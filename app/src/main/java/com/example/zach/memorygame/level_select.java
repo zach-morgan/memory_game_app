@@ -20,6 +20,11 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 
+import com.ToxicBakery.viewpager.transforms.AccordionTransformer;
+import com.ToxicBakery.viewpager.transforms.DepthPageTransformer;
+import com.ToxicBakery.viewpager.transforms.RotateUpTransformer;
+import com.ToxicBakery.viewpager.transforms.StackTransformer;
+import com.ToxicBakery.viewpager.transforms.ZoomInTransformer;
 import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
@@ -38,6 +43,7 @@ public class level_select extends FragmentActivity{
         pager = (ViewPager)findViewById(R.id.pager);
         level_select_pager pag = new level_select_pager(getSupportFragmentManager());
         pager.setAdapter(pag);
+        pager.setPageTransformer(true, new ZoomInTransformer());
         sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
         pager.setCurrentItem(sharedPref.getInt(getString(R.string.store_current_stage_pager),0));
     }

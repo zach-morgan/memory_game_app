@@ -32,6 +32,9 @@
     <string name="shared_pref_bronze">2</string>
     <string name="shared_pref_no_medal">1</string>
 
+    <string name="multi_page_level_key">multiLevel</string>
+    <string name="multi_page_has_flip_key">does this ish have flip</string>
+
     <string name="title_activity_home_page">HomePage</string>
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>

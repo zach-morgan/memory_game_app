@@ -6,18 +6,4 @@
     android:layout_height="match_parent"
     tools:context="com.example.zach.memorygame.S3L2">
 
-    <TextView
-        android:id="@+id/cardSwapPopUp"
-        android:layout_width="324dp"
-        android:layout_height="386dp"
-        android:background="@drawable/cartoon_popup_text_holder"
-        android:gravity="center"
-        android:text="Card Swap!"
-        android:textSize="72sp"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
 </android.support.constraint.ConstraintLayout>

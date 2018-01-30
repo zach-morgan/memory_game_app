@@ -228,7 +228,7 @@ public abstract class levels extends AppCompatActivity implements Observer {
                     mainLayout.addView(game_layout);
                     animateHeader();
                     playGame();
-                    updateBoard(model.getCards());
+                    //updateBoard(model.getCards());
                 }
             });
 
@@ -305,7 +305,7 @@ public abstract class levels extends AppCompatActivity implements Observer {
             Button btn;
             for (int i = 0;i < buttonIDs.length;i++){
                 btn =(Button)findViewById(buttonIDs[i]);
-                setButtonListener(btn,i);
+                setButtonListener(btn,buttonObjects.size());
                 buttonObjects.add(btn);
             }
         }
@@ -366,7 +366,7 @@ public abstract class levels extends AppCompatActivity implements Observer {
         }
 
         protected void updateBoard(ArrayList<Card> cards){
-            for (int i=0;i < buttons.length;i++){
+            for (int i=0;i < buttonObjects.size();i++){
                 int cardNum = cards.get(i).getNumber();
                 if(cardNum == -1){
                     setBackground(buttonObjects.get(i),tileBack);
