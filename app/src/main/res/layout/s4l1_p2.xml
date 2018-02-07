@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:theme="@style/LB_115">
+
+    <Button
+        android:id="@+id/S4L1_B1_p2"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.965"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.018" />
+
+    <Button
+        android:id="@+id/S4L1_B2_p2"
+        app:layout_constraintBottom_toBottomOf="@+id/S4L1_B3_p2"
+        app:layout_constraintEnd_toEndOf="@+id/S4L1_B4_p2"
+        app:layout_constraintStart_toStartOf="@+id/S4L1_B4_p2"
+        app:layout_constraintTop_toTopOf="@+id/S4L1_B3_p2" />
+
+    <Button
+        android:id="@+id/S4L1_B3_p2"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/S4L1_B1_p2"
+        app:layout_constraintStart_toStartOf="@+id/S4L1_B1_p2"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/S4L1_B4_p2"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.061"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.981" />
+
+    <Button
+        android:id="@+id/cardSwapPopUp_p2"
+        android:layout_width="324dp"
+        android:layout_height="386dp"
+        android:background="@drawable/cartoon_popup_text_holder"
+        android:gravity="center"
+        android:text="Card Swap!"
+        android:textSize="72sp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</android.support.constraint.ConstraintLayout>

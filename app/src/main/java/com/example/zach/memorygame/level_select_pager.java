@@ -23,13 +23,19 @@ public class level_select_pager extends FragmentStatePagerAdapter {
                 return new stage2_select();
             case 2:
                 return new stage3_select();
+            case 3:
+                return new stage4_select();
+            case 4:
+                return new stage5_select();
+            case 5:
+                return new stage6_select();
         }
         return null;
     }
 
     @Override
     public int getCount() {
-        return 3;
+        return 6;
     }
 
 }

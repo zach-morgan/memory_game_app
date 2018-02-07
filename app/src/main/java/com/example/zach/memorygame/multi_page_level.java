@@ -16,7 +16,6 @@ import java.util.TimerTask;
 
 public abstract class multi_page_level extends levels {
 
-    ViewPager pager;
 
     private ArrayList<level_fragment> fragments;
 
@@ -40,13 +39,14 @@ public abstract class multi_page_level extends levels {
         fragments = new ArrayList<>();
         for (int pageID : pageLayouts){
             Bundle arg1 = new Bundle();
-            arg1.putInt(getString(R.string.multi_page_level_key),pageID);
-            arg1.putBoolean(getString(R.string.multi_page_has_flip_key),hasSwap);
+            arg1.putInt(getString(R.string.multi_page_frag_com_layout_key),pageID);
+            arg1.putBoolean(getString(R.string.multi_page_frag_com_hasSwitch_key),hasSwap);
             level_fragment Page = new level_fragment();
             Page.setArguments(arg1);
             fragments.add(Page);
         }
         pageNum = fragments.size();
+        hasFlip = hasSwap;
         currentPage = 0;
         multi_page_level_pager pag = new multi_page_level_pager(getSupportFragmentManager(), fragments);
         pager.setAdapter(pag);
@@ -58,14 +58,17 @@ public abstract class multi_page_level extends levels {
         initializeLevelIntroduction(goals);
     }
 
-    protected void displayMultiplePages(){
+    @Override
+    protected void playGame() {
         pager.setCurrentItem(0);
         updateBoard(model.getCards());
         timer = new Timer();
-        timer.scheduleAtFixedRate(new switcherTimer(),1500, 1000);
+        timer.scheduleAtFixedRate(new switcherTimer(),1100, 850);
     }
 
-    protected void updateDaBoard(){
+    protected void updateDaBoard(int[] buttonsID)
+    {
+        registersGameCards(buttonsID,true);
         updateBoard(model.getCards());
     }
 

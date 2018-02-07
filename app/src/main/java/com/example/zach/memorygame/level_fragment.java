@@ -29,8 +29,8 @@ public class level_fragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        int layout = getArguments().getInt(getString(R.string.multi_page_level_key),R.layout.activity_home_page);
-        hasFlip = getArguments().getBoolean(getString(R.string.multi_page_has_flip_key),false);
+        int layout = getArguments().getInt(getString(R.string.multi_page_frag_com_layout_key),R.layout.activity_home_page);
+        hasFlip = getArguments().getBoolean(getString(R.string.multi_page_frag_com_hasSwitch_key),false);
         mainView = inflater.inflate(layout,null);
         return mainView;
     }
@@ -38,9 +38,9 @@ public class level_fragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
+        //Crashes on reopen
         multi_page_level parentActivity = (multi_page_level)getActivity();
-        parentActivity.registersGameCards(getButtons());
-        parentActivity.updateDaBoard();
+        parentActivity.updateDaBoard(getButtons());
     }
 
     public int[] getButtons(){

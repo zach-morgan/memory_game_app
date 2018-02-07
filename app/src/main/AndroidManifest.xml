@@ -22,8 +22,8 @@
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
 
-    <activity
-        android:name=".level_select"
+        <activity
+            android:name=".level_select"
             android:label="Level Select"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
@@ -31,38 +31,51 @@
             android:label="level"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
-            android:name=".S1L1"
+            android:name=".LevelClasses.S1L1"
             android:label="Stage 1 Level 1"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
-            android:name=".S1L2"
+            android:name=".LevelClasses.S1L2"
             android:label="Stage 1 Level 2"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
-            android:name=".S1L3"
+            android:name=".LevelClasses.S1L3"
             android:label="Stage 1 Level 3"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
-            android:name=".S1L4"
+            android:name=".LevelClasses.S1L4"
             android:label="Stage 1 Level 4"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
-            android:name=".S2L1"
+            android:name=".LevelClasses.S3L1"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
-            android:name=".S2L2"
+            android:name=".LevelClasses.S3L2"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
-            android:name=".S2L3"
+            android:name=".LevelClasses.S3L3"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
-            android:name=".S2L4"
+            android:name=".LevelClasses.S3L4"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-        <activity android:name=".S3L1" />
-        <activity android:name=".S3L2" />
-        <activity android:name=".S3L3" />
-        <activity android:name=".S3L4" />
-        <activity android:name=".theme_main"/>
+        <activity android:name=".LevelClasses.S2L1" />
+        <activity android:name=".LevelClasses.S2L2" />
+        <activity android:name=".LevelClasses.S2L3" />
+        <activity android:name=".LevelClasses.S2L4" />
+        <activity android:name=".theme_main" />
+        <activity
+            android:name=".LevelClasses.S4L1" />
+        <activity android:name=".LevelClasses.S4L2" />
+        <activity android:name=".LevelClasses.S4L3" />
+        <activity android:name=".LevelClasses.S4L4" />
+        <activity android:name=".LevelClasses.S5L1" />
+        <activity android:name=".LevelClasses.S5L2" />
+        <activity android:name=".LevelClasses.S5L3" />
+        <activity android:name=".LevelClasses.S5L4" />
+        <activity android:name=".LevelClasses.S6L1" />
+        <activity android:name=".LevelClasses.S6L2" />
+        <activity android:name=".LevelClasses.S6L3" />
+        <activity android:name=".LevelClasses.S6L4" />
     </application>
 
 </manifest>

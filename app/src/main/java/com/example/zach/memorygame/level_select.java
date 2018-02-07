@@ -43,7 +43,7 @@ public class level_select extends FragmentActivity{
         pager = (ViewPager)findViewById(R.id.pager);
         level_select_pager pag = new level_select_pager(getSupportFragmentManager());
         pager.setAdapter(pag);
-        pager.setPageTransformer(true, new ZoomInTransformer());
+        pager.setPageTransformer(true, new StackTransformer());
         sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
         pager.setCurrentItem(sharedPref.getInt(getString(R.string.store_current_stage_pager),0));
     }

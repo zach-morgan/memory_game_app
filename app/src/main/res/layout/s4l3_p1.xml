@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_height="match_parent"
+    android:theme="@style/LB_90">
+
+
+    <Button
+        android:id="@+id/S4L3_B1"
+        android:layout_marginTop="37dp"
+        app:layout_constraintEnd_toEndOf="@+id/S4L3_B7"
+        app:layout_constraintStart_toStartOf="@+id/S4L3_B7"
+        app:layout_constraintTop_toBottomOf="@+id/S4L3_B7" />
+
+    <Button
+        android:id="@+id/S4L3_B2"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="48dp"
+        app:layout_constraintEnd_toEndOf="@+id/S4L3_B9"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/S4L3_B9"
+        app:layout_constraintTop_toBottomOf="@+id/S4L3_B9" />
+
+    <Button
+        android:id="@+id/S4L3_B3"
+        android:layout_marginTop="48dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.061"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/S4L3_B4"
+        android:layout_marginBottom="8dp"
+        android:layout_marginTop="22dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/S4L3_B1"
+        app:layout_constraintStart_toStartOf="@+id/S4L3_B1"
+        app:layout_constraintTop_toBottomOf="@+id/S4L3_B1" />
+
+    <Button
+        android:id="@+id/S4L3_B5"
+        android:layout_marginTop="4dp"
+        app:layout_constraintVertical_bias="0.2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/S4L3_B6"
+        app:layout_constraintHorizontal_bias="0.95"
+        android:layout_marginTop="48dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/S4L3_B7"
+        android:layout_marginTop="37dp"
+        app:layout_constraintEnd_toEndOf="@+id/S4L3_B5"
+        app:layout_constraintStart_toStartOf="@+id/S4L3_B5"
+        app:layout_constraintTop_toBottomOf="@+id/S4L3_B5" />
+
+    <Button
+        android:id="@+id/S4L3_B8"
+        android:layout_marginTop="28dp"
+        app:layout_constraintEnd_toEndOf="@+id/S4L3_B3"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/S4L3_B3"
+        app:layout_constraintTop_toBottomOf="@+id/S4L3_B3" />
+
+    <Button
+        android:id="@+id/S4L3_B9"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="52dp"
+        app:layout_constraintEnd_toEndOf="@+id/S4L3_B6"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/S4L3_B6"
+        app:layout_constraintTop_toBottomOf="@+id/S4L3_B6" />
+
+    <Button
+        android:id="@+id/S4L3_B10"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/S4L3_B8"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/S4L3_B8"
+        app:layout_constraintTop_toBottomOf="@+id/S4L3_B8"
+        app:layout_constraintVertical_bias="0.301" />
+
+    <Button
+        android:id="@+id/cardSwapPopUp_p1"
+        android:layout_width="324dp"
+        android:layout_height="386dp"
+        android:background="@drawable/cartoon_popup_text_holder"
+        android:gravity="center"
+        android:text="Card Swap!"
+        android:textSize="72sp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+</android.support.constraint.ConstraintLayout>

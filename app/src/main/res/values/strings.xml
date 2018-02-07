@@ -1,10 +1,18 @@
 <resources>
     <string name="app_name">Memory Game</string>
 
-    <string name="shared_pref_theme_key">theme_key</string>
 
+    <!--Theme Select Keys-->
+
+    <string name="shared_pref_theme_key">theme_key</string>
     <string name="shared_pref_save_page_of_theme_select">theme selct brooooo</string>
+
+    <!--Theme Select Keys-->
+
+    <!-- keys for level medal status -->
+
     <string name="medal_storage_master_key">com.example.zach.memorygame</string>
+
     <string name="shared_pref_S1L1_key">s1l1_key</string>
     <string name="shared_pref_S1L2_key">s1l2_key</string>
     <string name="shared_pref_S1L3_key">s1l3_key</string>
@@ -20,31 +28,73 @@
     <string name="shared_pref_S3L3_key">s3l3_key</string>
     <string name="shared_pref_S3L4_key">s3l4_key</string>
 
+    <string name="shared_pref_S4L1_key">s4l1_key</string>
+    <string name="shared_pref_S4L2_key">s4l2_key</string>
+    <string name="shared_pref_S4L3_key">s4l3_key</string>
+    <string name="shared_pref_S4L4_key">s4l4_key</string>
+
+    <string name="shared_pref_S5L1_key">s5l1_key</string>
+    <string name="shared_pref_S5L2_key">s5l2_key</string>
+    <string name="shared_pref_S5L3_key">s5l3_key</string>
+    <string name="shared_pref_S5L4_key">s5l4_key</string>
+
+    <string name="shared_pref_S6L1_key">s6l1_key</string>
+    <string name="shared_pref_S6L2_key">s6l2_key</string>
+    <string name="shared_pref_S6L3_key">s6l3_key</string>
+    <string name="shared_pref_S6L4_key">s6l4_key</string>
+
+    <string name="shared_pref_S7L1_key">s7l1_key</string>
+    <string name="shared_pref_S7L2_key">s7l2_key</string>
+    <string name="shared_pref_S7L3_key">s7l3_key</string>
+    <string name="shared_pref_S7L4_key">s7l4_key</string>
+
+    <!-- keys for level medal status -->
+
+    <!-- Stage Select Status Keys-->
+
     <string name="store_current_stage_pager">stageOfPager</string>
     <string name="shared_pref_stage1_lock_status_key">Stage 1?</string>
     <string name="shared_pref_stage2_lock_status_key">Stage 2?</string>
     <string name="shared_pref_stage3_lock_status_key">Stage 3?</string>
     <string name="shared_pref_stage4_lock_status_key">Stage 4?</string>
     <string name="shared_pref_stage5_lock_status_key">Stage 5?</string>
+    <string name="shared_pref_stage6_lock_status_key">Stage 6?</string>
+    <string name="shared_pref_stage7_lock_status_key">Stage 7?</string>
+    <string name="shared_pref_stage8_lock_status_key">Stage 8?</string>
 
-    <string name="shared_pref_gold">6</string>
-    <string name="shared_pref_silver">4</string>
-    <string name="shared_pref_bronze">2</string>
-    <string name="shared_pref_no_medal">1</string>
 
-    <string name="multi_page_level_key">multiLevel</string>
-    <string name="multi_page_has_flip_key">does this ish have flip</string>
+    <string name="shared_pref_gold">1010101</string>
+    <string name="shared_pref_silver">101001</string>
+    <string name="shared_pref_bronze">10101</string>
+    <string name="shared_pref_no_medal">101</string>
 
-    <string name="title_activity_home_page">HomePage</string>
-    <string name="dummy_button">Dummy Button</string>
-    <string name="dummy_content">DUMMY\nCONTENT</string>
-    <string name="home_screen_themeButton">THEMES</string>
-    <string name="home_screen_playButton">PLAY</string>
-    <string name="stage_select_label_stage1">Stage 1</string>
+    <string name="shared_pref_medal_default">101,000,0</string>
+
     <string name="stage_select_level_1">1</string>
     <string name="stage_select_level_2">2</string>
     <string name="stage_select_level_3">3</string>
     <string name="stage_select_level_4">4</string>
+
+    <!-- Stage Select Status Keys-->
+
+    <!--Multi-Page Level Fragment Communication Keys-->
+
+    <string name="multi_page_frag_com_layout_key">multiLevel</string>
+    <string name="multi_page_frag_com_hasSwitch_key">does this ish have flip</string>
+
+    <!--Multi-Page Level Fragment Communication Keys-->
+
+    <!--Static Values-->
+
+    <string name="title_activity_home_page">HomePage</string>
+    <string name="home_screen_themeButton">THEMES</string>
+    <string name="home_screen_playButton">PLAY</string>
+    <string name="title_activity_win_screen">win_screen</string>
+
+    <!--Static Values-->
+
+    <!-- Level Default Values-->
+
     <string name="level_header_default_time">0:00</string>
     <string name="level_header_default_levelNum">Stage # Level #</string>
     <string name="level_header_move_label">Move</string>
@@ -60,6 +110,10 @@
     <string name="victory_header_label">You Won!</string>
     <string name="victory_default_time">0:00</string>
     <string name="victory_default_moves">0 Moves</string>
+
+    <!-- Level Default Values-->
+
+    <!-- Level Goals-->
 
     <string name="s1l1_bronze_time">1:00</string>
     <string name="s1l1_bronze_moves">35</string>
@@ -117,10 +171,148 @@
     <string name="s2l4_gold_time">0:25</string>
     <string name="s2l4_gold_moves">20</string>
 
-    <string name="title_activity_win_screen">win_screen</string>
+    <string name="s3l1_bronze_time">1:00</string>
+    <string name="s3l1_bronze_moves">30</string>
+    <string name="s3l1_silver_time">0:35</string>
+    <string name="s3l1_silver_moves">25</string>
+    <string name="s3l1_gold_time">0:25</string>
+    <string name="s3l1_gold_moves">20</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="s3l2_bronze_time">1:00</string>
+    <string name="s3l2_bronze_moves">30</string>
+    <string name="s3l2_silver_time">0:35</string>
+    <string name="s3l2_silver_moves">25</string>
+    <string name="s3l2_gold_time">0:25</string>
+    <string name="s3l2_gold_moves">20</string>
 
+    <string name="s3l3_bronze_time">1:00</string>
+    <string name="s3l3_bronze_moves">30</string>
+    <string name="s3l3_silver_time">0:35</string>
+    <string name="s3l3_silver_moves">25</string>
+    <string name="s3l3_gold_time">0:25</string>
+    <string name="s3l3_gold_moves">20</string>
+
+    <string name="s3l4_bronze_time">1:00</string>
+    <string name="s3l4_bronze_moves">30</string>
+    <string name="s3l4_silver_time">0:35</string>
+    <string name="s3l4_silver_moves">25</string>
+    <string name="s3l4_gold_time">0:25</string>
+    <string name="s3l4_gold_moves">20</string>
+
+    <string name="s4l1_bronze_time">1:00</string>
+    <string name="s4l1_bronze_moves">30</string>
+    <string name="s4l1_silver_time">0:35</string>
+    <string name="s4l1_silver_moves">25</string>
+    <string name="s4l1_gold_time">0:25</string>
+    <string name="s4l1_gold_moves">20</string>
+
+    <string name="s4l2_bronze_time">1:00</string>
+    <string name="s4l2_bronze_moves">30</string>
+    <string name="s4l2_silver_time">0:35</string>
+    <string name="s4l2_silver_moves">25</string>
+    <string name="s4l2_gold_time">0:25</string>
+    <string name="s4l2_gold_moves">20</string>
+
+    <string name="s4l3_bronze_time">1:00</string>
+    <string name="s4l3_bronze_moves">30</string>
+    <string name="s4l3_silver_time">0:35</string>
+    <string name="s4l3_silver_moves">25</string>
+    <string name="s4l3_gold_time">0:25</string>
+    <string name="s4l3_gold_moves">20</string>
+
+    <string name="s4l4_bronze_time">1:00</string>
+    <string name="s4l4_bronze_moves">30</string>
+    <string name="s4l4_silver_time">0:35</string>
+    <string name="s4l4_silver_moves">25</string>
+    <string name="s4l4_gold_time">0:25</string>
+    <string name="s4l4_gold_moves">20</string>
+
+    <string name="s5l1_bronze_time">1:30</string>
+    <string name="s5l1_bronze_moves">100</string>
+    <string name="s5l1_silver_time">1:00</string>
+    <string name="s5l1_silver_moves">70</string>
+    <string name="s5l1_gold_time">0:50</string>
+    <string name="s5l1_gold_moves">55</string>
+
+    <string name="s5l2_bronze_time">1:00</string>
+    <string name="s5l2_bronze_moves">30</string>
+    <string name="s5l2_silver_time">0:35</string>
+    <string name="s5l2_silver_moves">25</string>
+    <string name="s5l2_gold_time">0:25</string>
+    <string name="s5l2_gold_moves">20</string>
+
+    <string name="s5l3_bronze_time">1:00</string>
+    <string name="s5l3_bronze_moves">30</string>
+    <string name="s5l3_silver_time">0:35</string>
+    <string name="s5l3_silver_moves">25</string>
+    <string name="s5l3_gold_time">0:25</string>
+    <string name="s5l3_gold_moves">20</string>
+
+    <string name="s5l4_bronze_time">1:00</string>
+    <string name="s5l4_bronze_moves">30</string>
+    <string name="s5l4_silver_time">0:35</string>
+    <string name="s5l4_silver_moves">25</string>
+    <string name="s5l4_gold_time">0:25</string>
+    <string name="s5l4_gold_moves">20</string>
+
+    <string name="s6l1_bronze_time">1:00</string>
+    <string name="s6l1_bronze_moves">30</string>
+    <string name="s6l1_silver_time">0:35</string>
+    <string name="s6l1_silver_moves">25</string>
+    <string name="s6l1_gold_time">0:25</string>
+    <string name="s6l1_gold_moves">20</string>
+
+    <string name="s6l2_bronze_time">1:00</string>
+    <string name="s6l2_bronze_moves">30</string>
+    <string name="s6l2_silver_time">0:35</string>
+    <string name="s6l2_silver_moves">25</string>
+    <string name="s6l2_gold_time">0:25</string>
+    <string name="s6l2_gold_moves">20</string>
+
+    <string name="s6l3_bronze_time">1:00</string>
+    <string name="s6l3_bronze_moves">30</string>
+    <string name="s6l3_silver_time">0:35</string>
+    <string name="s6l3_silver_moves">25</string>
+    <string name="s6l3_gold_time">0:25</string>
+    <string name="s6l3_gold_moves">20</string>
+
+    <string name="s6l4_bronze_time">1:00</string>
+    <string name="s6l4_bronze_moves">30</string>
+    <string name="s6l4_silver_time">0:35</string>
+    <string name="s6l4_silver_moves">25</string>
+    <string name="s6l4_gold_time">0:25</string>
+    <string name="s6l4_gold_moves">20</string>
+
+    <string name="s7l1_bronze_time">1:00</string>
+    <string name="s7l1_bronze_moves">30</string>
+    <string name="s7l1_silver_time">0:35</string>
+    <string name="s7l1_silver_moves">25</string>
+    <string name="s7l1_gold_time">0:25</string>
+    <string name="s7l1_gold_moves">20</string>
+
+    <string name="s7l2_bronze_time">1:00</string>
+    <string name="s7l2_bronze_moves">30</string>
+    <string name="s7l2_silver_time">0:35</string>
+    <string name="s7l2_silver_moves">25</string>
+    <string name="s7l2_gold_time">0:25</string>
+    <string name="s7l2_gold_moves">20</string>
+
+    <string name="s7l3_bronze_time">1:00</string>
+    <string name="s7l3_bronze_moves">30</string>
+    <string name="s7l3_silver_time">0:35</string>
+    <string name="s7l3_silver_moves">25</string>
+    <string name="s7l3_gold_time">0:25</string>
+    <string name="s7l3_gold_moves">20</string>
+
+    <string name="s7l4_bronze_time">1:00</string>
+    <string name="s7l4_bronze_moves">30</string>
+    <string name="s7l4_silver_time">0:35</string>
+    <string name="s7l4_silver_moves">25</string>
+    <string name="s7l4_gold_time">0:25</string>
+    <string name="s7l4_gold_moves">20</string>
+
+
+
+    <!-- Level Goals-->
 
 </resources>

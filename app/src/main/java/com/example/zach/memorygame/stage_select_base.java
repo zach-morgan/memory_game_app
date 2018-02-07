@@ -1,12 +1,9 @@
 package com.example.zach.memorygame;
 
-import android.animation.Animator;
-import android.animation.ObjectAnimator;
-import android.animation.TimeInterpolator;
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Typeface;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
@@ -25,6 +22,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.target.SimpleTarget;
+import com.bumptech.glide.request.transition.Transition;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -70,8 +69,7 @@ public abstract class stage_select_base extends Fragment implements SharedPrefer
         this.keys = keys;
         this.intents = intents;
         stars = new int[] {
-                R.id.lvl1_bronze_place,R.id.lvl1_silver_place,R.id.lvl1_gold_place,R.id.lvl2_bronze_place,R.id.lvl2_silver_place,R.id.lvl2_gold_place,
-                R.id.lvl3_bronze_place,R.id.lvl3_silver_place,R.id.lvl3_gold_place,R.id.lvl4_bronze_place,R.id.lvl4_silver_place,R.id.lvl4_gold_place};
+               R.id.level_1_stars, R.id.level_2_stars, R.id.level_3_stars, R.id.level_4_stars};
         sharedPrefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
         setTheme();
         rootView = inflater.inflate(R.layout.activity_level_select,container,false);
@@ -86,8 +84,8 @@ public abstract class stage_select_base extends Fragment implements SharedPrefer
     @Override
     public void onResume() {
         super.onResume();
-        View backgroundLayout = rootView.findViewById(R.id.level_select_constraint);
-        backgroundLayout.setBackground(ContextCompat.getDrawable(getContext(),bodyBackground));
+        ImageView background = rootView.findViewById(R.id.level_select_buttons_background);
+        background.setBackground(ContextCompat.getDrawable(getContext(),bodyBackground));
         sharedPrefs.registerOnSharedPreferenceChangeListener(this);
         SharedPreferences.Editor editor = sharedPrefs.edit();
         levelSelectors = new ArrayList<>(Arrays.asList((Button)rootView.findViewById(R.id.stage1lvl1),(Button) rootView.findViewById(R.id.stage1lvl2),
@@ -193,9 +191,9 @@ public abstract class stage_select_base extends Fragment implements SharedPrefer
         }
         for (int star : stars){
             if(setTrans) {
-                rootView.findViewById(star).setAlpha(0.5f);
+                rootView.findViewById(star).setVisibility(View.GONE);
             }else{
-                rootView.findViewById(star).setAlpha(1f);
+                rootView.findViewById(star).setVisibility(View.VISIBLE);
             }
 
         }if (setTrans) {
@@ -259,40 +257,37 @@ public abstract class stage_select_base extends Fragment implements SharedPrefer
 
     protected int setStarsandScore(String[] keys, int[] stars, View rootView){
         int score = 0;
-        for (int i = 0; i<keys.length;i++){
-            ImageView bronze_star = rootView.findViewById(stars[i]);
-            ImageView silver_star = rootView.findViewById(stars[i+1]);
-            ImageView gold_star = rootView.findViewById(stars[i+2]);
-            if (sharedPrefs.contains(keys[i])){
-                String defaultValue = getString(R.string.shared_pref_no_medal);
-                if (sharedPrefs.getString(keys[i],defaultValue).equals(getString(R.string.shared_pref_gold))) {
-                    Glide.with(this).load(ContextCompat.getDrawable(getActivity(),R.drawable.level_select_gold_star)).into(gold_star);
-                    Glide.with(this).load(ContextCompat.getDrawable(getActivity(),R.drawable.level_select_silver_star)).into(silver_star);
-                    Glide.with(this).load(ContextCompat.getDrawable(getActivity(),R.drawable.level_select_bronze_star)).into(bronze_star);
-                    score += 3;
-                }
-                if (sharedPrefs.getString(keys[i],defaultValue).equals(getString(R.string.shared_pref_silver))) {
-                    Glide.with(this).load(ContextCompat.getDrawable(getActivity(),R.drawable.level_select_no_star)).into(gold_star);
-                    Glide.with(this).load(ContextCompat.getDrawable(getActivity(),R.drawable.level_select_silver_star)).into(silver_star);
-                    Glide.with(this).load(ContextCompat.getDrawable(getActivity(),R.drawable.level_select_bronze_star)).into(bronze_star);
-                    score += 2;
-                }
-                if (sharedPrefs.getString(keys[i],defaultValue).equals(getString(R.string.shared_pref_bronze))) {
-                    Glide.with(this).load(ContextCompat.getDrawable(getActivity(),R.drawable.level_select_no_star)).into(gold_star);
-                    Glide.with(this).load(ContextCompat.getDrawable(getActivity(),R.drawable.level_select_no_star)).into(silver_star);
-                    Glide.with(this).load(ContextCompat.getDrawable(getActivity(),R.drawable.level_select_bronze_star)).into(bronze_star);
-                    score += 1;
-                }
-                if (sharedPrefs.getString(keys[i],defaultValue).equals(getString(R.string.shared_pref_no_medal))){
-                    Glide.with(this).load(ContextCompat.getDrawable(getActivity(),R.drawable.level_select_no_star)).into(gold_star);
-                    Glide.with(this).load(ContextCompat.getDrawable(getActivity(),R.drawable.level_select_no_star)).into(silver_star);
-                    Glide.with(this).load(ContextCompat.getDrawable(getActivity(),R.drawable.level_select_no_star)).into(bronze_star);
-                }
+        String defaultValue = getString(R.string.shared_pref_no_medal);
+        String goldValue = getString(R.string.shared_pref_gold);
+        String silverValue = getString(R.string.shared_pref_silver);
+        String bronzeValue = getString(R.string.shared_pref_bronze);
+        int goldStar = R.drawable.level_select_gold;
+        int silverStar = R.drawable.level_select_silver;
+        int bronzeStar = R.drawable.level_select_bronze;
+        int noStar = R.drawable.level_select_no_medal;
+        for (int i = 0; i<keys.length;i++) {
+            Button star_holder = rootView.findViewById(stars[i]);
+            String savedVal = sharedPrefs.getString(keys[i], defaultValue);
+            String[] valueArray = savedVal.trim().split(",");
+            String value = valueArray[0];
+            if (value.equals(goldValue)){
+                setBackgroundHelper(star_holder, goldStar );
+                //star_holder.setBackground(ContextCompat.getDrawable(getContext(),goldStar));
+                score += 3;
             }
-            else if (!keys[i].equals("")){
-                Glide.with(this).load(ContextCompat.getDrawable(getActivity(),R.drawable.level_select_no_star)).into(gold_star);
-                Glide.with(this).load(ContextCompat.getDrawable(getActivity(),R.drawable.level_select_no_star)).into(silver_star);
-                Glide.with(this).load(ContextCompat.getDrawable(getActivity(),R.drawable.level_select_no_star)).into(bronze_star);
+            if (value.equals(silverValue)){
+                setBackgroundHelper(star_holder,silverStar);
+                //star_holder.setBackground(ContextCompat.getDrawable(getContext(),silverStar));
+                score += 2;
+            }
+            if (value.equals(bronzeValue)){
+                setBackgroundHelper(star_holder,bronzeStar);
+                //star_holder.setBackground(ContextCompat.getDrawable(getContext(),bronzeStar));
+                score += 1;
+            }
+            if (value.equals(defaultValue)){
+                //star_holder.setBackground(ContextCompat.getDrawable(getContext(),noStar));
+                setBackgroundHelper(star_holder,noStar);
             }
         }
         curr_amount_of_stars.setText(Integer.toString(score));
@@ -311,6 +306,15 @@ public abstract class stage_select_base extends Fragment implements SharedPrefer
             second_cluster.startAnimation(animation);
         }
         return stars_needed;
+    }
+
+    private void setBackgroundHelper(final View btn, int drawable) {
+        Glide.with((Fragment)this).load(ContextCompat.getDrawable(getContext(), drawable)).into(new SimpleTarget<Drawable>() {
+            @Override
+            public void onResourceReady(@NonNull Drawable resource, @Nullable Transition<? super Drawable> transition) {
+                btn.setBackground(resource);
+            }
+        });
     }
 
     protected void setTitleBar(){

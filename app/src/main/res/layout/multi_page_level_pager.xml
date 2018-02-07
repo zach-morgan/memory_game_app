@@ -4,5 +4,5 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.zach.memorygame.S3L1"
+    tools:context="com.example.zach.memorygame.LevelClasses.S2L1"
     android:id="@+id/level_pager"/>

@@ -21,6 +21,7 @@ import android.support.constraint.ConstraintLayout;
 import android.support.constraint.ConstraintSet;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.content.res.ResourcesCompat;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -31,6 +32,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.animation.Transformation;
 import android.widget.Button;
@@ -53,6 +55,7 @@ import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
 import java.util.Random;
+import java.util.StringJoiner;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.zip.Inflater;
@@ -89,11 +92,13 @@ public abstract class levels extends AppCompatActivity implements Observer {
 
     private String levelkey, Theme;
 
-    protected boolean hasFlip;
+    protected boolean hasFlip, isMultiPage;;
 
     protected int flipIntervals, cardFlipTimeUp;
 
     Timer cardsFlippedTimer;
+
+    ViewPager pager;
 
 
     //Theme Globals
@@ -218,6 +223,7 @@ public abstract class levels extends AppCompatActivity implements Observer {
             btn.setTypeface(ResourcesCompat.getFont(this,font));
             btn.setTextColor(ContextCompat.getColor(this,font_color));
             game_layout.setBackground(ContextCompat.getDrawable(this,level_background));
+            setIntroHighScore();
             btn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -234,12 +240,34 @@ public abstract class levels extends AppCompatActivity implements Observer {
 
         }
 
+        private void setIntroHighScore(){
+            SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
+            TextView time = findViewById(R.id.level_intro_high_time);
+            TextView moves = findViewById(R.id.level_intro_high_moves);
+            View icon = findViewById(R.id.level_intro_high_icon);
+            String[] values = sharedPrefs.getString(getKey(),getString(R.string.shared_pref_medal_default)).split(",");
+            int storedTime = Integer.parseInt(values[1]);
+            int storedMinutes = storedTime / 60;
+            int storedSeconds = storedTime % 60;
+            String formatedTime  ="";
+            if (storedSeconds < 10) {
+                formatedTime = Integer.toString(storedMinutes) + ":0" + Integer.toString(storedSeconds);
+            }else{
+                formatedTime = Integer.toString(storedMinutes) + ":" + Integer.toString(storedSeconds);
+
+            }
+            time.setText(formatedTime);
+            moves.setText(values[2] + " Moves");
+        }
+
         private void initializeImageArrays(){
             buttonObjects = new ArrayList<>();
             cartoonImages = new ArrayList<>(Arrays.asList(
                     R.drawable.cartoon_tileflipped_whale,R.drawable.cartoon_tileflipped_cloud,R.drawable.cartoon_tileflipped_cuteprince,R.drawable.cartoon_tileflipped_punkguy
                     ,R.drawable.cartoon_elephant,R.drawable.cartoon_tileflipped_computerguy,R.drawable.cartoon_tileflipped_mexicanguy,R.drawable.cartoon_tileflipped_octopus,
-                    R.drawable.cartoon_tileflipped_world
+                    R.drawable.cartoon_tileflipped_world, R.drawable.cartoon_tileflipped_blue_root,R.drawable.cartoon_tileback_boxer, R.drawable.cartoon_tileback_soldier,
+                    R.drawable.cartoon_tileflipped_pink_robot, R.drawable.cartoon_tileflipped_pizza, R.drawable.cartoon_tileflipped_purplerobot, R.drawable.cartoon_tileflipped_greenrobot,
+                    R.drawable.cartoon_tileflipped_yellowrobot, R.drawable.cartoon_tileflipped_watermelon
             ));
             muricaImages = new ArrayList<>(Arrays.asList(
                R.drawable.murica_tileflipped_california,R.drawable.murica_tileflipped_newyork,R.drawable.murica_tileflipped_idaho,
@@ -301,8 +329,23 @@ public abstract class levels extends AppCompatActivity implements Observer {
             }
         }
 
-        protected void registersGameCards(int[] buttonIDs){
+        protected void registersGameCards(int[] buttonIDs, boolean updateGlobal){
+            if(updateGlobal) {
+                if (buttons == null) {
+                    buttons = new int[buttonIDs.length];
+                    System.arraycopy(buttonIDs, 0, buttons, 0, buttonIDs.length);
+                } else {
+                    int[] temp = new int[buttons.length + buttonIDs.length];
+                    System.arraycopy(buttons, 0, temp, 0, buttons.length);
+                    System.arraycopy(buttonIDs, 0, temp, buttons.length, buttonIDs.length);
+                    buttons = new int[buttons.length + buttonIDs.length];
+                    System.arraycopy(temp, 0, buttons, 0, temp.length);
+                }
+            }
             Button btn;
+            if (buttonObjects.size() >= buttons.length) {
+                buttonObjects = new ArrayList<>();
+            }
             for (int i = 0;i < buttonIDs.length;i++){
                 btn =(Button)findViewById(buttonIDs[i]);
                 setButtonListener(btn,buttonObjects.size());
@@ -315,12 +358,14 @@ public abstract class levels extends AppCompatActivity implements Observer {
             buttonObjects = new ArrayList<>();
             for (int i = 0;i < buttonIDs.length;i++){
                 btn =(Button)findViewById(buttonIDs[i]);
-                btn.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                    }
-                });
-                buttonObjects.add(btn);
+                if (btn != null) {
+                    btn.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                        }
+                    });
+                    buttonObjects.add(btn);
+                }
             }
         }
 
@@ -387,21 +432,30 @@ public abstract class levels extends AppCompatActivity implements Observer {
             });
         }
 
-        private void swapCards(){
+        private void swapCards() {
             //pop Up
-            final View cardSwapPopUp = findViewById(R.id.cardSwapPopUp);
+            final View cardSwapPopUp;
+            if (isMultiPage) {
+                int currentPage = pager.getCurrentItem();
+                int[] possibleIDs = new int[]{
+                        R.id.cardSwapPopUp_p1, R.id.cardSwapPopUp_p2
+                };
+                cardSwapPopUp = findViewById(possibleIDs[currentPage]);
+            } else {
+                cardSwapPopUp = findViewById(R.id.cardSwapPopUp);
+            }
             cardSwapPopUp.setVisibility(View.VISIBLE);
             cardSwapPopUp.setAlpha(1f);
-            cardSwapPopUp.animate().alpha(0f).setDuration(1000).setListener(new Animator.AnimatorListener() {
+            cardSwapPopUp.animate().alpha(0.5f).setDuration(1250).setListener(new Animator.AnimatorListener() {
                 @Override
                 public void onAnimationStart(Animator animation) {
-                    unRegisterGameCards(buttons);
+                    //unRegisterGameCards(buttons);
                 }
 
                 @Override
                 public void onAnimationEnd(Animator animation) {
-                    updateBoard(model.getCheat());
                     cardSwapPopUp.setVisibility(View.INVISIBLE);
+                    updateBoard(model.getCards());
                 }
 
                 @Override
@@ -414,28 +468,11 @@ public abstract class levels extends AppCompatActivity implements Observer {
 
                 }
             });
-
             //Card Swap
             model.shuffle();
+            updateBoard(model.getCheat());
             //updateBoard(model.getCheat());
-            cardsFlippedTimer = new Timer();
-            cardsFlippedTimer.scheduleAtFixedRate(new TimerTask() {
-                @Override
-                public void run() {
-                    swapperHandler.obtainMessage(1).sendToTarget();
-                }
-            },cardFlipTimeUp+1000,300013221);
         }
-
-        public Handler swapperHandler = new Handler(){
-            @Override
-            public void handleMessage(Message msg) {
-                updateBoard(model.getCards());
-                registersGameCards(buttons);
-                cardsFlippedTimer.cancel();
-                cardsFlippedTimer.purge();
-            }
-        };
     //END OBSERVER UPDATES
 
     //----------------------------------------------------------------------------------------------
@@ -503,55 +540,79 @@ public abstract class levels extends AppCompatActivity implements Observer {
             }
         }
 
-        private void configureWin(String medal){
+        private void configureWin(String medal) {
             ImageView gold_trophy = findViewById(R.id.gold_trophy_win);
             ImageView silver_trophy = findViewById(R.id.silver_trophy_win);
             ImageView bronze_trophy = findViewById(R.id.bronze_trophy_win);
             ImageView no_medal = findViewById(R.id.no_medal_win);
-
-            switch(medal){
-                case "gold":
-                    gold_trophy.setVisibility(View.VISIBLE);
-                    String goldValue = getString(R.string.shared_pref_gold);
-                    saveMedal(goldValue);
-                    //animateTrophy(gold_trophy);
-                    break;
-                case "silver":
-                    silver_trophy.setVisibility(View.VISIBLE);
-                    String silverValue = getString(R.string.shared_pref_silver);
-                    saveMedal(silverValue);
-                    break;
-                //animateTrophy(silver_trophy);
-                case "bronze":
-                    bronze_trophy.setVisibility(View.VISIBLE);
-                    String bronzeValue = getString(R.string.shared_pref_bronze);
-                    saveMedal(bronzeValue);
-                    break;
-                //animateTrophy(bronze_trophy);
-                case "no_medal":
-                    no_medal.setVisibility(View.VISIBLE);
-                    TextView final_time_view = findViewById(R.id.final_time);
-                    TextView final_moves_view = findViewById(R.id.final_moves);
-                    View win_border = findViewById(R.id.win_border);
-                    win_border.setVisibility(View.INVISIBLE);
-                    final_time_view.setVisibility(View.INVISIBLE);
-                    final_moves_view.setText("No Medal");
-                    String no_medalValue = getString(R.string.shared_pref_no_medal);
-                    saveMedal(no_medalValue);
-                    //do something else
-
+            String medalValue = medal.split(",")[0];
+            if (medalValue.equals(getString(R.string.shared_pref_gold))) {
+                gold_trophy.setVisibility(View.VISIBLE);
+                //animateTrophy(gold_trophy);
             }
+            if (medalValue.equals(getString(R.string.shared_pref_silver))) {
+                silver_trophy.setVisibility(View.VISIBLE);
+                //animateTrophy(silver_trophy);
+            }
+            if (medalValue.equals(getString(R.string.shared_pref_bronze))){
+                bronze_trophy.setVisibility(View.VISIBLE);
+               //animateTrophy(bronze_trophy);
+            }
+            if (medalValue.equals(getString(R.string.shared_pref_no_medal))) {
+                no_medal.setVisibility(View.VISIBLE);
+                TextView final_time_view = findViewById(R.id.final_time);
+                TextView final_moves_view = findViewById(R.id.final_moves);
+                View win_border = findViewById(R.id.win_border);
+                win_border.setVisibility(View.INVISIBLE);
+                final_time_view.setVisibility(View.INVISIBLE);
+                final_moves_view.setText("No Medal");
+                //do something else
+            }
+            saveMedal(medal);
         }
 
         private void saveMedal(String medalValue){
             SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
             SharedPreferences.Editor editor = sharedPref.edit();
-            String default_value = getString(R.string.shared_pref_no_medal);
-            int new_medalLevel = Integer.parseInt(medalValue);
-            int current_medalLevel = Integer.parseInt(sharedPref.getString(levelkey,default_value));
+            String default_value = getString(R.string.shared_pref_medal_default);
+            String[] results = medalValue.split(",");
+            int new_medalLevel = Integer.parseInt(results[0]);
+            String[] storedResults = sharedPref.getString(levelkey,default_value).split(",");
+            int current_medalLevel = Integer.parseInt(storedResults[0]);
+            int new_time = Integer.parseInt(results[1]);
+            int old_time = Integer.parseInt(storedResults[1]);
+            int new_moves = Integer.parseInt(results[2]);
+            int old_moves = Integer.parseInt(storedResults[2]);
+            String[] results_to_write_to_mem = new String[3];
+            int counter = 0;
             if (new_medalLevel > current_medalLevel){
-                editor.putString(levelkey,medalValue);
+                results_to_write_to_mem[0] = Integer.toString(new_medalLevel).trim();
+                counter++;
+            }else{
+                results_to_write_to_mem[0] = storedResults[0];
             }
+            if (new_time < old_time || old_time == 0){
+                results_to_write_to_mem[1] = Integer.toString(new_time).trim();
+                counter++;
+            }else{
+                results_to_write_to_mem[1] = storedResults[1];
+            }
+            if (new_moves < old_moves || old_moves == 0){
+                results_to_write_to_mem[2] = Integer.toString(new_moves).trim();
+                counter++;
+            }else{
+                results_to_write_to_mem[2] = storedResults[2];
+            }
+            if (counter == 3){
+                View high_score = findViewById(R.id.new_high_score);
+                high_score.setVisibility(View.VISIBLE);
+                Animation anim = new AlphaAnimation(0.5f, 1.0f);
+                anim.setRepeatCount(3);
+                anim.setRepeatMode(Animation.REVERSE);
+                high_score.startAnimation(anim);
+            }
+            String finalResult = results_to_write_to_mem[0] + "," + results_to_write_to_mem[1] + "," + results_to_write_to_mem[2];
+            editor.putString(levelkey, finalResult);
             editor.apply();
         }
 
@@ -598,7 +659,7 @@ public abstract class levels extends AppCompatActivity implements Observer {
 
 
         private String level_of_win(){
-            int final_time = Time_minutes + Time_seconds;
+            int final_time = (Time_minutes * 60) + Time_seconds;
             int final_moveCount = Integer.parseInt(moveCounter.getText().toString());
             TextView final_time_view = findViewById(R.id.final_time);
             TextView final_moves_view = findViewById(R.id.final_moves);
@@ -615,15 +676,15 @@ public abstract class levels extends AppCompatActivity implements Observer {
                 if (final_time <= time && final_moveCount <= moveCount){
                     switch(i){
                         case 0:
-                            return "gold";
+                            return getString(R.string.shared_pref_gold) + "," + Integer.toString(final_time) +"," + Integer.toString(final_moveCount);
                         case 2:
-                            return "silver";
+                            return getString(R.string.shared_pref_silver) + "," + Integer.toString(final_time) +"," + Integer.toString(final_moveCount);
                         case 4:
-                            return "bronze";
+                            return getString(R.string.shared_pref_bronze) + "," + Integer.toString(final_time) +"," + Integer.toString(final_moveCount);
                     }
                 }
             }
-            return "no_medal";
+            return getString(R.string.shared_pref_no_medal) + "," + Integer.toString(final_time) +"," + Integer.toString(final_moveCount);
         }
 
     //END WIN RELATED FUNCTIONS
