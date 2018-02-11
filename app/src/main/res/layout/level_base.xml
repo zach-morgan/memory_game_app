@@ -64,7 +64,7 @@
             android:id="@+id/move_counter"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
+            android:layout_marginStart="4dp"
             android:text="@string/level_header_default_moveCount"
             android:textAlignment="center"
             android:textSize="30sp"
@@ -132,6 +132,20 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.0"
             app:srcCompat="@drawable/victory_header" />
+
+        <Button
+            android:id="@+id/retry_level"
+            android:layout_width="160dp"
+            android:layout_height="match_parent"
+            android:text="Retry"
+            android:textSize="30sp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.974"
+            app:layout_constraintHorizontal_bias="0.55"/>
 
     </android.support.constraint.ConstraintLayout>
 </LinearLayout>

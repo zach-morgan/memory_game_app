@@ -11,6 +11,7 @@ public class S2L3 extends multi_page_level {
 
     @Override
     protected void initializeGame() {
+        hasSwipeHelp = true;
         goals = new String[]{getString(R.string.s2l3_gold_time), getString(R.string.s2l3_gold_moves),
                 getString(R.string.s2l3_silver_time), getString(R.string.s2l3_silver_moves),
                 getString(R.string.s2l3_bronze_time), getString(R.string.s2l3_bronze_moves)};

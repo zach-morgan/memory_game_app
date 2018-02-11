@@ -9,7 +9,7 @@ public class S3L3 extends single_page_level {
 
     @Override
     protected void initializeGame() {
-        flipIntervals = 9;
+        flipIntervals = 15;
         cardFlipTimeUp = 2350;
         goals = new String[]{getString(R.string.s3l3_gold_time), getString(R.string.s3l3_gold_moves),
                 getString(R.string.s3l3_silver_time), getString(R.string.s3l3_silver_moves),

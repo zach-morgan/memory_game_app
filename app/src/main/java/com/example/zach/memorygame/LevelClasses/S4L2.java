@@ -17,7 +17,7 @@ public class S4L2 extends multi_page_level {
                 getString(R.string.s4l2_silver_time), getString(R.string.s4l2_silver_moves),
                 getString(R.string.s4l2_bronze_time), getString(R.string.s4l2_bronze_moves)};
         cardFlipTimeUp = 1000;
-        flipIntervals = 7;
+        flipIntervals = 11;
         isMultiPage = true;
         int[] pageLayouts = new int[]{R.layout.s4l2_p1,R.layout.s4l2_p2};
         super.initializeMultiPageGame(true, pageLayouts, 12,"Stage 4 Level 2");

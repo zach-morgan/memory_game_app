@@ -103,7 +103,7 @@
 
 
     <Button
-        android:id="@+id/cardSwapPopUp_p1"
+        android:id="@+id/cardSwapPopUp_p2"
         android:layout_width="324dp"
         android:layout_height="386dp"
         android:background="@drawable/cartoon_popup_text_holder"

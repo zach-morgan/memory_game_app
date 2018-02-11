@@ -21,6 +21,8 @@ public class S1L4 extends single_page_level {
         super.initializeSinglePageGame(false, 12, "Stage 1 Level 4", R.layout.s1l4);
     }
 
+
+
     @Override
     protected String getKey() {
         return getString(R.string.shared_pref_S1L4_key);

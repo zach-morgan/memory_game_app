@@ -421,6 +421,7 @@ public abstract class levels extends AppCompatActivity implements Observer {
                 }
             }
             moveCounter.setText(Integer.toString(model.getMoveCount()));
+            adjustMoveColor();
         }
 
         private void setBackground(final Button btn, int background){
@@ -475,6 +476,28 @@ public abstract class levels extends AppCompatActivity implements Observer {
         }
     //END OBSERVER UPDATES
 
+
+    private void adjustMoveColor(){
+        int total_moves = model.getMoveCount();
+        TextView moveLabel = findViewById(R.id.move_label);
+        int goal_gold = Integer.parseInt(goals[1]);int goal_silver = Integer.parseInt(goals[3]);int goal_bronze = Integer.parseInt(goals[5]);
+        if (total_moves <= goal_bronze){
+            moveLabel.setTextColor(ContextCompat.getColor(getBaseContext(),R.color.header_bronze));
+            moveCounter.setTextColor(ContextCompat.getColor(getBaseContext(),R.color.header_bronze));
+        }else{
+            moveLabel.setTextColor(ContextCompat.getColor(getBaseContext(),R.color.white));
+            moveCounter.setTextColor(ContextCompat.getColor(getBaseContext(),R.color.white));
+        }
+        if (total_moves <= goal_silver){
+            moveLabel.setTextColor(ContextCompat.getColor(getBaseContext(),R.color.header_silver));
+            moveCounter.setTextColor(ContextCompat.getColor(getBaseContext(),R.color.header_silver));
+        }
+        if (total_moves <= goal_gold){
+            moveLabel.setTextColor(ContextCompat.getColor(getBaseContext(),R.color.header_gold));
+            moveCounter.setTextColor(ContextCompat.getColor(getBaseContext(),R.color.header_gold));
+        }
+    }
+
     //----------------------------------------------------------------------------------------------
 
     //WIN RELATED FUNCTIONS
@@ -505,11 +528,11 @@ public abstract class levels extends AppCompatActivity implements Observer {
             mainLayout.removeView(game_layout);
             String medal = level_of_win();
             configureWin(medal);
-            registerEndofgameButtons();
+            registerEndofgameButtons(medal);
         }
 
 
-        private void registerEndofgameButtons(){
+        private void registerEndofgameButtons(String medal){
             final Button level_select = (Button) findViewById(R.id.back_to_level_select_button);
             level_select.setBackground(ContextCompat.getDrawable(this,navigation_button_background));
             level_select.setTypeface(ResourcesCompat.getFont(this,font));
@@ -518,7 +541,21 @@ public abstract class levels extends AppCompatActivity implements Observer {
             next_level.setBackground(ContextCompat.getDrawable(this,navigation_button_background));
             next_level.setTypeface(ResourcesCompat.getFont(this,font));
             next_level.setTextColor(ContextCompat.getColor(this,font_color));
-            final Intent back_to_level_select = new Intent(this,level_select.class);
+            if(!(medal.split(",")[0].equals(getString(R.string.shared_pref_gold)))) {
+                final Button retry_level = (Button) findViewById(R.id.retry_level);
+                retry_level.setVisibility(View.VISIBLE);
+                retry_level.setBackground(ContextCompat.getDrawable(this, navigation_button_background));
+                retry_level.setTypeface(ResourcesCompat.getFont(this, font));
+                retry_level.setTextColor(ContextCompat.getColor(this, font_color));
+                final Intent retry_intent = new Intent(this, this.getClass());
+                retry_level.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        startActivity(retry_intent);
+                        finish();
+                    }
+                });
+            }
             level_select.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -671,7 +708,8 @@ public abstract class levels extends AppCompatActivity implements Observer {
             final_moves_view.setText(final_moveCount + " Moves");
             for (int i =0; i <goals.length;i+=2){
                 String time_string = goals[i];
-                int time = Integer.parseInt(time_string.substring(0,1)) + Integer.parseInt(time_string.substring(2,4));
+                int goal_seconds = Integer.parseInt(time_string.substring(2,4));
+                int time = Integer.parseInt(time_string.substring(0,1)) * 60 + goal_seconds;
                 int moveCount = Integer.parseInt(goals[i+1]);
                 if (final_time <= time && final_moveCount <= moveCount){
                     switch(i){
@@ -739,6 +777,19 @@ public abstract class levels extends AppCompatActivity implements Observer {
 
         public Handler mHandler = new Handler(){
             public void handleMessage(Message msg){
+                int total_time = Time_minutes * 60 + Time_seconds;
+                int goal_gold = convertStringTimetoInt(goals[0]);int goal_silver = convertStringTimetoInt(goals[2]);int goal_bronze = convertStringTimetoInt(goals[4]);
+                if (total_time <= goal_bronze){
+                    TimeView.setTextColor(ContextCompat.getColor(getBaseContext(),R.color.header_bronze));
+                }else{
+                    TimeView.setTextColor(ContextCompat.getColor(getBaseContext(),R.color.white));
+                }
+                if (total_time <= goal_silver){
+                    TimeView.setTextColor(ContextCompat.getColor(getBaseContext(),R.color.header_silver));
+                }
+                if (total_time <= goal_gold){
+                    TimeView.setTextColor(ContextCompat.getColor(getBaseContext(),R.color.header_gold));
+                }
                 if (hasFlip && Time_seconds != 0 && Time_seconds % flipIntervals == 0) {
                     swapCards();
                 }
@@ -750,6 +801,11 @@ public abstract class levels extends AppCompatActivity implements Observer {
             }
         };
 
+        private int convertStringTimetoInt(String time){
+            int goal_seconds = Integer.parseInt(time.substring(2,4));
+            return Integer.parseInt(time.substring(0,1)) * 60 + goal_seconds;
+        }
+
         private void setTime(String time, TextView view){
             view.setText(time);
         }
@@ -759,6 +815,7 @@ public abstract class levels extends AppCompatActivity implements Observer {
     //----------------------------------------------------------------------------------------------
 
     //ABSTRACT FUNCTIONS
+
 
         protected abstract void playGame();
 

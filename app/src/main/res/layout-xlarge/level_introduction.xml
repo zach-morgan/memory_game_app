@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/level_intro_layout">
+
+        <ImageView
+            android:id="@+id/intro_trophies"
+            android:layout_width="0dp"
+            android:layout_height="308dp"
+            android:layout_marginBottom="8dp"
+            android:background="@android:color/transparent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.056"
+            app:srcCompat="@drawable/intro_trophies" />
+
+        <TextView
+            android:id="@+id/bronze_time"
+            android:layout_width="wrap_content"
+            android:layout_height="45dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:text="@string/level_intro_default_bronze_time"
+            android:textSize="32sp"
+            app:layout_constraintBottom_toBottomOf="@+id/intro_trophies"
+            app:layout_constraintEnd_toStartOf="@+id/silver_time"
+            app:layout_constraintHorizontal_bias="0.262"
+            app:layout_constraintStart_toStartOf="@+id/intro_trophies"
+            app:layout_constraintTop_toTopOf="@+id/intro_trophies"
+            app:layout_constraintVertical_bias="0.753"
+            tools:text="1:00" />
+
+        <TextView
+            android:id="@+id/bronze_moves"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:text="@string/level_intro_default_bronze_moves"
+            android:textSize="22sp"
+            app:layout_constraintBottom_toBottomOf="@+id/intro_trophies"
+            app:layout_constraintEnd_toEndOf="@+id/intro_trophies"
+            app:layout_constraintHorizontal_bias="0.05"
+            app:layout_constraintStart_toStartOf="@+id/intro_trophies"
+            app:layout_constraintTop_toBottomOf="@+id/bronze_time"
+            app:layout_constraintVertical_bias="0.0"
+            tools:text="100 Moves" />
+
+        <TextView
+            android:id="@+id/silver_time"
+            android:layout_width="wrap_content"
+            android:layout_height="43dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:text="@string/level_intro_default_silver_time"
+            android:textSize="32sp"
+            app:layout_constraintBaseline_toBaselineOf="@+id/bronze_time"
+            app:layout_constraintEnd_toEndOf="@+id/intro_trophies"
+            app:layout_constraintStart_toStartOf="@+id/intro_trophies"
+            tools:text="1:30" />
+
+        <TextView
+            android:id="@+id/silver_moves"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/level_intro_default_silver_moves"
+            android:textSize="22sp"
+            app:layout_constraintBaseline_toBaselineOf="@+id/bronze_moves"
+            app:layout_constraintEnd_toStartOf="@+id/gold_moves"
+            app:layout_constraintHorizontal_bias="0.493"
+            app:layout_constraintStart_toEndOf="@+id/bronze_moves"
+            tools:text="15 Moves" />
+
+        <TextView
+            android:id="@+id/gold_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="12dp"
+            android:layout_marginStart="8dp"
+            android:text="@string/level_intro_default_gold_time"
+            android:textSize="32sp"
+            app:layout_constraintBaseline_toBaselineOf="@+id/silver_time"
+            app:layout_constraintEnd_toEndOf="@+id/gold_moves"
+            app:layout_constraintStart_toStartOf="@+id/gold_moves"
+            tools:text="2:00" />
+
+        <TextView
+            android:id="@+id/gold_moves"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/level_intro_default_gold_moves"
+            android:textSize="22sp"
+            app:layout_constraintBaseline_toBaselineOf="@+id/silver_moves"
+            app:layout_constraintEnd_toEndOf="@+id/intro_trophies"
+            app:layout_constraintHorizontal_bias="0.915"
+            app:layout_constraintStart_toStartOf="@+id/intro_trophies"
+            tools:text="10 Moves" />
+
+        <Button
+            android:id="@+id/intro_playButton"
+            android:layout_width="186dp"
+            android:layout_height="85dp"
+            android:text="@string/level_intro_playButton"
+            android:textAlignment="center"
+            android:textSize="52sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/intro_trophies"
+            app:layout_constraintVertical_bias="0.751" />
+
+        <ImageView
+            android:id="@+id/level_intro_high_icon"
+            android:layout_width="153dp"
+            android:layout_height="155dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.097"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/intro_trophies"
+            app:layout_constraintVertical_bias="0.655"
+            app:srcCompat="@drawable/highscore_icon" />
+
+        <TextView
+            android:id="@+id/level_intro_high_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="36sp"
+            android:visibility="visible"
+            app:layout_constraintBottom_toTopOf="@+id/level_intro_high_moves"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.024"
+            app:layout_constraintStart_toEndOf="@+id/level_intro_high_icon"
+            app:layout_constraintTop_toTopOf="@+id/level_intro_high_icon"
+            app:layout_constraintVertical_bias="0.695"
+            tools:text="1:00" />
+
+        <TextView
+            android:id="@+id/level_intro_high_moves"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="36sp"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="@+id/level_intro_high_icon"
+            app:layout_constraintStart_toStartOf="@+id/level_intro_high_time"
+            app:layout_constraintTop_toTopOf="@+id/level_intro_high_icon"
+            app:layout_constraintVertical_bias="0.876"
+            tools:text="100 Moves" />
+</android.support.constraint.ConstraintLayout>

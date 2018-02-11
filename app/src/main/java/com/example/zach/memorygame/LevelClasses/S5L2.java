@@ -17,7 +17,7 @@ public class S5L2 extends multi_page_level {
                 getString(R.string.s5l2_silver_time), getString(R.string.s5l2_silver_moves),
                 getString(R.string.s5l2_bronze_time), getString(R.string.s5l2_bronze_moves)};
         cardFlipTimeUp = 1000;
-        flipIntervals = 9;
+        flipIntervals = 20;
         isMultiPage = true;
         int[] pageLayouts = new int[]{R.layout.s5l2_p1,R.layout.s5l2_p2};
         super.initializeMultiPageGame(true, pageLayouts, 20,"Stage 5 Level 2");

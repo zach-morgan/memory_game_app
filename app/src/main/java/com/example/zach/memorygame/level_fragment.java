@@ -16,7 +16,7 @@ public class level_fragment extends Fragment {
 
     View mainView;
 
-    boolean hasFlip;
+    boolean hasFlip,hasSwipeHelp;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -31,6 +31,7 @@ public class level_fragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         int layout = getArguments().getInt(getString(R.string.multi_page_frag_com_layout_key),R.layout.activity_home_page);
         hasFlip = getArguments().getBoolean(getString(R.string.multi_page_frag_com_hasSwitch_key),false);
+        hasSwipeHelp = getArguments().getBoolean(getString(R.string.multi_page_frag_com_hasSwipeHelp),false);
         mainView = inflater.inflate(layout,null);
         return mainView;
     }
@@ -46,7 +47,7 @@ public class level_fragment extends Fragment {
     public int[] getButtons(){
         int endingIndex = 0;
         ViewGroup mainGroup = (ViewGroup)mainView;
-        if (hasFlip){
+        if (hasFlip || hasSwipeHelp){
             endingIndex = mainGroup.getChildCount() -1;
         }else{
             endingIndex = mainGroup.getChildCount();

@@ -25,6 +25,8 @@ public abstract class multi_page_level extends levels {
 
     Timer timer;
 
+    protected boolean hasSwipeHelp;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,6 +43,7 @@ public abstract class multi_page_level extends levels {
             Bundle arg1 = new Bundle();
             arg1.putInt(getString(R.string.multi_page_frag_com_layout_key),pageID);
             arg1.putBoolean(getString(R.string.multi_page_frag_com_hasSwitch_key),hasSwap);
+            arg1.putBoolean(getString(R.string.multi_page_frag_com_hasSwipeHelp),hasSwipeHelp);
             level_fragment Page = new level_fragment();
             Page.setArguments(arg1);
             fragments.add(Page);
@@ -66,8 +69,7 @@ public abstract class multi_page_level extends levels {
         timer.scheduleAtFixedRate(new switcherTimer(),1100, 850);
     }
 
-    protected void updateDaBoard(int[] buttonsID)
-    {
+    protected void updateDaBoard(int[] buttonsID){
         registersGameCards(buttonsID,true);
         updateBoard(model.getCards());
     }

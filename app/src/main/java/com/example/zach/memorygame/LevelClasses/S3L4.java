@@ -9,14 +9,15 @@ public class S3L4 extends single_page_level {
     
     @Override
     protected void initializeGame() {
-        flipIntervals = 10;
+        flipIntervals = 18;
         cardFlipTimeUp = 2500;
         goals = new String[]{getString(R.string.s3l4_gold_time), getString(R.string.s3l4_gold_moves),
                 getString(R.string.s3l4_silver_time), getString(R.string.s3l4_silver_moves),
                 getString(R.string.s3l4_bronze_time), getString(R.string.s3l4_bronze_moves)};
         super.initializeSinglePageGame(true, 14, "Stage 3 Level 4", R.layout.s3l4);
     }
-    
+
+
     @Override
     protected Intent getNextLevelIntent(){
         return null;

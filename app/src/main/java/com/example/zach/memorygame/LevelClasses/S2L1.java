@@ -9,9 +9,10 @@ import com.example.zach.memorygame.multi_page_level;
 public class S2L1 extends multi_page_level {
     @Override
     protected void initializeGame() {
-        goals = new String[]{getString(R.string.s2l2_gold_time), getString(R.string.s2l2_gold_moves),
-                getString(R.string.s2l2_silver_time), getString(R.string.s2l2_silver_moves),
-                getString(R.string.s2l2_bronze_time), getString(R.string.s2l2_bronze_moves)};
+        hasSwipeHelp = true;
+        goals = new String[]{getString(R.string.s2l1_gold_time),getString(R.string.s2l1_gold_moves),
+                getString(R.string.s2l1_silver_time), getString(R.string.s2l1_silver_moves),
+                getString(R.string.s2l1_bronze_time), getString(R.string.s2l1_bronze_moves)};
         int[] pageLayouts = new int[]{R.layout.s2l1_p1,R.layout.s2l1_p2};
         super.initializeMultiPageGame(false, pageLayouts, 6,"Stage 2 Level 1");
     }

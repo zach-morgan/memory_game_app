@@ -10,6 +10,7 @@ import com.example.zach.memorygame.multi_page_level;
 public class S2L4 extends multi_page_level {
     @Override
     protected void initializeGame() {
+        hasSwipeHelp = true;
         goals = new String[]{getString(R.string.s2l4_gold_time), getString(R.string.s2l4_gold_moves),
                 getString(R.string.s2l4_silver_time), getString(R.string.s2l4_silver_moves),
                 getString(R.string.s2l4_bronze_time), getString(R.string.s2l4_bronze_moves)};

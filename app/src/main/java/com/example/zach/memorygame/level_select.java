@@ -49,8 +49,8 @@ public class level_select extends FragmentActivity{
     }
 
     @Override
-    protected void onDestroy() {
-        super.onDestroy();
+    protected void onPause() {
+        super.onPause();
         sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
         SharedPreferences.Editor editor = sharedPref.edit();
         editor.putInt(getString(R.string.store_current_stage_pager), pager.getCurrentItem());

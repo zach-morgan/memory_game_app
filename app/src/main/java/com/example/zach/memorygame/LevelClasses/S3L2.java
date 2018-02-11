@@ -17,6 +17,7 @@ public class S3L2 extends single_page_level {
         super.initializeSinglePageGame(true, 10, "Stage 3 Level 2", R.layout.s3l2);
     }
 
+
     @Override
     protected Intent getNextLevelIntent(){
         return new Intent(this,S3L3.class);
