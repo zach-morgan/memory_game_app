@@ -122,8 +122,12 @@ public abstract class levels extends AppCompatActivity implements Observer {
 
         @Override
         public void onBackPressed() {
-            pauseTimer();
-            quitAlertDialog.show();
+            if (gameInPlay) {
+                pauseTimer();
+                quitAlertDialog.show();
+            }else{
+                super.onBackPressed();
+            }
         }
 
 
