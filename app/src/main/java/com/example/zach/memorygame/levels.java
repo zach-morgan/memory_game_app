@@ -130,6 +130,22 @@ public abstract class levels extends AppCompatActivity implements Observer {
             }
         }
 
+        @Override
+        public void onResume(){
+            super.onResume();
+            if (gameInPlay){
+                resumeTimer();
+            }
+        }
+
+        @Override
+        public void onPause(){
+            if (gameInPlay){
+                pauseTimer();
+            }
+            super.onPause();
+        }
+
 
         private void themeConfiguration(){
             LinearLayout base = findViewById(R.id.mainLayout);
@@ -275,7 +291,11 @@ public abstract class levels extends AppCompatActivity implements Observer {
             ));
             muricaImages = new ArrayList<>(Arrays.asList(
                R.drawable.murica_tileflipped_california,R.drawable.murica_tileflipped_newyork,R.drawable.murica_tileflipped_idaho,
-                    R.drawable.murica_tileflipped_florida, R.drawable.murica_tileflipped_michigan, R.drawable.murica_tileflipped_texas
+                    R.drawable.murica_tileflipped_florida, R.drawable.murica_tileflipped_michigan, R.drawable.murica_tileflipped_texas,
+                    R.drawable.murica_tileflipped_guyriding,R.drawable.murica_tileflipped_americaball,R.drawable.murica_tileflipped_trump,
+                    R.drawable.murica_tileflipped_liberty, R.drawable.murica_tileflipped_captamer,R.drawable.murica_tileflipped_ihny,
+                    R.drawable.murica_tileflipped_flagcircle,R.drawable.murica_tileflipped_george,R.drawable.murica_tileflipped_unclesam,
+                    R.drawable.murica_tileflipped_libbell
             ));
 
         }

@@ -237,4 +237,30 @@
             app:layout_constraintTop_toTopOf="@+id/stage1lvl4"
             app:layout_constraintVertical_bias="0.0" />
 
+    <ImageView
+        android:id="@+id/swipe_indicate_1"
+        android:layout_width="64dp"
+        android:layout_height="104dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/stage_locked_lock"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.884"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/level_select_buttons_background"
+        app:layout_constraintVertical_bias="0.333"
+        app:srcCompat="@drawable/swipe_indicator_left" />
+
+    <ImageView
+        android:id="@+id/swipe_indicate_2"
+        android:layout_width="71dp"
+        android:layout_height="104dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/stage_locked_lock"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.789"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/level_select_buttons_background"
+        app:layout_constraintVertical_bias="0.6"
+        app:srcCompat="@drawable/swipe_indicator_left" />
+
 </android.support.constraint.ConstraintLayout>

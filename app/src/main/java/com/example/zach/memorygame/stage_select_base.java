@@ -200,7 +200,7 @@ public abstract class stage_select_base extends Fragment implements SharedPrefer
             amount_of_stars_until_next_stage.setAlpha(0.5f);
             curr_amount_of_stars.setAlpha(0.5f);
             View header = rootView.findViewById(R.id.stage_header);
-            header.setAlpha(0.75f);
+            header.setAlpha(0.9f);
             of12.setVisibility(View.INVISIBLE);
             curr_amount_of_stars.setVisibility(View.INVISIBLE);
             amount_of_stars_until_next_stage.setVisibility(View.INVISIBLE);

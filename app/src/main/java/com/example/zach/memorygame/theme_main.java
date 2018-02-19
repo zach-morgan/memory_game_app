@@ -20,7 +20,7 @@ public class theme_main extends AppCompatActivity {
     public static final String EXTRA_IMAGE = "image";
     public static final String EXTRA_TRANSITION_IMAGE = "image";
 
-    private int[] listItems = {R.drawable.theme_preview_cartoon,R.drawable.theme_preview_murica_2};
+    private int[] listItems = {R.drawable.theme_preview_cartoon,R.drawable.theme_preview_murica};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
