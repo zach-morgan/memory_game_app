@@ -10,9 +10,9 @@
         android:id="@+id/level_select_buttons_background"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        tools:src="@drawable/cartoon_level_background"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/stage_header" />
+        app:layout_constraintTop_toBottomOf="@+id/stage_header"
+        tools:src="@drawable/cartoon_level_background" />
 
     <TextView
         android:id="@+id/stage_header"

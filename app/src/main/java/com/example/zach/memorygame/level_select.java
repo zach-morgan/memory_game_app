@@ -2,6 +2,7 @@ package com.example.zach.memorygame;
 
 import android.app.ActionBar;
 import android.app.Fragment;
+import android.media.MediaPlayer;
 import android.support.v4.app.FragmentManager;
 import android.content.Context;
 import android.content.Intent;
@@ -36,6 +37,8 @@ public class level_select extends FragmentActivity{
 
     SharedPreferences sharedPref;
 
+    MediaPlayer backgroundMusic;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,8 +52,21 @@ public class level_select extends FragmentActivity{
     }
 
     @Override
+    protected void onResume() {
+        super.onResume();
+        if (sharedPref.getBoolean(getString(R.string.isMuted_key),false)) {
+            backgroundMusic = MediaPlayer.create(getApplicationContext(), R.raw.backgroundmusic);
+            backgroundMusic.setLooping(true);
+            backgroundMusic.start();
+        }
+    }
+
+    @Override
     protected void onPause() {
         super.onPause();
+        if (backgroundMusic != null){
+            backgroundMusic.release();
+        }
         sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
         SharedPreferences.Editor editor = sharedPref.edit();
         editor.putInt(getString(R.string.store_current_stage_pager), pager.getCurrentItem());

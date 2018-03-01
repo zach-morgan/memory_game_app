@@ -11,6 +11,7 @@ import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
+import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.Handler;
 import android.os.Message;
@@ -92,7 +93,7 @@ public abstract class levels extends AppCompatActivity implements Observer {
 
     private String levelkey, Theme;
 
-    protected boolean hasFlip, isMultiPage;;
+    protected boolean hasFlip, isMultiPage, isMusicPlaying;
 
     protected int flipIntervals, cardFlipTimeUp;
 
@@ -100,6 +101,7 @@ public abstract class levels extends AppCompatActivity implements Observer {
 
     ViewPager pager;
 
+    MediaPlayer mp, winmp, matchmp, backmp;
 
     //Theme Globals
 
@@ -136,12 +138,29 @@ public abstract class levels extends AppCompatActivity implements Observer {
             if (gameInPlay){
                 resumeTimer();
             }
+            if (isMusicPlaying) {
+                backmp = MediaPlayer.create(getApplicationContext(), R.raw.level_back);
+                backmp.setLooping(true);
+                backmp.start();
+            }
         }
 
         @Override
         public void onPause(){
             if (gameInPlay){
                 pauseTimer();
+            }
+            if (backmp != null){
+                backmp.release();
+            }
+            if (mp != null){
+                mp.release();
+            }
+            if (matchmp != null){
+                matchmp.release();
+            }
+            if (winmp != null){
+                winmp.release();
             }
             super.onPause();
         }
@@ -244,6 +263,7 @@ public abstract class levels extends AppCompatActivity implements Observer {
             btn.setTextColor(ContextCompat.getColor(this,font_color));
             game_layout.setBackground(ContextCompat.getDrawable(this,level_background));
             setIntroHighScore();
+            mp = MediaPlayer.create(getApplicationContext(),R.raw.button_press);
             btn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -262,6 +282,7 @@ public abstract class levels extends AppCompatActivity implements Observer {
 
         private void setIntroHighScore(){
             SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
+            isMusicPlaying = sharedPrefs.getBoolean(getString(R.string.isMuted_key),false);
             TextView time = findViewById(R.id.level_intro_high_time);
             TextView moves = findViewById(R.id.level_intro_high_moves);
             View icon = findViewById(R.id.level_intro_high_icon);
@@ -398,6 +419,9 @@ public abstract class levels extends AppCompatActivity implements Observer {
                 @Override
                 public void onClick(View view) {
                     model.selectCard(index);
+                    if (isMusicPlaying) {
+                        mp.start();
+                    }
                 }
             });
         }
@@ -409,9 +433,15 @@ public abstract class levels extends AppCompatActivity implements Observer {
 
         @Override
         public void update(Observable observable, Object o) {
-            if (o == null) {
+            if (o == null || o.equals("match")) {
                 gameInPlay = true;
                 updateBoard(model.getCards());
+                if (o != null){
+                    if (isMusicPlaying) {
+                        matchmp = MediaPlayer.create(getApplicationContext(), R.raw.match);
+                        matchmp.start();
+                    }
+                }
                 if (checkWin() == 0) {
                     gameFinished = true;
                     gameInPlay = false;
@@ -540,8 +570,15 @@ public abstract class levels extends AppCompatActivity implements Observer {
         private void winScreen(){
             //switch from game header to You Won!
             initializeWinScreenHeader();
+            if (isMusicPlaying) {
+                backmp.release();
+            }
             //transition between game layout and trophy screen
             LinearLayout mainLayout = findViewById(R.id.mainLayout);
+            if (isMusicPlaying) {
+                winmp = MediaPlayer.create(getApplicationContext(), R.raw.game_won);
+                winmp.start();
+            }
             View winScreen_layout = getLayoutInflater().inflate(R.layout.trophy_screen,mainLayout,false);
             winScreen_layout.setBackground(ContextCompat.getDrawable(this,level_background));
             TransitionManager.beginDelayedTransition(mainLayout);

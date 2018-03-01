@@ -5,7 +5,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Typeface;
+import android.media.MediaPlayer;
 import android.preference.PreferenceManager;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.content.res.ResourcesCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -19,7 +21,7 @@ import com.bumptech.glide.Glide;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class homePage extends AppCompatActivity{
+public class homePage extends AppCompatActivity implements SharedPreferences.OnSharedPreferenceChangeListener{
 
 
     private SharedPreferences sharedPrefs;
@@ -30,6 +32,8 @@ public class homePage extends AppCompatActivity{
 
     Typeface typefaceFont;
 
+    public MediaPlayer backgroundMusic;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,10 +43,21 @@ public class homePage extends AppCompatActivity{
     protected void onResume() {
         super.onResume();
         sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
+        sharedPrefs.registerOnSharedPreferenceChangeListener(this);
         michaelBubleDrawables = new int[]{R.drawable.firstdot,R.drawable.seconddot,R.drawable.thirddot,R.drawable.cartoon_tileback};
         configureTheme();
         setTheme(theme);
+        backgroundMusic = MediaPlayer.create(getApplicationContext(), R.raw.backgroundmusic);
         setContentView(R.layout.activity_home_page);
+        backgroundMusic.setLooping(true);
+        if (sharedPrefs.getBoolean(getString(R.string.isMuted_key),false)) {
+            backgroundMusic.start();
+            FloatingActionButton muteButton = findViewById(R.id.mute_button);
+            muteButton.setImageDrawable(ContextCompat.getDrawable(this,R.drawable.unmuted));
+        }else{
+            FloatingActionButton muteButton = findViewById(R.id.mute_button);
+            muteButton.setImageDrawable(ContextCompat.getDrawable(this,R.drawable.muted));
+        }
         ImageView Person = (ImageView) findViewById(R.id.person);
         Glide.with(this).load(ContextCompat.getDrawable(this,person)).into(Person);
         ArrayList<ImageView> michaelBuble = new ArrayList<>(Arrays.asList((ImageView) findViewById(R.id.bubblesmall),
@@ -76,6 +91,14 @@ public class homePage extends AppCompatActivity{
         }
     }
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+        if (backgroundMusic.isPlaying()){
+            backgroundMusic.release();
+        }
+    }
+
     private void initializeSharedPrefs(){
         SharedPreferences.Editor editor = sharedPrefs.edit();
         editor.putBoolean(getString(R.string.shared_pref_stage1_lock_status_key),true);
@@ -84,7 +107,7 @@ public class homePage extends AppCompatActivity{
 
     private void openingAnimations(ArrayList<ImageView> bubbleViews){
         //thought bubble animation
-        int animationTime = 4000;
+        int animationTime = 2000;
         for (int i = 0;i < michaelBubleDrawables.length;i++){
             ImageView daCurrentView = bubbleViews.get(i);
             Glide.with(this).load(ContextCompat.getDrawable(this,michaelBubleDrawables[i])).into(daCurrentView);
@@ -93,7 +116,7 @@ public class homePage extends AppCompatActivity{
                 animationTime = 6000;
             }
             daCurrentView.animate().alpha(1f).setDuration(animationTime).setListener(null);
-            animationTime+=1000;
+            animationTime+=750;
         }
         //Spring animations for buttons
 
@@ -122,6 +145,34 @@ public class homePage extends AppCompatActivity{
                 startActivity(themeIntent);
             }
         });
+        final FloatingActionButton muteButton = findViewById(R.id.mute_button);
+        muteButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                boolean muteValue = sharedPrefs.getBoolean(getString(R.string.isMuted_key),false);
+                SharedPreferences.Editor ed = sharedPrefs.edit();
+                ed.putBoolean(getString(R.string.isMuted_key),!muteValue);
+                if (!muteValue){
+                    muteButton.setImageDrawable(ContextCompat.getDrawable(getBaseContext(), R.drawable.unmuted));
+                }else{
+                    muteButton.setImageDrawable(ContextCompat.getDrawable(getBaseContext(), R.drawable.muted));
+                }
+                ed.apply();
+            }
+        });
     }
 
+    @Override
+    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+        String muteK = getString(R.string.isMuted_key);
+        if (key.equals(muteK)){
+            if (sharedPrefs.getBoolean(muteK,false)){
+                backgroundMusic.start();
+            }else{
+                if (backgroundMusic.isPlaying()) {
+                    backgroundMusic.pause();
+                }
+            }
+        }
+    }
 }

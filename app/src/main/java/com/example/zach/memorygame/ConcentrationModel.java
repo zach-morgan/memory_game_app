@@ -131,6 +131,7 @@ public class ConcentrationModel extends Observable {
                 undoStack.get(0).getNumber() == undoStack.get(1).getNumber()) {
             pop();
             pop();
+            announce("match");
         }
     }
 

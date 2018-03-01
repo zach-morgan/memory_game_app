@@ -21,7 +21,7 @@
 
     <style name="cartoon_homeScreenTitle" parent="@style/cartoon_BaseText">
         <item name="android:textSize">36sp</item>
-        <item name="android:background">@color/cartoon_whitePrimary</item>
+        <!--<item name="android:background">@color/cartoon_whitePrimary</item>-->
     </style>
 
     <!--Home Page-->]
@@ -93,7 +93,7 @@
 
     <style name="murica_homeScreenTitle" parent="@style/murica_BaseText">
         <item name="android:textSize">36sp</item>
-        <item name="android:background">@color/murica_flag_red</item>
+        <!--<item name="android:background">@color/murica_flag_red</item>-->
     </style>
 
     <!--Home Page-->]

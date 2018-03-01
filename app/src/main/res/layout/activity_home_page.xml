@@ -5,7 +5,8 @@
         xmlns:tools="http://schemas.android.com/tools"
         tools:context="com.example.zach.memorygame.homePage"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@drawable/cartoon_homepage_back">
 
     <TextView
         android:id="@+id/textView"
@@ -118,4 +119,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView"
         app:layout_constraintVertical_bias="0.703" />
-    </android.support.constraint.ConstraintLayout>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/mute_button"
+        android:layout_width="51dp"
+        android:layout_height="61dp"
+        app:layout_constraintBottom_toBottomOf="@+id/person"
+        app:layout_constraintEnd_toEndOf="@+id/person"
+        app:layout_constraintHorizontal_bias="0.094"
+        app:layout_constraintStart_toStartOf="@+id/person"
+        app:layout_constraintTop_toTopOf="@+id/person"
+        app:layout_constraintVertical_bias="0.905" />
+</android.support.constraint.ConstraintLayout>

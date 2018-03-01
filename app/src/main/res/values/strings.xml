@@ -9,6 +9,12 @@
 
     <!--Theme Select Keys-->
 
+    <!-- Music Keys-->
+
+    <string name="isMuted_key">mutedKEy</string>
+
+    <!-- Music Keys-->
+
     <!-- keys for level medal status -->
 
     <string name="medal_storage_master_key">com.example.zach.memorygame</string>
