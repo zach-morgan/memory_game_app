@@ -98,6 +98,7 @@ public abstract class stage_select_base extends Fragment implements SharedPrefer
             if (!sharedPrefs.contains(getNextStageUnlockStatusKey())){
                 //animate new stage\
                 final TextView next_stage_popup = rootView.findViewById(R.id.level_select_next_stage_unlocked_prompt);
+                final Button swipeIndicate = rootView.findViewById(R.id.swipeindicator);
                 setFont(next_stage_popup,typefaceFont);
                 next_stage_popup.setVisibility(View.VISIBLE);
                 nextStageanimation = new AlphaAnimation(0.0f,1.0f);
@@ -112,7 +113,8 @@ public abstract class stage_select_base extends Fragment implements SharedPrefer
 
                     @Override
                     public void onAnimationEnd(Animation animation) {
-                        next_stage_popup.setVisibility(View.INVISIBLE);
+                        next_stage_popup.setVisibility(View.GONE);
+                        swipeIndicate.setVisibility(View.GONE);
                     }
 
                     @Override
@@ -121,6 +123,8 @@ public abstract class stage_select_base extends Fragment implements SharedPrefer
                     }
                 });
                 next_stage_popup.setAnimation(nextStageanimation);
+                swipeIndicate.setVisibility(View.VISIBLE);
+                swipeIndicate.setAnimation(nextStageanimation);
                 editor.putBoolean(getNextStageUnlockStatusKey(),true);
                 editor.apply();
             }

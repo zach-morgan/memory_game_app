@@ -163,20 +163,21 @@
             app:layout_constraintStart_toStartOf="@+id/level_select_stars_until_next_stage_background"
             app:layout_constraintTop_toTopOf="@+id/level_select_stars_until_next_stage_background" />
 
-    <TextView
-            android:id="@+id/level_select_next_stage_unlocked_prompt"
-            android:layout_width="309dp"
-            android:layout_height="150dp"
-            android:gravity="center_vertical"
-            android:text="Next Stage Unlocked!!"
-            android:textAlignment="center"
-            android:textSize="24sp"
-            android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:background="@drawable/cartoon_button" />
+    <Button
+        android:id="@+id/level_select_next_stage_unlocked_prompt"
+        android:layout_width="309dp"
+        android:layout_height="150dp"
+        android:background="@drawable/textbanner"
+        android:gravity="center_vertical"
+        android:text="Next Stage Unlocked!!"
+        android:textAlignment="center"
+        android:textSize="24sp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:background="@drawable/cartoon_button" />
 
     <ImageView
         android:id="@+id/stage_locked_lock"
@@ -262,5 +263,22 @@
         app:layout_constraintTop_toTopOf="@+id/level_select_buttons_background"
         app:layout_constraintVertical_bias="0.6"
         app:srcCompat="@drawable/swipe_indicator_left" />
+
+    <Button
+        android:id="@+id/swipeindicator"
+        android:layout_width="123dp"
+        android:layout_height="192dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/swipe_indicator_left"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.967"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.022" />
 
 </android.support.constraint.ConstraintLayout>

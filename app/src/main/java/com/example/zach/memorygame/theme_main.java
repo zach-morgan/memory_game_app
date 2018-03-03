@@ -2,6 +2,7 @@ package com.example.zach.memorygame;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.app.ActivityCompat;
@@ -14,6 +15,8 @@ import android.widget.Toast;
 
 public class theme_main extends AppCompatActivity {
 
+    MediaPlayer backgroundMusic;
+    SharedPreferences sharedPrefs;
     private ViewPager viewpagerTop, viewPagerBackground;
     public static final int ADAPTER_TYPE_TOP = 1;
     public static final int ADAPTER_TYPE_BOTTOM = 2;
@@ -26,17 +29,25 @@ public class theme_main extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         init();
         setupViewPager();
         SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
         int pageNumber = sharedPrefs.getInt(getString(R.string.shared_pref_save_page_of_theme_select),0);
         viewpagerTop.setCurrentItem(pageNumber);
+        sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
+        backgroundMusic = MediaPlayer.create(getApplicationContext(), R.raw.backgroundmusic);
+        backgroundMusic.setLooping(true);
+        if (sharedPrefs.getBoolean(getString(R.string.isMuted_key),false)) {
+            backgroundMusic.start();}
     }
+
 
     @Override
     protected void onPause() {
         super.onPause();
+        if (backgroundMusic.isPlaying()){
+            backgroundMusic.release();
+        }
         SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
         SharedPreferences.Editor editor = sharedPrefs.edit();
         int themeNum = viewpagerTop.getCurrentItem();

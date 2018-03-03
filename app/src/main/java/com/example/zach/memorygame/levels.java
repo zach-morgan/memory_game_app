@@ -141,6 +141,7 @@ public abstract class levels extends AppCompatActivity implements Observer {
             if (isMusicPlaying) {
                 backmp = MediaPlayer.create(getApplicationContext(), R.raw.level_back);
                 backmp.setLooping(true);
+                initializeVolume(30.0f,backmp);
                 backmp.start();
             }
         }
@@ -209,6 +210,12 @@ public abstract class levels extends AppCompatActivity implements Observer {
     //----------------------------------------------------------------------------------------------
 
     //GENERAL INITS
+
+        private void initializeVolume(float currVolume, MediaPlayer mp){
+            float maxVolume = 50.0f;
+            float log1=(float)(Math.log(maxVolume-currVolume)/Math.log(maxVolume));
+            mp.setVolume(1- log1, 1-log1);
+        }
 
         private void initializeGlobalHeader(){
             moveCounter = findViewById(R.id.move_counter);
@@ -308,15 +315,17 @@ public abstract class levels extends AppCompatActivity implements Observer {
                     ,R.drawable.cartoon_elephant,R.drawable.cartoon_tileflipped_computerguy,R.drawable.cartoon_tileflipped_mexicanguy,R.drawable.cartoon_tileflipped_octopus,
                     R.drawable.cartoon_tileflipped_world, R.drawable.cartoon_tileflipped_blue_root,R.drawable.cartoon_tileback_boxer, R.drawable.cartoon_tileback_soldier,
                     R.drawable.cartoon_tileflipped_pink_robot, R.drawable.cartoon_tileflipped_pizza, R.drawable.cartoon_tileflipped_purplerobot, R.drawable.cartoon_tileflipped_greenrobot,
-                    R.drawable.cartoon_tileflipped_yellowrobot, R.drawable.cartoon_tileflipped_watermelon
+                    R.drawable.cartoon_tileflipped_yellowrobot, R.drawable.cartoon_tileflipped_watermelon, R.drawable.cartoon_tileflipped_cop,R.drawable.cartoon_tileflipped_trumpy,
+                    R.drawable.cartoon_tileflipped_oldman, R.drawable.cartoon_tileflipped_gaben, R.drawable.cartoon_tileflipped_gaben
             ));
             muricaImages = new ArrayList<>(Arrays.asList(
-               R.drawable.murica_tileflipped_california,R.drawable.murica_tileflipped_newyork,R.drawable.murica_tileflipped_idaho,
+                    R.drawable.murica_tileflipped_california,R.drawable.murica_tileflipped_newyork,R.drawable.murica_tileflipped_idaho,
                     R.drawable.murica_tileflipped_florida, R.drawable.murica_tileflipped_michigan, R.drawable.murica_tileflipped_texas,
                     R.drawable.murica_tileflipped_guyriding,R.drawable.murica_tileflipped_americaball,R.drawable.murica_tileflipped_trump,
                     R.drawable.murica_tileflipped_liberty, R.drawable.murica_tileflipped_captamer,R.drawable.murica_tileflipped_ihny,
                     R.drawable.murica_tileflipped_flagcircle,R.drawable.murica_tileflipped_george,R.drawable.murica_tileflipped_unclesam,
-                    R.drawable.murica_tileflipped_libbell
+                    R.drawable.murica_tileflipped_libbell,R.drawable.murica_tileflipped_baseball,  R.drawable.murica_tileflipped_mountr,
+                    R.drawable.murica_tileflipped_mcdonalds, R.drawable.murica_tileflipped_lincoln
             ));
 
         }
@@ -421,6 +430,7 @@ public abstract class levels extends AppCompatActivity implements Observer {
                     model.selectCard(index);
                     if (isMusicPlaying) {
                         mp.start();
+                        initializeVolume(30.0f,mp);
                     }
                 }
             });
@@ -439,6 +449,7 @@ public abstract class levels extends AppCompatActivity implements Observer {
                 if (o != null){
                     if (isMusicPlaying) {
                         matchmp = MediaPlayer.create(getApplicationContext(), R.raw.match);
+                        initializeVolume(50.0f,matchmp);
                         matchmp.start();
                     }
                 }

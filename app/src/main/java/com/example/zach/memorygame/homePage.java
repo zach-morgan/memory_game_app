@@ -13,8 +13,12 @@ import android.support.v4.content.res.ResourcesCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 
@@ -146,6 +150,14 @@ public class homePage extends AppCompatActivity implements SharedPreferences.OnS
             }
         });
         final FloatingActionButton muteButton = findViewById(R.id.mute_button);
+        final Toast unMutetoast = Toast.makeText(this, "All Sounds UnMuted", Toast.LENGTH_SHORT);
+        ViewGroup toastLayout = (ViewGroup) unMutetoast.getView();
+        TextView toastTV = (TextView) toastLayout.getChildAt(0);
+        toastTV.setTextSize(12);
+        final Toast mutetoast = Toast.makeText(this, "All Sounds Muted", Toast.LENGTH_SHORT);
+        ViewGroup toastLayout2 = (ViewGroup) mutetoast.getView();
+        TextView toastTV2 = (TextView) toastLayout2.getChildAt(0);
+        toastTV2.setTextSize(12);
         muteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -154,8 +166,10 @@ public class homePage extends AppCompatActivity implements SharedPreferences.OnS
                 ed.putBoolean(getString(R.string.isMuted_key),!muteValue);
                 if (!muteValue){
                     muteButton.setImageDrawable(ContextCompat.getDrawable(getBaseContext(), R.drawable.unmuted));
+                    unMutetoast.show();
                 }else{
                     muteButton.setImageDrawable(ContextCompat.getDrawable(getBaseContext(), R.drawable.muted));
+                    mutetoast.show();
                 }
                 ed.apply();
             }
