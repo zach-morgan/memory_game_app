@@ -54,10 +54,10 @@ public class homePage extends AppCompatActivity implements SharedPreferences.OnS
         michaelBubleDrawables = new int[]{R.drawable.firstdot,R.drawable.seconddot,R.drawable.thirddot,R.drawable.cartoon_tileback};
         configureTheme();
         setTheme(theme);
-        backgroundMusic = MediaPlayer.create(getApplicationContext(), R.raw.backgroundmusic);
         setContentView(R.layout.activity_home_page);
-        backgroundMusic.setLooping(true);
         if (sharedPrefs.getBoolean(getString(R.string.isMuted_key),true)) {
+            backgroundMusic = MediaPlayer.create(getApplicationContext(), R.raw.backgroundmusic);
+            backgroundMusic.setLooping(true);
             backgroundMusic.start();
             FloatingActionButton muteButton = findViewById(R.id.mute_button);
             muteButton.setImageDrawable(ContextCompat.getDrawable(this,R.drawable.muted));
@@ -105,8 +105,10 @@ public class homePage extends AppCompatActivity implements SharedPreferences.OnS
     @Override
     protected void onPause() {
         super.onPause();
-        if (backgroundMusic.isPlaying()){
+        if (backgroundMusic != null){
+            backgroundMusic.reset();
             backgroundMusic.release();
+            backgroundMusic = null;
         }
     }
 

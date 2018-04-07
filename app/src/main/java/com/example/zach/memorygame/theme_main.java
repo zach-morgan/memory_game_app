@@ -35,9 +35,9 @@ public class theme_main extends AppCompatActivity {
         int pageNumber = sharedPrefs.getInt(getString(R.string.shared_pref_save_page_of_theme_select),0);
         viewpagerTop.setCurrentItem(pageNumber);
         sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
-        backgroundMusic = MediaPlayer.create(getApplicationContext(), R.raw.backgroundmusic);
-        backgroundMusic.setLooping(true);
         if (sharedPrefs.getBoolean(getString(R.string.isMuted_key),false)) {
+            backgroundMusic = MediaPlayer.create(getApplicationContext(), R.raw.backgroundmusic);
+            backgroundMusic.setLooping(true);
             backgroundMusic.start();}
     }
 
@@ -45,8 +45,10 @@ public class theme_main extends AppCompatActivity {
     @Override
     protected void onPause() {
         super.onPause();
-        if (backgroundMusic.isPlaying()){
+        if (backgroundMusic != null) {
+            backgroundMusic.reset();
             backgroundMusic.release();
+            backgroundMusic = null;
         }
         SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
         SharedPreferences.Editor editor = sharedPrefs.edit();

@@ -65,7 +65,9 @@ public class level_select extends FragmentActivity{
     protected void onPause() {
         super.onPause();
         if (backgroundMusic != null){
+            backgroundMusic.stop();
             backgroundMusic.release();
+            backgroundMusic = null;
         }
         sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
         SharedPreferences.Editor editor = sharedPref.edit();

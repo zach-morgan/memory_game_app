@@ -2,6 +2,7 @@ package com.example.zach.memorygame;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.ColorStateList;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.media.MediaPlayer;
@@ -9,6 +10,7 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.content.res.ResourcesCompat;
@@ -22,10 +24,13 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.akexorcist.roundcornerprogressbar.IconRoundCornerProgressBar;
+import com.akexorcist.roundcornerprogressbar.RoundCornerProgressBar;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.SimpleTarget;
 import com.bumptech.glide.request.transition.Transition;
 
+import java.io.Console;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -37,10 +42,6 @@ public abstract class stage_select_base extends Fragment implements SharedPrefer
 
     protected View rootView;
 
-    protected TextView amount_of_stars_until_next_stage;
-
-    protected TextView curr_amount_of_stars;
-
     protected ViewPager pager;
 
     protected String[] keys;
@@ -49,7 +50,7 @@ public abstract class stage_select_base extends Fragment implements SharedPrefer
 
     protected Typeface typefaceFont;
 
-    int theme,lockedLevel, bodyBackground, bottomTextHolder, fontColor;
+    int theme,lockedLevel, bodyBackground, fontColor, rcBack, rcProgbar;
 
     ArrayList<Intent> intents;
 
@@ -57,12 +58,7 @@ public abstract class stage_select_base extends Fragment implements SharedPrefer
 
     ArrayList<Button> levelSelectors;
 
-    View first_cluster;
-
     protected static Animation nextStageanimation;
-
-    TextView of12;
-
 
     @Nullable
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState
@@ -75,10 +71,6 @@ public abstract class stage_select_base extends Fragment implements SharedPrefer
         sharedPrefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
         setTheme();
         rootView = inflater.inflate(R.layout.activity_level_select,container,false);
-        amount_of_stars_until_next_stage = (TextView)rootView.findViewById(R.id.level_select_stars_until_next_stage);
-        curr_amount_of_stars = (TextView)rootView.findViewById(R.id.level_select_current_amount_of_stars);
-        first_cluster = rootView.findViewById(R.id.level_select_bottom_startCluster);
-        of12 = (TextView)rootView.findViewById(R.id.level_select_total_amount_of_stars_textView);
         setTitleBar();
         return rootView;
     }
@@ -131,7 +123,6 @@ public abstract class stage_select_base extends Fragment implements SharedPrefer
         }
         if (isUnlocked()){
             setBackgroundTransparent(false);
-            configureBottomInfoBar();
             registerLevelSelectors(levelSelectors,intents,true);
             lock.setVisibility(View.INVISIBLE);
         }else{
@@ -140,6 +131,7 @@ public abstract class stage_select_base extends Fragment implements SharedPrefer
             Glide.with(this).load(ContextCompat.getDrawable(getContext(),lockedLevel)).into(lock);
         }
     }
+
 
     public void setTheme(){
         String themeString = sharedPrefs.getString(getString(R.string.shared_pref_theme_key),"cartoon");
@@ -151,8 +143,9 @@ public abstract class stage_select_base extends Fragment implements SharedPrefer
                 theme = R.style.cartoon_levels_select;
                 lockedLevel = R.drawable.stage_locked_lock;
                 bodyBackground = R.drawable.cartoon_level_background;
-                bottomTextHolder = R.drawable.cartoon_text_holder;
                 fontColor = R.color.cartoon_Text;
+                rcBack = R.color.cartoon_whitePrimary;
+                rcProgbar = R.color.cartoon_colorPrimary;
                 break;
             case "murica":
                 font = R.font.sriracha;
@@ -160,8 +153,9 @@ public abstract class stage_select_base extends Fragment implements SharedPrefer
                 theme = R.style.murica_levels_select;
                 lockedLevel = R.drawable.murica_lock;
                 bodyBackground = R.drawable.murica_level_select_background;
-                bottomTextHolder = R.drawable.murica_text_holder;
                 fontColor = R.color.murica_flag_blue;
+                rcBack = R.color.murica_flag_blue;
+                rcProgbar = R.color.murica_flag_red;
         }
         getActivity().setTheme(theme);
     }
@@ -203,31 +197,11 @@ public abstract class stage_select_base extends Fragment implements SharedPrefer
             }
 
         }if (setTrans) {
-            amount_of_stars_until_next_stage.setAlpha(0.5f);
-            curr_amount_of_stars.setAlpha(0.5f);
             View header = rootView.findViewById(R.id.stage_header);
             header.setAlpha(0.9f);
-            of12.setVisibility(View.INVISIBLE);
-            curr_amount_of_stars.setVisibility(View.INVISIBLE);
-            amount_of_stars_until_next_stage.setVisibility(View.INVISIBLE);
-            first_cluster.setVisibility(View.INVISIBLE);
-            View secondCluster = rootView.findViewById(R.id.level_select_bottom_startCluster2);
-            secondCluster.setVisibility(View.INVISIBLE);
-            View textBack = rootView.findViewById(R.id.level_select_stars_until_next_stage_background);
-            textBack.setVisibility(View.INVISIBLE);
         }else{
-            amount_of_stars_until_next_stage.setAlpha(1f);
-            curr_amount_of_stars.setAlpha(1f);
             View header = rootView.findViewById(R.id.stage_header);
             header.setAlpha(1f);
-            of12.setVisibility(View.VISIBLE);
-            curr_amount_of_stars.setVisibility(View.VISIBLE);
-            amount_of_stars_until_next_stage.setVisibility(View.VISIBLE);
-            first_cluster.setVisibility(View.VISIBLE);
-            View secondCluster = rootView.findViewById(R.id.level_select_bottom_startCluster2);
-            secondCluster.setVisibility(View.VISIBLE);
-            View textBack = rootView.findViewById(R.id.level_select_stars_until_next_stage_background);
-            textBack.setVisibility(View.VISIBLE);
         }
     }
 
@@ -235,31 +209,6 @@ public abstract class stage_select_base extends Fragment implements SharedPrefer
         return sharedPrefs.getBoolean(getUnlockStatusKey(),false);
     }
 
-    private void configureBottomInfoBar(){
-
-        View back = rootView.findViewById(R.id.level_select_stars_until_next_stage_background);
-        back.setBackground(ContextCompat.getDrawable(getContext(),bottomTextHolder));
-        setFont(of12,typefaceFont);
-        setFont(amount_of_stars_until_next_stage,typefaceFont);
-        setFont(curr_amount_of_stars,typefaceFont);
-
-        final AlphaAnimation animation = new AlphaAnimation(0.0f,1.0f);
-        animation.setDuration(500);
-        animation.setStartOffset(4500);
-        animation.setRepeatCount(Animation.INFINITE);
-        animation.setRepeatMode(Animation.REVERSE);
-        final AlphaAnimation animation2 = new AlphaAnimation(1.0f,0.0f);
-        animation2.setDuration(500);
-        animation2.setStartOffset(4500);
-        animation2.setRepeatCount(Animation.INFINITE);
-        animation2.setRepeatMode(Animation.REVERSE);
-
-        curr_amount_of_stars.startAnimation(animation);
-        first_cluster.startAnimation(animation);
-        of12.startAnimation(animation);
-
-        amount_of_stars_until_next_stage.startAnimation(animation2);
-    }
 
     protected int setStarsandScore(String[] keys, int[] stars, View rootView){
         int score = 0;
@@ -296,22 +245,37 @@ public abstract class stage_select_base extends Fragment implements SharedPrefer
                 setBackgroundHelper(star_holder,noStar);
             }
         }
-        curr_amount_of_stars.setText(Integer.toString(score));
         int stars_needed = 9 - score;
-        View second_cluster = rootView.findViewById(R.id.level_select_bottom_startCluster2);
+        configureProgressBar(score);
+        /**
         if (stars_needed >0) {
-            amount_of_stars_until_next_stage.setText(getNextStageNum() + " In " + Integer.toString(stars_needed));
+
         }else{
-            amount_of_stars_until_next_stage.setText(getNextStageNum() + " Unlocked!");
-            amount_of_stars_until_next_stage.setTextSize(18);
-            final AlphaAnimation animation = new AlphaAnimation(0.0f,1.0f);
-            animation.setDuration(500);
-            animation.setStartOffset(4500);
-            animation.setRepeatCount(Animation.INFINITE);
-            animation.setRepeatMode(Animation.REVERSE);
-            second_cluster.startAnimation(animation);
+
         }
+         */
         return stars_needed;
+    }
+
+    public void configureProgressBar(int numOfStars){
+        RoundCornerProgressBar progBar = (RoundCornerProgressBar) rootView.findViewById(R.id.progBar);
+        progBar.setProgressBackgroundColor(getResources().getColor(rcBack));
+        progBar.setProgressColor(getResources().getColor(rcProgbar));
+        TextView overlayText = rootView.findViewById(R.id.progBarTextOverlay);
+        setFont(overlayText, typefaceFont);
+        if (numOfStars < 9){
+            overlayText.setText("Next Stage Progress");
+            progBar.setMax(9);
+        }else{
+            progBar.setMax(12);
+            if (numOfStars == 12){
+                overlayText.setText("Perfect Stage!");
+            }else{
+                overlayText.setText("Total Stars Progress");
+            }
+        }
+        progBar.setProgress(numOfStars);
+
     }
 
     private void setBackgroundHelper(final View btn, int drawable) {

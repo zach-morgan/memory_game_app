@@ -153,16 +153,24 @@ public abstract class levels extends AppCompatActivity implements Observer {
                 pauseTimer();
             }
             if (backmp != null){
+                backmp.stop();
                 backmp.release();
+                backmp = null;
             }
             if (mp != null){
+                mp.stop();
                 mp.release();
+                mp = null;
             }
             if (matchmp != null){
+                matchmp.stop();
                 matchmp.release();
+                matchmp = null;
             }
             if (winmp != null){
+                winmp.stop();
                 winmp.release();
+                winmp = null;
             }
             super.onPause();
         }
@@ -271,7 +279,7 @@ public abstract class levels extends AppCompatActivity implements Observer {
             btn.setTextColor(ContextCompat.getColor(this,font_color));
             game_layout.setBackground(ContextCompat.getDrawable(this,level_background));
             setIntroHighScore();
-            mp = MediaPlayer.create(getApplicationContext(),R.raw.button_press);
+            if (isMusicPlaying) mp = MediaPlayer.create(getApplicationContext(),R.raw.button_press);
             btn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -583,7 +591,9 @@ public abstract class levels extends AppCompatActivity implements Observer {
             //switch from game header to You Won!
             initializeWinScreenHeader();
             if (isMusicPlaying) {
+                backmp.stop();
                 backmp.release();
+                backmp = null;
             }
             //transition between game layout and trophy screen
             LinearLayout mainLayout = findViewById(R.id.mainLayout);
