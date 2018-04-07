@@ -21,6 +21,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -54,13 +57,13 @@ public class homePage extends AppCompatActivity implements SharedPreferences.OnS
         backgroundMusic = MediaPlayer.create(getApplicationContext(), R.raw.backgroundmusic);
         setContentView(R.layout.activity_home_page);
         backgroundMusic.setLooping(true);
-        if (sharedPrefs.getBoolean(getString(R.string.isMuted_key),false)) {
+        if (sharedPrefs.getBoolean(getString(R.string.isMuted_key),true)) {
             backgroundMusic.start();
             FloatingActionButton muteButton = findViewById(R.id.mute_button);
-            muteButton.setImageDrawable(ContextCompat.getDrawable(this,R.drawable.unmuted));
+            muteButton.setImageDrawable(ContextCompat.getDrawable(this,R.drawable.muted));
         }else{
             FloatingActionButton muteButton = findViewById(R.id.mute_button);
-            muteButton.setImageDrawable(ContextCompat.getDrawable(this,R.drawable.muted));
+            muteButton.setImageDrawable(ContextCompat.getDrawable(this,R.drawable.unmuted));
         }
         ImageView Person = (ImageView) findViewById(R.id.person);
         Glide.with(this).load(ContextCompat.getDrawable(this,person)).into(Person);
@@ -69,6 +72,10 @@ public class homePage extends AppCompatActivity implements SharedPreferences.OnS
         openingAnimations(michaelBuble);
         addButtonListeners();
         initializeSharedPrefs();
+        MobileAds.initialize(this,"ca-app-pub-6169106962153795~4127284569");
+        AdView mAdView = findViewById(R.id.bannerAd);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
     }
 
     private void configureTheme(){
@@ -89,7 +96,7 @@ public class homePage extends AppCompatActivity implements SharedPreferences.OnS
                 theme = R.style.murica_HomePage;
                 person = R.drawable.murica_homepage_person_thinking;
                 buttonBackground = R.drawable.murica_button;
-                font = R.font.black_ops_one;
+                font = R.font.sriracha;
                 typefaceFont = ResourcesCompat.getFont(this,font);
                 fontColor = R.color.murica_flag_blue;
         }
@@ -165,10 +172,10 @@ public class homePage extends AppCompatActivity implements SharedPreferences.OnS
                 SharedPreferences.Editor ed = sharedPrefs.edit();
                 ed.putBoolean(getString(R.string.isMuted_key),!muteValue);
                 if (!muteValue){
-                    muteButton.setImageDrawable(ContextCompat.getDrawable(getBaseContext(), R.drawable.unmuted));
+                    muteButton.setImageDrawable(ContextCompat.getDrawable(getBaseContext(), R.drawable.muted));
                     unMutetoast.show();
                 }else{
-                    muteButton.setImageDrawable(ContextCompat.getDrawable(getBaseContext(), R.drawable.muted));
+                    muteButton.setImageDrawable(ContextCompat.getDrawable(getBaseContext(), R.drawable.unmuted));
                     mutetoast.show();
                 }
                 ed.apply();
@@ -180,7 +187,7 @@ public class homePage extends AppCompatActivity implements SharedPreferences.OnS
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
         String muteK = getString(R.string.isMuted_key);
         if (key.equals(muteK)){
-            if (sharedPrefs.getBoolean(muteK,false)){
+            if (sharedPrefs.getBoolean(muteK,true)){
                 backgroundMusic.start();
             }else{
                 if (backgroundMusic.isPlaying()) {

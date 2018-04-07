@@ -54,7 +54,7 @@ public class level_select extends FragmentActivity{
     @Override
     protected void onResume() {
         super.onResume();
-        if (sharedPref.getBoolean(getString(R.string.isMuted_key),false)) {
+        if (sharedPref.getBoolean(getString(R.string.isMuted_key),true)) {
             backgroundMusic = MediaPlayer.create(getApplicationContext(), R.raw.backgroundmusic);
             backgroundMusic.setLooping(true);
             backgroundMusic.start();

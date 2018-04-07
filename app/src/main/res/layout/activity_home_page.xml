@@ -12,19 +12,21 @@
         android:id="@+id/textView"
         android:layout_width="match_parent"
         android:layout_height="58dp"
+        android:fontFamily="@font/sriracha"
         android:text="@string/app_name"
         android:textAlignment="center"
-        app:layout_constraintVertical_bias="0"
+        android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0" />
 
 
     <ImageView
         android:id="@+id/person"
         android:layout_width="143dp"
-        android:layout_height="361dp"
+        android:layout_height="322dp"
         android:background="@android:color/transparent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -49,34 +51,35 @@
 
     <ImageView
         android:id="@+id/bubblemed"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
+        android:layout_width="48dp"
+        android:layout_height="52dp"
+        android:layout_marginEnd="8dp"
         android:background="@android:color/transparent"
         app:layout_constraintBottom_toBottomOf="@+id/person"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintEnd_toStartOf="@+id/tile_in_bubble"
+        app:layout_constraintHorizontal_bias="0.185"
         app:layout_constraintStart_toEndOf="@+id/bubblesmall"
         app:layout_constraintTop_toBottomOf="@+id/textView"
-        app:layout_constraintVertical_bias="0.22"
+        app:layout_constraintVertical_bias="0.377"
         tools:src="@drawable/seconddot" />
 
     <ImageView
         android:id="@+id/bubblelarge"
-        android:layout_width="170dp"
-        android:layout_height="193dp"
+        android:layout_width="144dp"
+        android:layout_height="164dp"
         android:background="@android:color/transparent"
         app:layout_constraintBottom_toBottomOf="@+id/person"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.934"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView"
-        app:layout_constraintVertical_bias="0.0"
+        app:layout_constraintVertical_bias="0.32"
         tools:src="@drawable/thirddot" />
 
     <ImageView
         android:id="@+id/tile_in_bubble"
-        android:layout_width="110dp"
-        android:layout_height="110dp"
+        android:layout_width="78dp"
+        android:layout_height="78dp"
         android:background="@android:color/transparent"
         app:layout_constraintBottom_toBottomOf="@+id/bubblelarge"
         app:layout_constraintEnd_toEndOf="@+id/bubblelarge"
@@ -124,10 +127,40 @@
         android:id="@+id/mute_button"
         android:layout_width="51dp"
         android:layout_height="61dp"
+        app:backgroundTint="@color/home_FAB"
         app:layout_constraintBottom_toBottomOf="@+id/person"
         app:layout_constraintEnd_toEndOf="@+id/person"
-        app:layout_constraintHorizontal_bias="0.094"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/person"
-        app:layout_constraintTop_toTopOf="@+id/person"
-        app:layout_constraintVertical_bias="0.905" />
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:layout_constraintVertical_bias="0.273" />
+
+    <ImageView
+        android:id="@+id/plane"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginTop="8dp"
+        android:background="@android:color/transparent"
+        app:layout_constraintBottom_toTopOf="@+id/bubblelarge"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/textView"
+        app:srcCompat="@drawable/airplane_pulling_banner_clipart" />
+
+    <com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/bannerAd"
+        android:layout_width="320dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="8dp"
+        ads:adSize="BANNER"
+        ads:adUnitId="ca-app-pub-3940256099942544/6300978111"
+        ads:layout_constraintHorizontal_bias="0.5"
+        ads:layout_constraintStart_toStartOf="@+id/plane"
+        ads:layout_constraintVertical_bias="0.7"
+        app:layout_constraintBottom_toBottomOf="@+id/plane"
+        app:layout_constraintEnd_toEndOf="@+id/plane"
+        app:layout_constraintStart_toEndOf="@+id/mute_button"
+        app:layout_constraintTop_toTopOf="@+id/plane"></com.google.android.gms.ads.AdView>
+
 </android.support.constraint.ConstraintLayout>

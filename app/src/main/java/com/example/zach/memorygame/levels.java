@@ -20,6 +20,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.constraint.ConstraintLayout;
 import android.support.constraint.ConstraintSet;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.content.res.ResourcesCompat;
 import android.support.v4.view.ViewPager;
@@ -186,7 +187,7 @@ public abstract class levels extends AppCompatActivity implements Observer {
                     setTheme(R.style.murica_level_base);
                     header_background = R.drawable.murica_text_holder;
                     font_color = R.color.murica_flag_blue;
-                    font = R.font.black_ops_one;
+                    font = R.font.sriracha;
                     navigation_button_background = R.drawable.murica_button;
                     header_background = R.drawable.murica_level_header;
                     level_background = R.drawable.murica_level_background;
@@ -289,7 +290,7 @@ public abstract class levels extends AppCompatActivity implements Observer {
 
         private void setIntroHighScore(){
             SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
-            isMusicPlaying = sharedPrefs.getBoolean(getString(R.string.isMuted_key),false);
+            isMusicPlaying = sharedPrefs.getBoolean(getString(R.string.isMuted_key),true);
             TextView time = findViewById(R.id.level_intro_high_time);
             TextView moves = findViewById(R.id.level_intro_high_moves);
             View icon = findViewById(R.id.level_intro_high_icon);
@@ -316,7 +317,7 @@ public abstract class levels extends AppCompatActivity implements Observer {
                     R.drawable.cartoon_tileflipped_world, R.drawable.cartoon_tileflipped_blue_root,R.drawable.cartoon_tileback_boxer, R.drawable.cartoon_tileback_soldier,
                     R.drawable.cartoon_tileflipped_pink_robot, R.drawable.cartoon_tileflipped_pizza, R.drawable.cartoon_tileflipped_purplerobot, R.drawable.cartoon_tileflipped_greenrobot,
                     R.drawable.cartoon_tileflipped_yellowrobot, R.drawable.cartoon_tileflipped_watermelon, R.drawable.cartoon_tileflipped_cop,R.drawable.cartoon_tileflipped_trumpy,
-                    R.drawable.cartoon_tileflipped_oldman, R.drawable.cartoon_tileflipped_gaben, R.drawable.cartoon_tileflipped_gaben
+                    R.drawable.cartoon_tileflipped_oldman, R.drawable.cartoon_tileflipped_gaben, R.drawable.cartoon_tileflipped_popeye
             ));
             muricaImages = new ArrayList<>(Arrays.asList(
                     R.drawable.murica_tileflipped_california,R.drawable.murica_tileflipped_newyork,R.drawable.murica_tileflipped_idaho,
@@ -732,9 +733,9 @@ public abstract class levels extends AppCompatActivity implements Observer {
             View right_ribbon = findViewById(R.id.right_ribbon);
             ArrayList<View> win_views = new ArrayList<>(Arrays.asList(victory_header, left_ribbon, right_ribbon));
             TextView Move = findViewById(R.id.move_label);
-            View resetButton = findViewById(R.id.reset_button);
+            Button resetButton = findViewById(R.id.reset_button);
             ViewGroup levelheader = findViewById(R.id.level_header);
-            ArrayList<View> views = new ArrayList<>(Arrays.asList(Move, resetButton, TimeView, levelLabel, moveCounter));
+            ArrayList<View> views = new ArrayList<>(Arrays.asList((View)Move,resetButton,TimeView, levelLabel, moveCounter));
             Move.animate().alpha(0f).setDuration(1000).setListener(new animatorListener(levelheader, views));
             for (View view : views) {
                 view.animate().alpha(0f).setDuration(1000).setListener(null);

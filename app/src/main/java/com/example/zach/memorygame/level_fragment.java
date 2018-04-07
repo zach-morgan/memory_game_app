@@ -16,11 +16,12 @@ public class level_fragment extends Fragment {
 
     View mainView;
 
-    boolean hasFlip,hasSwipeHelp;
+    boolean hasFlip,hasSwipeHelp, cardsHaveBeenRegistered;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        cardsHaveBeenRegistered = false;
         //int layout = getArguments().getInt(getString(R.string.multi_page_level_key),R.layout.level_introduction);
         //hasFlip = getArguments().getBoolean(getString(R.string.multi_page_has_flip_key),false);
         //mainView = inflater.inflate(layout,container,false);;
@@ -40,8 +41,11 @@ public class level_fragment extends Fragment {
     public void onStart() {
         super.onStart();
         //Crashes on reopen
-        multi_page_level parentActivity = (multi_page_level)getActivity();
-        parentActivity.updateDaBoard(getButtons());
+        if (!cardsHaveBeenRegistered) {
+            multi_page_level parentActivity = (multi_page_level) getActivity();
+            parentActivity.updateDaBoard(getButtons());
+        }
+        cardsHaveBeenRegistered = true;
     }
 
     public int[] getButtons(){

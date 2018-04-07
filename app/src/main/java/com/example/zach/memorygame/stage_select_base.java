@@ -155,7 +155,7 @@ public abstract class stage_select_base extends Fragment implements SharedPrefer
                 fontColor = R.color.cartoon_Text;
                 break;
             case "murica":
-                font = R.font.black_ops_one;
+                font = R.font.sriracha;
                 typefaceFont = ResourcesCompat.getFont(getContext(),font);
                 theme = R.style.murica_levels_select;
                 lockedLevel = R.drawable.murica_lock;

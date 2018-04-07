@@ -8,69 +8,63 @@
 
     <Button
         android:id="@+id/S4L2_B1_p2"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.94"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.498" />
+        app:layout_constraintBottom_toBottomOf="@+id/S4L2_B5_p2"
+        app:layout_constraintEnd_toEndOf="@+id/S4L2_B4_p2"
+        app:layout_constraintStart_toStartOf="@+id/S4L2_B4_p2"
+        app:layout_constraintTop_toTopOf="@+id/S4L2_B5_p2" />
 
     <Button
         android:id="@+id/S4L2_B2_p2"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.059"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/S4L2_B9_p2"
+        app:layout_constraintStart_toStartOf="@+id/S4L2_B9_p2"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.498" />
 
     <Button
         android:id="@+id/S4L2_B3_p2"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/S4L2_B9_p2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.253" />
+        app:layout_constraintTop_toTopOf="@+id/S4L2_B9_p2" />
 
     <Button
         android:id="@+id/S4L2_B4_p2"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/S4L2_B3_p2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.94"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.253" />
+        app:layout_constraintTop_toTopOf="@+id/S4L2_B3_p2" />
 
     <Button
         android:id="@+id/S4L2_B5_p2"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintBottom_toBottomOf="@+id/S4L2_B2_p2"
+        app:layout_constraintEnd_toEndOf="@+id/S4L2_B3_p2"
+        app:layout_constraintStart_toStartOf="@+id/S4L2_B3_p2"
+        app:layout_constraintTop_toTopOf="@+id/S4L2_B2_p2" />
 
     <Button
         android:id="@+id/S4L2_B6_p2"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/S4L2_B3_p2"
+        app:layout_constraintEnd_toEndOf="@+id/S4L2_B3_p2"
+        app:layout_constraintStart_toStartOf="@+id/S4L2_B3_p2"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.033" />
+        app:layout_constraintVertical_bias="0.5" />
 
     <Button
         android:id="@+id/S4L2_B7_p2"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.966" />
+        app:layout_constraintEnd_toEndOf="@+id/S4L2_B8_p2"
+        app:layout_constraintStart_toStartOf="@+id/S4L2_B8_p2"
+        app:layout_constraintTop_toBottomOf="@+id/S4L2_B8_p2"
+        app:layout_constraintVertical_bias="0.5" />
 
     <Button
         android:id="@+id/S4L2_B8_p2"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.729" />
+        app:layout_constraintBottom_toBottomOf="@+id/S4L2_B11_p2"
+        app:layout_constraintEnd_toEndOf="@+id/S4L2_B5_p2"
+        app:layout_constraintStart_toStartOf="@+id/S4L2_B5_p2"
+        app:layout_constraintTop_toTopOf="@+id/S4L2_B11_p2" />
 
     <Button
         android:id="@+id/S4L2_B9_p2"
@@ -79,25 +73,22 @@
         app:layout_constraintHorizontal_bias="0.059"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.253" />
+        app:layout_constraintVertical_bias="0.25" />
 
     <Button
         android:id="@+id/S4L2_B10_p2"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.94"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.729" />
+        app:layout_constraintBottom_toBottomOf="@+id/S4L2_B8_p2"
+        app:layout_constraintEnd_toEndOf="@+id/S4L2_B1_p2"
+        app:layout_constraintStart_toStartOf="@+id/S4L2_B1_p2"
+        app:layout_constraintTop_toTopOf="@+id/S4L2_B8_p2" />
 
     <Button
         android:id="@+id/S4L2_B11_p2"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.059"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/S4L2_B2_p2"
+        app:layout_constraintStart_toStartOf="@+id/S4L2_B2_p2"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.729" />
+        app:layout_constraintVertical_bias="0.75" />
 
     <Button
         android:id="@+id/cardSwapPopUp_p2"

@@ -73,7 +73,7 @@
     <!--Base Text-->
 
     <style name="murica_BaseText">
-        <item name="android:fontFamily">@font/black_ops_one</item>
+        <item name="android:fontFamily">@font/sriracha</item>
         <item name="android:textColor">@android:color/white</item>
         <item name="android:background">@android:color/transparent</item>
     </style>
