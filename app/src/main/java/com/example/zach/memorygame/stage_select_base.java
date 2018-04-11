@@ -142,7 +142,7 @@ public abstract class stage_select_base extends Fragment implements SharedPrefer
                 typefaceFont = ResourcesCompat.getFont(getContext(),font);
                 theme = R.style.cartoon_levels_select;
                 lockedLevel = R.drawable.stage_locked_lock;
-                bodyBackground = R.drawable.cartoon_level_background;
+                bodyBackground = R.drawable.cartoon_level_select_nature_back;
                 fontColor = R.color.cartoon_Text;
                 rcBack = R.color.cartoon_whitePrimary;
                 rcProgbar = R.color.cartoon_colorPrimary;
@@ -202,6 +202,14 @@ public abstract class stage_select_base extends Fragment implements SharedPrefer
         }else{
             View header = rootView.findViewById(R.id.stage_header);
             header.setAlpha(1f);
+        }
+        RoundCornerProgressBar progBar = (RoundCornerProgressBar) rootView.findViewById(R.id.progBar);
+        TextView overlayText = rootView.findViewById(R.id.progBarTextOverlay);
+        FloatingActionButton stars = rootView.findViewById(R.id.starCluster);
+        if (setTrans){
+            progBar.setVisibility(View.GONE);
+            overlayText.setVisibility(View.GONE);
+            stars.setVisibility(View.GONE);
         }
     }
 

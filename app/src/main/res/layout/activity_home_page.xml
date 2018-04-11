@@ -12,7 +12,6 @@
         android:id="@+id/textView"
         android:layout_width="match_parent"
         android:layout_height="58dp"
-        android:fontFamily="@font/sriracha"
         android:text="@string/app_name"
         android:textAlignment="center"
         android:textSize="30sp"

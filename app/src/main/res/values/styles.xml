@@ -31,7 +31,7 @@
 
     <style name="level_select_title" parent="@style/cartoon_BaseText">
         <item name="android:textSize">56sp</item>
-        <item name="android:background">@drawable/stageborder</item>
+        <item name="android:background">@drawable/cartoon_plane_stage_header</item>
     </style>
 
     <style name="cartoon_levels_select" parent="@style/Theme.AppCompat.Light.NoActionBar">
