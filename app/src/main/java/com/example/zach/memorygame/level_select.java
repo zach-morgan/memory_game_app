@@ -12,6 +12,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -24,6 +25,7 @@ import android.widget.ImageView;
 import com.ToxicBakery.viewpager.transforms.AccordionTransformer;
 import com.ToxicBakery.viewpager.transforms.DepthPageTransformer;
 import com.ToxicBakery.viewpager.transforms.RotateUpTransformer;
+import com.ToxicBakery.viewpager.transforms.ScaleInOutTransformer;
 import com.ToxicBakery.viewpager.transforms.StackTransformer;
 import com.ToxicBakery.viewpager.transforms.ZoomInTransformer;
 import com.bumptech.glide.Glide;
@@ -46,9 +48,10 @@ public class level_select extends FragmentActivity{
         pager = (ViewPager)findViewById(R.id.pager);
         level_select_pager pag = new level_select_pager(getSupportFragmentManager());
         pager.setAdapter(pag);
-        pager.setPageTransformer(true, new StackTransformer());
+        pager.setPageTransformer(true, new ScaleInOutTransformer());
         sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
         pager.setCurrentItem(sharedPref.getInt(getString(R.string.store_current_stage_pager),0));
+        setBackground();
     }
 
     @Override
@@ -73,6 +76,17 @@ public class level_select extends FragmentActivity{
         SharedPreferences.Editor editor = sharedPref.edit();
         editor.putInt(getString(R.string.store_current_stage_pager), pager.getCurrentItem());
         editor.apply();
+    }
+
+    protected void setBackground(){
+        String themeString = sharedPref.getString(getString(R.string.shared_pref_theme_key),"cartoon");
+        switch(themeString) {
+            case "cartoon":
+                pager.setBackground(ContextCompat.getDrawable(this, R.drawable.cartoon_nature_wallpaper));
+                break;
+            case "murica":
+                pager.setBackground(ContextCompat.getDrawable(this, R.drawable.murica_level_select_background));
+        }
     }
 
 }

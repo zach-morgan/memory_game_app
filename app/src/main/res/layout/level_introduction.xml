@@ -18,7 +18,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.016"
-            app:srcCompat="@drawable/intro_trophies" />
+            app:srcCompat="@drawable/intro_trophies_new" />
 
         <TextView
             android:id="@+id/bronze_time"

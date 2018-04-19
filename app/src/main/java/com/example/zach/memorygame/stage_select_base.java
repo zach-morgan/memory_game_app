@@ -78,8 +78,8 @@ public abstract class stage_select_base extends Fragment implements SharedPrefer
     @Override
     public void onResume() {
         super.onResume();
-        ImageView background = rootView.findViewById(R.id.level_select_buttons_background);
-        background.setBackground(ContextCompat.getDrawable(getContext(),bodyBackground));
+        //ImageView background = rootView.findViewById(R.id.level_select_buttons_background);
+        //background.setBackground(ContextCompat.getDrawable(getContext(),bodyBackground));
         sharedPrefs.registerOnSharedPreferenceChangeListener(this);
         SharedPreferences.Editor editor = sharedPrefs.edit();
         levelSelectors = new ArrayList<>(Arrays.asList((Button)rootView.findViewById(R.id.stage1lvl1),(Button) rootView.findViewById(R.id.stage1lvl2),

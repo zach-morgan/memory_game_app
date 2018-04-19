@@ -6,23 +6,10 @@
         tools:context="com.example.zach.memorygame.homePage"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/cartoon_homepage_back">
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="match_parent"
-        android:layout_height="58dp"
-        android:text="@string/app_name"
-        android:textAlignment="center"
-        android:textSize="30sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0" />
+        android:background="@drawable/possible_home_page_background">
 
 
-    <ImageView
+        <ImageView
         android:id="@+id/person"
         android:layout_width="143dp"
         android:layout_height="322dp"
@@ -45,7 +32,7 @@
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="@+id/person"
         app:layout_constraintTop_toTopOf="@+id/person"
-        app:layout_constraintVertical_bias="0.0"
+        app:layout_constraintVertical_bias="0.07"
         tools:src="@drawable/firstdot" />
 
     <ImageView
@@ -56,10 +43,10 @@
         android:background="@android:color/transparent"
         app:layout_constraintBottom_toBottomOf="@+id/person"
         app:layout_constraintEnd_toStartOf="@+id/tile_in_bubble"
-        app:layout_constraintHorizontal_bias="0.185"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/bubblesmall"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
-        app:layout_constraintVertical_bias="0.377"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.428"
         tools:src="@drawable/seconddot" />
 
     <ImageView
@@ -69,23 +56,23 @@
         android:background="@android:color/transparent"
         app:layout_constraintBottom_toBottomOf="@+id/person"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.934"
+        app:layout_constraintHorizontal_bias="0.925"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
-        app:layout_constraintVertical_bias="0.32"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.353"
         tools:src="@drawable/thirddot" />
 
     <ImageView
         android:id="@+id/tile_in_bubble"
-        android:layout_width="78dp"
-        android:layout_height="78dp"
+        android:layout_width="87dp"
+        android:layout_height="87dp"
         android:background="@android:color/transparent"
         app:layout_constraintBottom_toBottomOf="@+id/bubblelarge"
         app:layout_constraintEnd_toEndOf="@+id/bubblelarge"
-        app:layout_constraintHorizontal_bias="0.458"
+        app:layout_constraintHorizontal_bias="0.55"
         app:layout_constraintStart_toStartOf="@+id/bubblelarge"
         app:layout_constraintTop_toTopOf="@+id/bubblelarge"
-        app:layout_constraintVertical_bias="0.412" />
+        app:layout_constraintVertical_bias="0.5" />
 
     <Button
         android:id="@+id/themeButton"
@@ -119,8 +106,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.956"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
-        app:layout_constraintVertical_bias="0.703" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.75" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/mute_button"
@@ -131,20 +118,20 @@
         app:layout_constraintEnd_toEndOf="@+id/person"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/person"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.273" />
 
     <ImageView
         android:id="@+id/plane"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginTop="8dp"
         android:background="@android:color/transparent"
         app:layout_constraintBottom_toTopOf="@+id/bubblelarge"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/textView"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/airplane_pulling_banner_clipart" />
 
     <com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"
@@ -152,6 +139,7 @@
         android:layout_width="320dp"
         android:layout_height="50dp"
         android:layout_marginStart="8dp"
+        android:visibility="gone"
         ads:adSize="BANNER"
         ads:adUnitId="ca-app-pub-3940256099942544/6300978111"
         ads:layout_constraintHorizontal_bias="0.5"
@@ -162,4 +150,18 @@
         app:layout_constraintStart_toEndOf="@+id/mute_button"
         app:layout_constraintTop_toTopOf="@+id/plane"></com.google.android.gms.ads.AdView>
 
-</android.support.constraint.ConstraintLayout>
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="58dp"
+        android:text="@string/app_name"
+        android:textAlignment="center"
+        android:textSize="36sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.125" />
+
+    </android.support.constraint.ConstraintLayout>

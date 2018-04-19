@@ -103,7 +103,7 @@
 
     <style name="murica_level_select_title" parent="@style/murica_BaseText">
         <item name="android:textSize">56sp</item>
-        <item name="android:background">@drawable/murica_level_header</item>
+        <item name="android:background">@drawable/murica_level_select_header</item>
     </style>
 
     <style name="murica_levels_select" parent="@style/Theme.AppCompat.Light.NoActionBar">

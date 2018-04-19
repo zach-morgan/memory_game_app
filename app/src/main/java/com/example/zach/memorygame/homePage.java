@@ -51,7 +51,7 @@ public class homePage extends AppCompatActivity implements SharedPreferences.OnS
         super.onResume();
         sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
         sharedPrefs.registerOnSharedPreferenceChangeListener(this);
-        michaelBubleDrawables = new int[]{R.drawable.firstdot,R.drawable.seconddot,R.drawable.thirddot,R.drawable.cartoon_tileback};
+        michaelBubleDrawables = new int[]{R.drawable.small_bubble_possible,R.drawable.med_bubbl_possible,R.drawable.big_bubble_possible,R.drawable.cartoon_tileback};
         configureTheme();
         setTheme(theme);
         setContentView(R.layout.activity_home_page);
@@ -85,7 +85,7 @@ public class homePage extends AppCompatActivity implements SharedPreferences.OnS
             case "cartoon":
                 michaelBubleDrawables[3] = R.drawable.cartoon_tileback;
                 theme = R.style.cartoon_HomePage;
-                person = R.drawable.person;
+                person = R.drawable.cartoon_possible_home_person;
                 buttonBackground = R.drawable.cartoon_button;
                 font = R.font.finger_paint;
                 typefaceFont = ResourcesCompat.getFont(this,font);
